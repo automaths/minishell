@@ -17,3 +17,14 @@ Error messages must always be printed out in the terminal (STD_ERR), as this pro
 You should write your own error messages in case of syntax error / other errors.
 
 Don’t forget to also set the variable `$?` to the return code of the last round of executions! Test abundantly with bash, you must replicate it’s behaviour!
+
+
+Useful links : 
+
+Shell command language: https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html
+
+Bash reference manual: https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html
+
+Youtube playlist unix processes in C: https://www.youtube.com/playlist?list=PLfqABt5AS4FkW5mOn2Tn9ZZLLDwA3kZUY
+
+Minishell architecture : https://whimsical.com/minishell-architecture-big-picture-7b9N8PL3qHrddbs977mQ2J
