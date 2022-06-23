@@ -1,0 +1,89 @@
+Si dans la list chaîne envoyée il y a un next c’est qu’il y a un pipe ou autre opérateur 
+$? valeur exit 
+
+t_command : 
+t_token arg
+t_token redirection
+int fd_in
+int fd_out
+t_command next 
++ les autres infos si besoin d’autres infos 
+
+pipe et autres opérateurs mettent fin à la création de commande 
+par exemple arg redirection redirection c’est une commande 
+d’abord gérer les parenthèses s’il y en a , puis charger la commande jusqu’à pipe, 
+En gros pour pipe simplement créer une nouvelle commande 
+on arrive dans un maillon, on lancé première commande, si il y a un next il faut la link avec le pipe 
+
+la redirection à la priorité sur la pipe, en gros le fd_in sera vide parce qu’il aura été redirigé pour autant je peux toujours l’utiliser juste il sera vide
+si il y a plusieurs redirection 
+quatre redirection, r_in r_out, dr_out, here doc 
+> a > b > c crée a b et c 
+fork pas les built in 
+commande simple, une seule commande pas de fork, si c’est une commande fork dans execve 
+si commande complexe donc avec next on fork même si c’est built in et on wait le dernier processus 
+donc | exit | exit | exit ne quitte pas le minishell car pipé
+un truc pas mal c’est un booléen de is_pipe pour savoir si la commande est simple ou pas 
+
+ne pas répéter du code surtout mieux vaut à coder des fonctions utiles, get next token et split sur liste pour aller direct à la fin de l commande 
+
+pipe de heredoc : faire les pipes, créer le fichier tmp 
+gestion de signaux dans le heredoc, remettre les signaux par défaut 
+si quote dans heredoc limiter pas d’expansion, enlever les quote du limiter 
+
+
+readline : read line from terminal and returns it, can cause memory leaks
+other functions from readline library : rl_clear_history, rl_on_new_line, rl_replace_line, rl_redisplay, add_history
+
+printf, write
+
+malloc, free
+
+access, open, read, close
+
+fork, wait, waitpid, wait3, wait4
+
+signal, sigaction, sigemptyset, sigaddset, kill
+
+exit : terminer normalement un processus
+
+getcwd : return absolut pathname of working directory of the calling process
+
+chdir : remplace le repertoire de travail courant du processus appelant par celui indique dans le chemin path
+
+stat : recupere l'etat du fichier pointe par path et remplit le tampon buff
+lstat : identique à stat(), sauf que si path est un lien symbolique, il donne l'état du lien lui-même plutôt que celui du fichier visé
+fstat : identique à stat(), sauf que le fichier ouvert est pointé par le descripteur fd, obtenu avec open
+
+unlink : supprime le nom du file system
+
+execve : execute un executable et ses options, detruit le processus en cours, le faire avec fork()
+
+dup et dup2 : duplique le fd
+
+pipe : cree un pipe qui est compose de deux fd, un fd pour ecrire dedans et un fd pour lire ce qui a ete ecrit
+
+opendir : open a directory stream and return a pointer to the directory stream
+readdir : returns a pointer to a dirent structure representing the next directory entry in the directory stream pointed to by dirp
+closedir : ferme le flux de repertoire associe a dir, qui devient indisponible
+
+strerror : renvoie un pointeur vers une chaine de caractere qui decrit le code d'erreur de errnum passe en argument
+
+perror : produces a message on standard error describing the last error encountered during a call to a system  or library function
+
+isatty : verifie si l'argument est un descripteur de fichier ouvert connecte a un terminal
+ttyname : returns a pointer to the null-terminated pathname of the terminal device that is open on the file descriptor fd
+ttyslot : returns the index of the controlling terminal of the calling process in the file /etc/ttys, and that is (usually) the same as the index of the entry for the current user in the file /etc/utmp
+
+ioctl : the system call manipulates the underlying device parameters of special files.  In particular, many operating characteristics of character special files (e.g., terminals) maybe controlled with ioctl() requests
+
+getenv : function searches the environment list to find the environment variable name, and returns a pointer to the corresponding value string
+
+tcsetattr and tcgetattr : get and set terminal attributes, line control, get and set baud rate
+
+tgetent : loads the entry for name. It returns 1 on success, 0 if there is no such entry, and -1 if the terminfo database could not be found
+tgetflag : gets the boolean entry for id, or zero if it is not available 
+tgetnum : gets the numeric entry for id, or -1 if it is not available 
+tgetstr : returns the string entry for id, or zero if it is not available
+tgoto : instantiates the parameters into the given capability
+tputs : retrieve capabilities by either termcap or terminfo name
