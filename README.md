@@ -26,3 +26,5 @@ Shell command language: https://pubs.opengroup.org/onlinepubs/009695399/utilitie
 Bash reference manual: https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html
 
 Youtube playlist unix processes in C: https://www.youtube.com/playlist?list=PLfqABt5AS4FkW5mOn2Tn9ZZLLDwA3kZUY
+
+Programming with GNU library : http://web.mit.edu/gnu/doc/html/rlman_2.html
