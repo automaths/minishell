@@ -26,5 +26,3 @@ Shell command language: https://pubs.opengroup.org/onlinepubs/009695399/utilitie
 Bash reference manual: https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html
 
 Youtube playlist unix processes in C: https://www.youtube.com/playlist?list=PLfqABt5AS4FkW5mOn2Tn9ZZLLDwA3kZUY
-
-Minishell architecture : https://whimsical.com/minishell-architecture-big-picture-7b9N8PL3qHrddbs977mQ2J
