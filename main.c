@@ -1,10 +1,5 @@
 #include "execution.h"
 
-void	echo(int fd, char *str)
-{
-	
-}
-
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -19,6 +14,7 @@ int	main(int argc, char **argv, char **envp)
 	// pwd(1);
 
 	cd("libft");
+	cd("builtsss");
 	
 	
 	

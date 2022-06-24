@@ -1,4 +1,4 @@
-SRCS			=	./commands.c ./utils.c ./main.c ./env.c ./pwd.c ./cd.c
+SRCS			=	./commands.c ./utils.c ./main.c ./builts/env.c ./builts/pwd.c ./builts/cd.c ./builts/echo.c
 
 OBJS			= 	$(SRCS:.c=.o)
 

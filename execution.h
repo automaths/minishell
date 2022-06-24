@@ -26,6 +26,8 @@ typedef struct s_command {
 
 void	env(int fd, char **envp);
 void	pwd(int fd);
+void	echo(int fd, int mode, char *str);
+bool	cd(char *arg);
 
 #endif
 
