@@ -24,5 +24,8 @@ typedef struct s_command {
 	struct s_command *next;
 } t_command;
 
+void	env(int fd, char **envp);
+void	pwd(int fd);
+
 #endif
 

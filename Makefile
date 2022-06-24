@@ -1,4 +1,4 @@
-SRCS			=	./command_generator.c ./utils.c
+SRCS			=	./commands.c ./utils.c ./main.c ./env.c ./pwd.c ./cd.c
 
 OBJS			= 	$(SRCS:.c=.o)
 
