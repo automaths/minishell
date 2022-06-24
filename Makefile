@@ -1,4 +1,4 @@
-SRCS			=	./command_generator.c
+SRCS			=	./command_generator.c ./utils.c
 
 OBJS			= 	$(SRCS:.c=.o)
 
@@ -8,13 +8,8 @@ CC				= 	gcc
 RM				= 	rm -f
 CFLAGS			= 	-Wall -Wextra -Werror
 
-NAME			= 	test
-
-all:			$(NAME)
-
-$(NAME):		$(OBJS)
-				@make -C ./libft
-				gcc $(CFLAGS) -g3 -o $(NAME) $(OBJS) $(LIBS)
+all:			$(OBJS)
+				gcc $(CFLAGS) -g3 $(OBJS) $(LIBS)
 
 clean:
 				$(RM) $(OBJS)
@@ -23,6 +18,6 @@ clean:
 fclean:			clean
 				$(RM) $(NAME) $(OBJS)
 
-re:				fclean $(NAME)
+re:				all
 
 .PHONY:			all clean fclean re bonus

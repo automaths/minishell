@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:50:26 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/23 14:25:21 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/06/24 12:56:34 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool	reading_heredoc(char **argv)
 		write(1, "> ", 2);
 		ret = read(0, buffer, 254);
 		buffer[ret] = '\0';
-		if (strncmp(limiter, buffer, ft_strlen_bis(buffer)) == 0)
+		if (ft_strncmp(limiter, buffer, ft_strlen_bis(buffer)) == 0)
 			ret = 0;
 		if (ret)
 			write(tmp, buffer, ft_strlen_bis(buffer));
@@ -85,12 +85,12 @@ bool	last_command_hd(t_struct *dd)
 
 bool	outfiling_hd(t_struct *dd)
 {
-	if (access(dd->argv[dd->argc - 1], W_OK) == -1)
-		return (close(dd->fd[dd->c][0]),
-			ft_printf("outfile wrong permissions"), 0);
 	dd->fd_outfile = open(dd->argv[dd->argc - 1], O_CREAT | O_RDWR | O_APPEND);
 	if (dd->fd_outfile == -1)
 		return (close(dd->fd_hd_two[0]), 0);
+	if (access(dd->argv[dd->argc - 1], W_OK) == -1)
+		return (close(dd->fd[dd->c][0]),
+			ft_printf("outfile wrong permissions"), 0);
 	dd->output_buff = (char *)malloc(sizeof(char) * 4096);
 	if (dd->output_buff == NULL)
 		return (ending_fd(dd), ft_printf("can't malloc"), 0);
