@@ -1,6 +1,9 @@
 SRCS			=	./utils.c \
 					./executing.c \
 					./structuring.c \
+					./groshell.c \
+					./parsing.c \
+					./freeing.c \
 
 OBJS			= 	$(SRCS:.c=.o)
 

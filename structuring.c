@@ -9,6 +9,8 @@ t_command	*new_cmd(int fd_in, int fd_out)
 		return (NULL);
 	new->fd_in = fd_in;
 	new->fd_out = fd_out;
+	new->arg = NULL;
+	new->redir = NULL;
 	new->next = NULL;
 	return (new);
 }
@@ -70,7 +72,23 @@ int	count_commands(char *str)
 	return (j);
 }
 
-void	parse_line(char *str, char **envp)
+void	print_all(t_command *cmd)
+{
+	t_command *tmp;
+	
+	tmp = cmd;
+	while (tmp != NULL)
+	{
+		if (tmp->arg != NULL)
+			writing ("the arg is :", tmp->arg->content);
+		if (tmp->redir != NULL)
+			writing ("the redirection is :", tmp->redir->content);
+		writing("trying next command", " ");
+		tmp = tmp->next;
+	}
+}
+
+t_command	*parse_line(char *str, char **envp)
 {
 	int i;
 	int j;
@@ -83,36 +101,22 @@ void	parse_line(char *str, char **envp)
 	
 	split = ft_split(str, ' ');
 	if (split == NULL)
-		return ;
+		return (NULL);
 
-	// i = -1;
-	// while (split[++i])
-	// {
-	// 	if (is_arg(split[i]))
-	// 		printf("go get it");
-	// 	printf("\n%s", split[i]);
-	// }
-	
 	i = -1;
 	cmd = new_cmd(0, 0);
 	tmp = cmd;
 	while(split[++i])
 	{
 		if (is_arg(split[i]))
-		{
 			add_back_tkn(&tmp->arg, new_tkn(split[i]));
-			printf("\nthe arg is %s", split[i]);
-		}
 		if (is_redirection(split[i]))
-		{
-			add_back_tkn(&tmp->arg, new_tkn(split[i]));
-			printf("\nthe redirection is %s", split[i]);
-		}
+			add_back_tkn(&tmp->redir, new_tkn(split[i]));
 		if (is_new_cmd(split[i]))
 		{
 			add_back_cmd(&tmp, new_cmd(0, 0));
 			tmp = tmp->next;
-			printf("\nthe new command is %s", split[i]);
 		}
 	}
+	return (cmd);
 }
