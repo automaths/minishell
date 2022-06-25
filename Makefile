@@ -4,7 +4,6 @@ SRCS			=	./commands.c \
 					./builts/pwd.c \
 					./builts/cd.c \
 					./builts/echo.c \
-					./utils_list.c \
 					./executing.c \
 					./structuring.c \
 
