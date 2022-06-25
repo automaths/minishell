@@ -1,9 +1,12 @@
 SRCS			=	./utils.c \
-					./executing.c \
+					./utils_parsing.c \
+					./utils_structuring_one.c \
+					./utils_structuring_two.c \
 					./structuring.c \
+					./executing.c \
 					./groshell.c \
 					./parsing.c \
-					./freeing.c \
+					./freeing_parsing.c \
 
 OBJS			= 	$(SRCS:.c=.o)
 
