@@ -1,9 +1,4 @@
-SRCS			=	./commands.c \
-					./utils.c \
-					./builts/env.c \
-					./builts/pwd.c \
-					./builts/cd.c \
-					./builts/echo.c \
+SRCS			=	./utils.c \
 					./executing.c \
 					./structuring.c \
 

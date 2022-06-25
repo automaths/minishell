@@ -40,6 +40,20 @@ void	add_back_tkn(t_token **tkn, t_token *new)
 		*tkn = new;
 }
 
+void	add_back_cmd(t_command **cmd, t_command *new)
+{
+	t_command	*tmp;
+
+	if (*cmd)
+	{
+		tmp = *cmd;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+	}
+	else if (cmd)
+		*cmd = new;
+}
 
 int	count_commands(char *str)
 {
@@ -61,6 +75,7 @@ void	parse_line(char *str, char **envp)
 	int i;
 	int j;
 	t_command *cmd;
+	t_command *tmp;
 	char **split;
 
 	(void)j;
@@ -68,17 +83,36 @@ void	parse_line(char *str, char **envp)
 	
 	split = ft_split(str, ' ');
 	if (split == NULL)
-		return (printf("malloc error"), 0);
+		return ;
+
+	// i = -1;
+	// while (split[++i])
+	// {
+	// 	if (is_arg(split[i]))
+	// 		printf("go get it");
+	// 	printf("\n%s", split[i]);
+	// }
 	
 	i = -1;
 	cmd = new_cmd(0, 0);
-	while(split[i])
+	tmp = cmd;
+	while(split[++i])
 	{
 		if (is_arg(split[i]))
-			add_back_tkn(&cmd->arg, new_tkn(split[i]));
+		{
+			add_back_tkn(&tmp->arg, new_tkn(split[i]));
+			printf("\nthe arg is %s", split[i]);
+		}
 		if (is_redirection(split[i]))
-			add_back_tkn(&cmd->arg, new_tkn(split[i]));
-			
-		
+		{
+			add_back_tkn(&tmp->arg, new_tkn(split[i]));
+			printf("\nthe redirection is %s", split[i]);
+		}
+		if (is_new_cmd(split[i]))
+		{
+			add_back_cmd(&tmp, new_cmd(0, 0));
+			tmp = tmp->next;
+			printf("\nthe new command is %s", split[i]);
+		}
 	}
 }

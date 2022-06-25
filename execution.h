@@ -24,13 +24,11 @@ typedef struct s_command {
 	struct s_command *next;
 } t_command;
 
-void	env(int fd, char **envp);
-void	pwd(int fd);
-void	echo(int fd, int mode, char *str);
-bool	cd(char *arg);
-void	exiting(void);
-
 void	parse_line(char *str, char **envp);
+
+bool	is_arg(char *str);
+bool	is_redirection(char *str);
+bool	is_new_cmd(char *str);
 
 #endif
 
