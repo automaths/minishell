@@ -30,8 +30,8 @@ typedef struct s_command {
 	struct s_command *next;
 } t_command;
 
-t_command	*parse_line(char *str, char **envp);
 
+t_command	*parse_line(char *str);
 //EXECUTING
 void	last_exec(t_command *cmd, char **envp);
 void	exec_command(t_command *cmd, char **envp);
@@ -47,7 +47,7 @@ bool	find_path(t_token *arg, char *unix_path);
 bool	get_the_path(t_token *arg);
 bool	parse_argument(t_token *arg, char **envp);
 //STRUCTURING
-t_command	*parse_line(char *str, char **envp);
+t_command	*parse_line(char *str);
 //UTILS_PARSING
 void	print_parsed(t_command *cmd);
 void	token_initing(t_token *arg, char **envp);
@@ -65,6 +65,9 @@ void	print_all(t_command *cmd);
 bool	is_arg(char *str);
 bool	is_redirection(char *str);
 bool	is_new_cmd(char *str);
+//UTILS_STRUCTURING_THREE
+char	*quoting_ruling(char *str);
+char	**split_cleaning(char **split);
 //UTILS
 void	writing(char *intro, char *content);
 

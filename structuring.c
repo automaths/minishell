@@ -1,22 +1,21 @@
 # include "execution.h"
 
-t_command	*parse_line(char *str, char **envp)
+t_command	*parse_line(char *str)
 {
-	int i;
-	int j;
+	char **split;
+	char *str_quoted;
 	t_command *cmd;
 	t_command *tmp;
-	char **split;
-
-	(void)j;
-	(void)envp;
+	int i;
 	
-	split = ft_split(str, ' ');
+	str_quoted = quoting_ruling(str);
+	split = ft_split(str_quoted, ' ');
 	if (split == NULL)
 		return (NULL);
+	split = split_cleaning(split);
 
 	i = -1;
-	cmd = new_cmd(0, 0);
+	cmd = new_cmd(0, 1);
 	tmp = cmd;
 	while(split[++i])
 	{

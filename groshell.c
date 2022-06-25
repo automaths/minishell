@@ -17,9 +17,9 @@ int	main(int argc, char **argv, char **envp)
 		str[count] = '\0';
 		if ((ft_strncmp(str, "exit", 4) == 0) && ft_strlen(str) == 5)
 			break;
-		cmd = parse_line(str, envp);
-		print_all(cmd);
+		cmd = parse_line(str);
 		exec_command(cmd, envp);
+		print_all(cmd);
 		print_parsed(cmd);
 	}
 	return (0);

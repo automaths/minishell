@@ -17,13 +17,24 @@ int	count_commands(char *str)
 
 void	print_all(t_command *cmd)
 {
+	int i;
 	t_command *tmp;
 	
 	tmp = cmd;
 	while (tmp != NULL)
 	{
 		if (tmp->arg != NULL)
+		{
 			writing ("the arg is :", tmp->arg->content);
+			if (tmp->arg->argz != NULL)
+			{
+				i = -1;
+				while (tmp->arg->argz[++i])
+					writing ("with option :", tmp->arg->argz[i]);
+			}
+			
+		}
+		
 		if (tmp->redir != NULL)
 			writing ("the redirection is :", tmp->redir->content);
 		writing("trying next command", " ");
