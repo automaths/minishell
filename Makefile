@@ -1,4 +1,12 @@
-SRCS			=	./commands.c ./utils.c ./main.c ./builts/env.c ./builts/pwd.c ./builts/cd.c ./builts/echo.c
+SRCS			=	./commands.c \
+					./utils.c \
+					./builts/env.c \
+					./builts/pwd.c \
+					./builts/cd.c \
+					./builts/echo.c \
+					./utils_list.c \
+					./executing.c \
+					./structuring.c \
 
 OBJS			= 	$(SRCS:.c=.o)
 
