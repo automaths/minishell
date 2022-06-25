@@ -25,7 +25,7 @@ t_command	*parse_line(char *str)
 			add_back_tkn(&tmp->redir, new_tkn(split[i]));
 		if (is_new_cmd(split[i]))
 		{
-			add_back_cmd(&tmp, new_cmd(0, 0));
+			add_back_cmd(&tmp, new_cmd(0, 1));
 			tmp = tmp->next;
 		}
 	}

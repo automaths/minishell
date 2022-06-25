@@ -56,4 +56,3 @@ void	add_back_cmd(t_command **cmd, t_command *new)
 	else if (cmd)
 		*cmd = new;
 }
-

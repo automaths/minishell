@@ -19,8 +19,6 @@ int	main(int argc, char **argv, char **envp)
 			break;
 		cmd = parse_line(str);
 		exec_command(cmd, envp);
-		print_all(cmd);
-		print_parsed(cmd);
 	}
 	return (0);
 }
