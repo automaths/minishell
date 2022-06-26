@@ -14,9 +14,6 @@
 // 			ft_printf("can't open input file"), 0);
 // }
 
-
-
-
 // bool	first_command(t_command *cmd)
 // {
 
@@ -25,9 +22,6 @@
 // 	forking(cmd, cmd->fd_infile, cmd->fd[cmd->c][1], cmd->pid[cmd->c]);
 // 	return (1);
 // }
-
-
-
 
 // bool	last_command(t_command *cmd)
 // {
@@ -80,7 +74,23 @@
 // 	return (1);
 // }
 
-
+// void	forking_redir(char *path, char **arg, char **envp, int fd_in, int fd_out, pid_t pid)
+// {
+// 	pid = fork();
+// 	if (pid == -1)
+// 		return ;
+// 	if (pid == 0)
+// 	{
+// 		if (dup2(fd_in, STDIN_FILENO) == -1)
+// 			return ;
+// 		if (dup2(fd_out, STDOUT_FILENO) == -1)
+// 			return ;
+// 		close(fd_in);
+// 		close(fd_out);
+// 		if (execve(path, arg, envp) == -1)
+// 			return ;
+// 	}
+// }
 
 // void	redirectioning(t_command *cmd)
 // {

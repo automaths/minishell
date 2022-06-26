@@ -18,7 +18,8 @@ typedef struct s_token {
 	char **argz;
 	char *command;
 	char *path;
-	
+	int fd_in;
+	int fd_out;
 	struct s_token *next;
 } t_token;
 

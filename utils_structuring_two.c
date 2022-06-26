@@ -32,11 +32,17 @@ void	print_all(t_command *cmd)
 				while (tmp->arg->argz[++i])
 					writing ("with option :", tmp->arg->argz[i]);
 			}
-			
 		}
-		
 		if (tmp->redir != NULL)
+		{
 			writing ("the redirection is :", tmp->redir->content);
+			tmp->redir = tmp->redir->next;
+			while (tmp->redir != NULL)
+			{				
+				writing ("next redirection is :", tmp->redir->content);
+				tmp->redir = tmp->redir->next;
+			}
+		}
 		writing("trying next command", " ");
 		tmp = tmp->next;
 	}
