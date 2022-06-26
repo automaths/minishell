@@ -64,7 +64,7 @@ void	print_all(t_command *cmd)
 		j = -1;
 		while (cmd->fd_out[i][++j] != -10)
 		{
-			c = cmd->fd_in[i][j] + '0';
+			c = cmd->fd_out[i][j] + '0';
 			write(1, &c, 1);
 		}
 	}
