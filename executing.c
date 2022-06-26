@@ -103,6 +103,26 @@
 // 	}
 // }
 
+void	input_redirectionning(t_command *cmd)
+{
+	(void)cmd;
+}
+
+void	output_redirectionning(t_command *cmd)
+{
+	(void)cmd;
+}
+
+void	piping(t_command *cmd)
+{
+	(void)cmd;
+}
+
+void	exec_token(t_command *cmd)
+{
+	(void)cmd;
+}
+
 void	exec_command(t_command *cmd, char **envp)
 {
 	t_command *tmp;
@@ -116,9 +136,14 @@ void	exec_command(t_command *cmd, char **envp)
 		parse_argument(tmp->arg, envp);
 		print_parsed(tmp);
 		print_all(tmp);
-		// redirectioning(tmp);
 		write(1, "\nLAUCHING EXEC\n", 15);
-		// exec_token(tmp);
+
+		input_redirectionning(cmd);
+		output_redirectionning(cmd);
+		if (tmp->next != NULL)
+			piping(cmd);
+		exec_token(tmp);
+
 		write(1, "\nENDING EXEC\n", 13);
 		tmp = tmp->next;
 	}

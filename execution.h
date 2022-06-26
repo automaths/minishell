@@ -28,6 +28,7 @@ typedef struct s_command {
 	t_token *redir;
 	int fd_in;
 	int fd_out;
+	//pipes and fds
 	struct s_command *next;
 } t_command;
 
