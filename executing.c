@@ -113,18 +113,6 @@ void	exec_token(t_command *cmd)
 	(void)cmd;
 }
 
-void	redirectionning(t_command *cmd)
-{
-	t_command *tmp;
-	
-	tmp = cmd;
-	while (tmp != NULL)
-	{	
-
-		tmp = tmp->next;
-	}
-}
-
 void	exec_command(t_command *cmd, char **envp)
 {
 	t_command *tmp;
@@ -132,22 +120,20 @@ void	exec_command(t_command *cmd, char **envp)
 	if (!cmd)
 		return ;
 	tmp = cmd;
-	// (void)tmp;
-	// (void)cmd;
 	(void)envp;
 	// infiling(cmd);
 	// redirectionning(tmp);
 	print_all(tmp);
 	// piping(tmp);
-	// print_parsed(tmp);
-	// print_all(tmp);
-	while (tmp != NULL)
-	{
-		parse_argument(tmp->arg, envp);
-		write(1, "\nLAUCHING EXEC\n", 15);
-		exec_token(tmp);
-		write(1, "\nENDING EXEC\n", 13);
-		tmp = tmp->next;
-	}
+	// while (tmp != NULL)
+	// {
+	// 	parse_argument(tmp->arg, envp);
+	// 	print_all(tmp);
+	// 	print_parsed(tmp);
+	// 	write(1, "\nLAUCHING EXEC\n", 15);
+	// 	exec_token(tmp);
+	// 	write(1, "\nENDING EXEC\n", 13);
+	// 	tmp = tmp->next;
+	// }
 	
 }

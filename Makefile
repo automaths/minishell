@@ -1,12 +1,12 @@
 SRCS			=	./utils.c \
 					./utils_parsing.c \
 					./utils_opening.c \
-					./utils_inputing_one.c \
-					./utils_inputing_two.c \
+					./utils_inputing.c \
 					./utils_structuring_one.c \
 					./utils_structuring_two.c \
 					./utils_structuring_three.c \
-					./utils_redirectionning.c \
+					./utils_redirectionning_one.c \
+					./utils_redirectionning_two.c \
 					./structuring.c \
 					./executing.c \
 					./groshell.c \

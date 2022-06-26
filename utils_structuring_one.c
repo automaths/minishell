@@ -8,8 +8,8 @@ t_command	*new_cmd(int i)
 	new = (t_command *)malloc(sizeof(t_command));
 	if (new == NULL)
 		return (NULL);
-	new->fd_in = 0;
-	new->fd_out = 0;
+	new->fd_in = -1;
+	new->fd_out = -1;
 	new->arg = NULL;
 	new->redir = NULL;
 	new->next = NULL;

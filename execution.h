@@ -69,20 +69,17 @@ char	*quoting_ruling(char *str);
 char	**split_cleaning(char **split);
 //UTILS
 void	writing(char *intro, char *content);
-//UTILS_REDIRECTIONNING
-int	count_out(t_command *cmd);
-int	count_in(t_command *cmd);
-//UTILS_INPUTING_ONE
-int	generate_fds(t_command *cmd);
-int	input_before(t_command *cmd);
-int	input_after(t_command *cmd);
-int	output_before(t_command *cmd);
-int	output_after(t_command *cmd);
-//UTILS_INPUTING_TWO
-void	fill_input_before(t_command *cmd);
-void	fill_input_after(t_command *cmd);
-void	fill_output_before(t_command *cmd);
-void	fill_output_after(t_command *cmd);
-
+//UTILS_REDIRECTIONNING_ONE
+bool	is_heredoc(char *str);
+bool	is_append(char *str);
+void	init_fd_in(t_command *cmd);
+void	init_fd_out(t_command *cmd);
+void	redirectionning(t_command *cmd);
+//UTILS_REDIRECTIONNING_TWO
+int	opening_append(char *content);
+int	opening_standard_output(char *content);
+int	opening_heredoc(char *content);
+int	opening_standard_input(char *content);
+//UTILS_INPUTING
 #endif
 
