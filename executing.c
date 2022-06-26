@@ -120,7 +120,6 @@ void	redirectionning(t_command *cmd)
 	tmp = cmd;
 	while (tmp != NULL)
 	{	
-		generate_fds(cmd);
 
 		tmp = tmp->next;
 	}
@@ -137,7 +136,7 @@ void	exec_command(t_command *cmd, char **envp)
 	// (void)cmd;
 	(void)envp;
 	// infiling(cmd);
-	redirectionning(tmp);
+	// redirectionning(tmp);
 	print_all(tmp);
 	// piping(tmp);
 	// print_parsed(tmp);

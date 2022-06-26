@@ -18,17 +18,14 @@ typedef struct s_token {
 	char **argz;
 	char *command;
 	char *path;
-	int fd_in;
-	int fd_out;
-	int place;
 	struct s_token *next;
 } t_token;
 
 typedef struct s_command {
 	t_token *arg;
 	t_token *redir;
-	int **fd_in;
-	int **fd_out;
+	int fd_in;
+	int fd_out;
 	struct s_command *next;
 } t_command;
 
@@ -59,7 +56,7 @@ bool	is_lowercase(char c);
 //UTILS_STRUCTURING_ONE
 t_command	*new_cmd(int i);
 t_token	*new_tkn(char *arg);
-void	add_back_tkn(t_token **tkn, t_token *new, int t);
+void	add_back_tkn(t_token **tkn, t_token *new);
 void	add_back_cmd(t_command **cmd, t_command *new);
 //UTILS_STRUCTURING_TWO
 int	count_commands(char *str);

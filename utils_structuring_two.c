@@ -46,28 +46,6 @@ void	print_all(t_command *cmd)
 		writing("trying next command", " ");
 		tmp = tmp->next;
 	}
-	int j;
-	char c;
-	i = -1;
-	while (cmd->fd_in[++i] != NULL)
-	{
-		j = -1;
-		while (cmd->fd_in[i][++j] != -10)
-		{
-			c = cmd->fd_in[i][j] + '0';
-			write(1, &c, 1);
-		}
-	}
-	i = -1;
-	while (cmd->fd_out[++i] != NULL)
-	{
-		j = -1;
-		while (cmd->fd_out[i][++j] != -10)
-		{
-			c = cmd->fd_out[i][j] + '0';
-			write(1, &c, 1);
-		}
-	}
 }
 
 bool	is_arg(char *str)

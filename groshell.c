@@ -18,7 +18,8 @@ int	main(int argc, char **argv, char **envp)
 		if ((ft_strncmp(str, "exit", 4) == 0) && ft_strlen(str) == 5)
 			break;
 		cmd = parse_line(str);
-		exec_command(cmd, envp);
+		(void)cmd;
+		// exec_command(cmd, envp);
 	}
 	return (0);
 }

@@ -8,8 +8,8 @@ t_command	*new_cmd(int i)
 	new = (t_command *)malloc(sizeof(t_command));
 	if (new == NULL)
 		return (NULL);
-	new->fd_in = NULL;
-	new->fd_out = NULL;
+	new->fd_in = 0;
+	new->fd_out = 0;
 	new->arg = NULL;
 	new->redir = NULL;
 	new->next = NULL;
@@ -28,7 +28,7 @@ t_token	*new_tkn(char *arg)
 	return (new);
 }
 
-void	add_back_tkn(t_token **tkn, t_token *new, int t)
+void	add_back_tkn(t_token **tkn, t_token *new)
 {
 	t_token	*tmp;
 
@@ -41,7 +41,6 @@ void	add_back_tkn(t_token **tkn, t_token *new, int t)
 	}
 	else if (tkn)
 		*tkn = new;
-	new->place = t;
 }
 
 void	add_back_cmd(t_command **cmd, t_command *new)
