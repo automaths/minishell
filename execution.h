@@ -29,7 +29,6 @@ typedef struct s_command {
 	t_token *redir;
 	int **fd_in;
 	int **fd_out;
-	//pipes and fds
 	struct s_command *next;
 } t_command;
 
@@ -77,6 +76,7 @@ void	writing(char *intro, char *content);
 int	count_out(t_command *cmd);
 int	count_in(t_command *cmd);
 //UTILS_INPUTING_ONE
+int	generate_fds(t_command *cmd);
 int	input_before(t_command *cmd);
 int	input_after(t_command *cmd);
 int	output_before(t_command *cmd);

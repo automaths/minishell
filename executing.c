@@ -113,42 +113,6 @@ void	exec_token(t_command *cmd)
 	(void)cmd;
 }
 
-int	generate_fds(t_command *cmd)
-{
-	t_command *tmp;
-	
-	tmp = cmd;
-	tmp->fd_in = (int **)malloc(sizeof(int*) * 3);
-	if (tmp->fd_in == NULL)
-		return (write(1, "malloc error", 12), 0);
-	tmp->fd_in[2] = NULL;
-	tmp->fd_in[0] = (int *)malloc(sizeof(int) * (input_before(cmd) + 1));
-	if (tmp->fd_in[0] == NULL)
-		return (write(1, "malloc error", 12), 0);
-	tmp->fd_in[0][input_before(cmd)] = -10;
-	fill_input_before(cmd);
-	tmp->fd_in[1] = (int *)malloc(sizeof(int) * (input_after(cmd) + 1));
-	if (tmp->fd_in[1] == NULL)
-		return (write(1, "malloc error", 12), 0);
-	tmp->fd_in[1][input_after(cmd)] = -10;
-	fill_input_after(cmd);
-	tmp->fd_out = (int **)malloc(sizeof(int*) * 3);
-	if (tmp->fd_out == NULL)
-		return (write(1, "malloc error", 12), 0);
-	tmp->fd_out[2] = NULL;
-	tmp->fd_out[0] = (int *)malloc(sizeof(int) * (output_before(cmd) + 1));
-	if (tmp->fd_out[0] == NULL)
-		return (write(1, "malloc error", 12), 0);
-	tmp->fd_out[0][output_before(cmd)] = -10;
-	fill_output_before(cmd);
-	tmp->fd_out[1] = (int *)malloc(sizeof(int) * (output_after(cmd) + 1));
-	if (tmp->fd_out[1] == NULL)
-		return (write(1, "malloc error", 12), 0);
-	tmp->fd_out[1][output_after(cmd)] = -10;
-	fill_output_after(cmd);
-	return (1);
-}
-
 void	redirectionning(t_command *cmd)
 {
 	t_command *tmp;
