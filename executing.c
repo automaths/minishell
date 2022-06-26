@@ -126,12 +126,12 @@ int	generate_fds(t_command *cmd)
 	if (tmp->fd_in[0] == NULL)
 		return (write(1, "malloc error", 12), 0);
 	tmp->fd_in[0][input_before(cmd)] = -10;
-	// fill_input_before(cmd);
+	fill_input_before(cmd);
 	tmp->fd_in[1] = (int *)malloc(sizeof(int) * (input_after(cmd) + 1));
 	if (tmp->fd_in[1] == NULL)
 		return (write(1, "malloc error", 12), 0);
 	tmp->fd_in[1][input_after(cmd)] = -10;
-	//fill_input_after(cmd);
+	fill_input_after(cmd);
 	tmp->fd_out = (int **)malloc(sizeof(int*) * 3);
 	if (tmp->fd_out == NULL)
 		return (write(1, "malloc error", 12), 0);
@@ -140,12 +140,12 @@ int	generate_fds(t_command *cmd)
 	if (tmp->fd_out[0] == NULL)
 		return (write(1, "malloc error", 12), 0);
 	tmp->fd_out[0][output_before(cmd)] = -10;
-	// fill_output_before(cmd);
+	fill_output_before(cmd);
 	tmp->fd_out[1] = (int *)malloc(sizeof(int) * (output_after(cmd) + 1));
 	if (tmp->fd_out[1] == NULL)
 		return (write(1, "malloc error", 12), 0);
 	tmp->fd_out[1][output_after(cmd)] = -10;
-	//fill_output_after(cmd);
+	fill_output_after(cmd);
 	return (1);
 }
 

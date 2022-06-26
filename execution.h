@@ -76,11 +76,16 @@ void	writing(char *intro, char *content);
 //UTILS_REDIRECTIONNING
 int	count_out(t_command *cmd);
 int	count_in(t_command *cmd);
-//UTILS_INPUTING
+//UTILS_INPUTING_ONE
 int	input_before(t_command *cmd);
 int	input_after(t_command *cmd);
 int	output_before(t_command *cmd);
 int	output_after(t_command *cmd);
+//UTILS_INPUTING_TWO
+void	fill_input_before(t_command *cmd);
+void	fill_input_after(t_command *cmd);
+void	fill_output_before(t_command *cmd);
+void	fill_output_after(t_command *cmd);
 
 #endif
 
