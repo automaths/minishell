@@ -61,16 +61,16 @@ bool	is_arg(char *str)
 	return (1);
 }
 
-bool	is_redirection(char *str)
+int	is_redirection(char *str)
 {
-	if (ft_strncmp(str, ">>", 2) == 0)
-		return (1);
 	if (ft_strncmp(str, "<<", 2) == 0)
-		return (1);
-	if (ft_strncmp(str, ">", 1) == 0)
 		return (1);
 	if (ft_strncmp(str, "<", 1) == 0)
 		return (1);
+	if (ft_strncmp(str, ">>", 2) == 0)
+		return (2);
+	if (ft_strncmp(str, ">", 1) == 0)
+		return (2);
 	return(0);
 }
 

@@ -1,14 +1,15 @@
 #include "execution.h"
 
-t_command	*new_cmd(int fd_in, int fd_out)
+t_command	*new_cmd(int i)
 {
 	t_command	*new;
 
+	(void)i;
 	new = (t_command *)malloc(sizeof(t_command));
 	if (new == NULL)
 		return (NULL);
-	new->fd_in = fd_in;
-	new->fd_out = fd_out;
+	new->fd_in = NULL;
+	new->fd_out = NULL;
 	new->arg = NULL;
 	new->redir = NULL;
 	new->next = NULL;
@@ -27,7 +28,7 @@ t_token	*new_tkn(char *arg)
 	return (new);
 }
 
-void	add_back_tkn(t_token **tkn, t_token *new)
+void	add_back_tkn(t_token **tkn, t_token *new, int t)
 {
 	t_token	*tmp;
 
@@ -40,6 +41,7 @@ void	add_back_tkn(t_token **tkn, t_token *new)
 	}
 	else if (tkn)
 		*tkn = new;
+	new->place = t;
 }
 
 void	add_back_cmd(t_command **cmd, t_command *new)

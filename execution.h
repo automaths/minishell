@@ -20,14 +20,15 @@ typedef struct s_token {
 	char *path;
 	int fd_in;
 	int fd_out;
+	int place;
 	struct s_token *next;
 } t_token;
 
 typedef struct s_command {
 	t_token *arg;
 	t_token *redir;
-	int fd_in;
-	int fd_out;
+	int **fd_in;
+	int **fd_out;
 	//pipes and fds
 	struct s_command *next;
 } t_command;
@@ -57,21 +58,29 @@ char	*ft_strjoin_new(char *s1, char *s2, int flag);
 bool	is_whitespace(char c);
 bool	is_lowercase(char c);
 //UTILS_STRUCTURING_ONE
-t_command	*new_cmd(int fd_in, int fd_out);
+t_command	*new_cmd(int i);
 t_token	*new_tkn(char *arg);
-void	add_back_tkn(t_token **tkn, t_token *new);
+void	add_back_tkn(t_token **tkn, t_token *new, int t);
 void	add_back_cmd(t_command **cmd, t_command *new);
 //UTILS_STRUCTURING_TWO
 int	count_commands(char *str);
 void	print_all(t_command *cmd);
 bool	is_arg(char *str);
-bool	is_redirection(char *str);
+int	is_redirection(char *str);
 bool	is_new_cmd(char *str);
 //UTILS_STRUCTURING_THREE
 char	*quoting_ruling(char *str);
 char	**split_cleaning(char **split);
 //UTILS
 void	writing(char *intro, char *content);
+//UTILS_REDIRECTIONNING
+int	count_out(t_command *cmd);
+int	count_in(t_command *cmd);
+//UTILS_INPUTING
+int	input_before(t_command *cmd);
+int	input_after(t_command *cmd);
+int	output_before(t_command *cmd);
+int	output_after(t_command *cmd);
 
 #endif
 

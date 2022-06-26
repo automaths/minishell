@@ -103,16 +103,6 @@
 // 	}
 // }
 
-void	input_redirectionning(t_command *cmd)
-{
-	(void)cmd;
-}
-
-void	output_redirectionning(t_command *cmd)
-{
-	(void)cmd;
-}
-
 void	piping(t_command *cmd)
 {
 	(void)cmd;
@@ -123,6 +113,55 @@ void	exec_token(t_command *cmd)
 	(void)cmd;
 }
 
+int	generate_fds(t_command *cmd)
+{
+	t_command *tmp;
+	
+	tmp = cmd;
+	tmp->fd_in = (int **)malloc(sizeof(int*) * 3);
+	if (tmp->fd_in == NULL)
+		return (write(1, "malloc error", 12), 0);
+	tmp->fd_in[2] = NULL;
+	tmp->fd_in[0] = (int *)malloc(sizeof(int) * (input_before(cmd) + 1));
+	if (tmp->fd_in[0] == NULL)
+		return (write(1, "malloc error", 12), 0);
+	tmp->fd_in[0][input_before(cmd)] = -10;
+	// fill_input_before(cmd);
+	tmp->fd_in[1] = (int *)malloc(sizeof(int) * (input_after(cmd) + 1));
+	if (tmp->fd_in[1] == NULL)
+		return (write(1, "malloc error", 12), 0);
+	tmp->fd_in[1][input_after(cmd)] = -10;
+	//fill_input_after(cmd);
+	tmp->fd_out = (int **)malloc(sizeof(int*) * 3);
+	if (tmp->fd_out == NULL)
+		return (write(1, "malloc error", 12), 0);
+	tmp->fd_out[2] = NULL;
+	tmp->fd_out[0] = (int *)malloc(sizeof(int) * (output_before(cmd) + 1));
+	if (tmp->fd_out[0] == NULL)
+		return (write(1, "malloc error", 12), 0);
+	tmp->fd_out[0][output_before(cmd)] = -10;
+	// fill_output_before(cmd);
+	tmp->fd_out[1] = (int *)malloc(sizeof(int) * (output_after(cmd) + 1));
+	if (tmp->fd_out[1] == NULL)
+		return (write(1, "malloc error", 12), 0);
+	tmp->fd_out[1][output_after(cmd)] = -10;
+	//fill_output_after(cmd);
+	return (1);
+}
+
+void	redirectionning(t_command *cmd)
+{
+	t_command *tmp;
+	
+	tmp = cmd;
+	while (tmp != NULL)
+	{	
+		generate_fds(cmd);
+
+		tmp = tmp->next;
+	}
+}
+
 void	exec_command(t_command *cmd, char **envp)
 {
 	t_command *tmp;
@@ -130,20 +169,20 @@ void	exec_command(t_command *cmd, char **envp)
 	if (!cmd)
 		return ;
 	tmp = cmd;
+	// (void)tmp;
+	// (void)cmd;
+	(void)envp;
 	// infiling(cmd);
+	redirectionning(tmp);
+	print_all(tmp);
+	// piping(tmp);
+	// print_parsed(tmp);
+	// print_all(tmp);
 	while (tmp != NULL)
 	{
 		parse_argument(tmp->arg, envp);
-		print_parsed(tmp);
-		print_all(tmp);
 		write(1, "\nLAUCHING EXEC\n", 15);
-
-		input_redirectionning(cmd);
-		output_redirectionning(cmd);
-		if (tmp->next != NULL)
-			piping(cmd);
 		exec_token(tmp);
-
 		write(1, "\nENDING EXEC\n", 13);
 		tmp = tmp->next;
 	}
