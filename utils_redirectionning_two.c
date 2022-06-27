@@ -22,7 +22,7 @@ int	opening_append(char *content)
 		if (access(content, W_OK) == -1)
 			return (writing("can't write the file", " "), -1);
 	}
-	fd = open(content, O_CREAT | O_RDONLY | O_APPEND, 0644);
+	fd = open(content, O_CREAT | O_RDWR | O_APPEND, 0644);
 	if (fd == -1)
 		return (writing("cant open file", " "), -1);
 	return (fd);

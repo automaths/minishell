@@ -25,6 +25,8 @@ typedef struct s_token {
 typedef struct s_command {
 	t_token *arg;
 	t_token *redir;
+	int is_piped;
+	int fd[2];
 	int fd_in;
 	int fd_out;
 	struct s_command *next;
@@ -71,8 +73,8 @@ char	**split_cleaning(char **split);
 //UTILS
 void	writing(char *intro, char *content);
 //UTILS_REDIRECTIONNING_ONE
-bool	is_heredoc(char *str);
-bool	is_append(char *str);
+int	is_heredoc(char *str);
+int	is_append(char *str);
 void	init_fd_in(t_command *cmd);
 void	init_fd_out(t_command *cmd);
 void	redirectionning(t_command *cmd);

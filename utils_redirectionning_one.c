@@ -1,18 +1,6 @@
 #include "execution.h"
 
-// <<a : 
-// 		heredoc link avec le fichier temporaire
-// <a : 
-// 		si mauvais chmod ou existe pas erreur traite aucune commande 
-// 		si a la suite le dernier est ouvert
-// >a : 
-// 		cree un fichier chmod 644 si existe pas 
-// 		si mauvais chmod erreur traite aucune commande
-// 		si elle se suive seulement derniere
-// >>a : 
-// 		comme >a mais en mode append
-
-bool	is_heredoc(char *str)
+int	is_heredoc(char *str)
 {
 	int i;
 	int j;
@@ -25,11 +13,13 @@ bool	is_heredoc(char *str)
 			++j;	
 	}
 	if (j == 2)
+		return (2);
+	if (j == 1)
 		return (1);
 	return (0);
 }
 
-bool	is_append(char *str)
+int	is_append(char *str)
 {
 	int i;
 	int j;
@@ -42,8 +32,19 @@ bool	is_append(char *str)
 			++j;	
 	}
 	if (j == 2)
+		return (2);
+	if (j == 1)
 		return (1);
 	return (0);
+}
+
+void	piping(t_command *cmd)
+{
+	if (pipe(cmd->fd) == -1)
+		return ;
+	cmd->fd_out = cmd->fd[1];
+	cmd->next->fd_in = cmd->fd[0];
+	cmd->next->is_piped = 1;
 }
 
 void	init_fd_in(t_command *cmd)
@@ -61,13 +62,13 @@ void	init_fd_in(t_command *cmd)
 	}
 	if (content != NULL)
 	{
-		if (is_heredoc(content))
+		if (is_heredoc(content) == 2)
 			cmd->fd_in = opening_heredoc(content);
-		if (!is_heredoc(content))
+		if (is_heredoc(content) == 1)
 			cmd->fd_in = opening_standard_input(content);
 	}
-	//if pipe then the pipe if null
-	//stdin if nothing ?
+	if (content == NULL && cmd->is_piped == 0)
+		cmd->fd_in = 0;
 }
 
 void	init_fd_out(t_command *cmd)
@@ -85,13 +86,15 @@ void	init_fd_out(t_command *cmd)
 	}
 	if (content != NULL)
 	{
-		if (is_append(content))
+		if (is_append(content) == 2)
 			cmd->fd_out = opening_append(content);
-		if (!is_append(content))
+		if (is_append(content) == 1)
 			cmd->fd_out = opening_standard_output(content);
 	}
-	//if pipe then the pipe if null
-	//stdout if nothing ?
+	if (content == NULL && cmd->next != NULL)
+		piping(cmd);
+	if (content == NULL && cmd->next == NULL)
+		cmd->fd_out = 1;
 }
 
 void	redirectionning(t_command *cmd)
