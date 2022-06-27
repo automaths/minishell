@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:27:59 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/27 12:33:34 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/06/27 14:16:30 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@ void	writing(char *intro, char *content)
 	write(1, "\n", 1);
 	write(1, intro, ft_strlen(intro));
 	write(1, content, ft_strlen(content));
+	write(1, "\n", 1);
+}
+
+void	print_fd(int fd)
+{
+	char c;
+	
+	c = fd + '0';
+	write(1, "the fd is :", 11);
+	write(1, &c, 1);
 	write(1, "\n", 1);
 }
 

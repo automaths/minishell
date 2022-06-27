@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:16 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/27 12:24:06 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/06/27 14:07:38 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ bool	get_the_path(t_token *arg)
 		i++;
 	if (arg->unix_paths[i] == NULL)
 		return (freeing_unix(arg), free(arg->command), 0);
+	if (arg->path == NULL)
+		return (freeing_unix(arg), free(arg->command), 0);
 	return (freeing_unix(arg), 1);
 }
 
@@ -86,8 +88,6 @@ bool	parse_argument(t_token *arg, char **envp)
 
 	token_initing(arg, envp);
 	if (get_the_path(arg) == 0)
-		return (0);
-	if (arg->path == NULL)
 		return (0);
 	i = 0;
 	tmp = ft_split(arg->content, ' ');

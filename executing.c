@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:15 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/27 13:52:06 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/06/27 14:21:24 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ void	exec_command(t_command *cmd, char **envp)
 	while (tmp != NULL)
 	{
 		parse_argument(tmp->arg, envp);
+		print_fd(tmp->fd_in);
+		print_fd(tmp->fd_out);
 		exec_token(tmp);
 		tmp = tmp->next;
 		if (tmp == NULL)

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/27 12:34:08 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/06/27 14:16:54 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ char			*quoting_ruling(char *str);
 char			**split_cleaning(char **split);
 //UTILS
 void			writing(char *intro, char *content);
+void			print_fd(int fd);
 int				is_heredoc(char *str);
 int				is_append(char *str);
 //UTILS_REDIRECTIONNING_ONE
