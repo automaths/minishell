@@ -38,7 +38,7 @@ int	opening_standard_output(char *content)
 		if (access(content, W_OK) == -1)
 			return (writing("can't write the file", " "), -1);
 	}
-	fd = open(content, O_CREAT | O_RDONLY, 0644);
+	fd = open(content, O_CREAT | O_RDWR, 0644);
 	if (fd == -1)
 		return (writing("cant open file", " "), -1);
 	return (fd);
@@ -62,7 +62,7 @@ int	opening_standard_input(char *content)
 		if (access(content, R_OK) == -1)
 			return (writing("can't read the file", " "), -1);
 	}
-	fd = open(content, O_CREAT | O_RDONLY, 0644);
+	fd = open(content, O_CREAT | O_RDWR, 0644);
 	if (fd == -1)
 		return (writing("can't open the file", " "), -1);
 	return (fd);

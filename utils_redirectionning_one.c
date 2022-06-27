@@ -66,6 +66,8 @@ void	init_fd_in(t_command *cmd)
 		if (!is_heredoc(content))
 			cmd->fd_in = opening_standard_input(content);
 	}
+	//if pipe then the pipe if null
+	//stdin if nothing ?
 }
 
 void	init_fd_out(t_command *cmd)
@@ -88,10 +90,21 @@ void	init_fd_out(t_command *cmd)
 		if (!is_append(content))
 			cmd->fd_out = opening_standard_output(content);
 	}
+	//if pipe then the pipe if null
+	//stdout if nothing ?
 }
 
 void	redirectionning(t_command *cmd)
 {
-	init_fd_in(cmd);
-	init_fd_out(cmd);
+	t_command *tmp;
+	
+	tmp = cmd;
+	while (tmp != NULL)
+	{
+		init_fd_in(tmp);
+		init_fd_out(tmp);
+		tmp = tmp->next;
+	}
+	
+	
 }
