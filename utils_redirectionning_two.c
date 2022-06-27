@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:28:17 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/27 12:28:19 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/06/27 13:42:19 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	opening_standard_output(char *content)
 		if (access(content, W_OK) == -1)
 			return (writing("can't write the file", " "), -1);
 	}
-	fd = open(content, O_CREAT | O_RDWR, 0644);
+	fd = open(content, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (fd == -1)
 		return (writing("cant open file", " "), -1);
 	return (fd);

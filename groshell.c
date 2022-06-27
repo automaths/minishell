@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:08 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/27 13:28:19 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/06/27 13:49:24 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv, char **envp)
 	str = (char *)malloc(sizeof(char) * 4096);
 	while (1)
 	{
-		write(1, "> ", 2);
+		write(1, "groshell> ", 10);
 		count = read(1, str, 4096);
 		str[count] = '\0';
 		if ((ft_strncmp(str, "exit", 4) == 0) && ft_strlen(str) == 5)
