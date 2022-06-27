@@ -2,24 +2,56 @@
 
 void	exec_token(t_command *cmd)
 {
-	cmd->arg->pid = fork();
-	if (cmd->arg->pid == -1)
-		return ;
-	if (cmd->arg->pid == 0)
+	if (cmd->next)
 	{
-		if (dup2(cmd->fd_in, STDIN_FILENO) == -1)
+		cmd->arg->pid = fork();
+		if (cmd->arg->pid == -1)
 			return ;
-		if (dup2(cmd->fd_out, STDOUT_FILENO) == -1)
-			return ;
-		close(cmd->fd_in);
-		close(cmd->fd_out);
-		if (execve(cmd->arg->path, cmd->arg->argz, cmd->arg->envp) == -1)
-			return ;
+		if (cmd->arg->pid == 0)
+		{
+			if (cmd->fd_in != 0)
+			{
+				if (dup2(cmd->fd_in, STDIN_FILENO) == -1)
+					return ;
+			}
+			if (cmd->fd_out != 1)
+			{
+				if (dup2(cmd->fd_out, STDOUT_FILENO) == -1)
+					return ;
+			}
+			if (cmd->fd_in != 0)
+				close(cmd->fd_in);
+			if (cmd->fd_out != 1)
+				close(cmd->fd_out);
+			if (execve(cmd->arg->path, cmd->arg->argz, cmd->arg->envp) == -1)
+				return ;
+		}
+		else
+		{
+			if (cmd->fd_in != 0)
+				close(cmd->fd_in);
+			if (cmd->fd_out != 1)
+				close(cmd->fd_out);
+		}
 	}
 	else
 	{
-		close(cmd->fd_in);
-		close(cmd->fd_out);
+		if (cmd->fd_in != 0)
+		{
+			if (dup2(cmd->fd_in, STDIN_FILENO) == -1)
+				return ;
+		}
+		if (cmd->fd_out != 1)
+		{
+			if (dup2(cmd->fd_out, STDOUT_FILENO) == -1)
+				return ;
+		}
+		if (cmd->fd_in != 0)
+			close(cmd->fd_in);
+		if (cmd->fd_out != 1)
+			close(cmd->fd_out);
+		if (execve(cmd->arg->path, cmd->arg->argz, cmd->arg->envp) == -1)
+			return ;
 	}
 }
 

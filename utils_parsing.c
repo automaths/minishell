@@ -2,25 +2,31 @@
 
 void	print_parsed(t_command *cmd)
 {
+	t_token *tmp;
+	int i;
+	
+	tmp = cmd->arg;
 	if (cmd->arg != NULL)
 	{
-		if (cmd->arg->content != NULL)
-			writing("the content is:", cmd->arg->content);
-		if (cmd->arg->command != NULL)
-			writing("the command is:", cmd->arg->command);
-		if (cmd->arg->path != NULL)
-			writing("the path is:", cmd->arg->path);
+		if (tmp->content != NULL)
+			writing("the content is:", tmp->content);
+		if (tmp->command != NULL)
+			writing("the command is:", tmp->command);
+		if (tmp->path != NULL)
+			writing("the path is:", tmp->path);
+		i = -1;
+		while (tmp->argz[++i])
+			writing("the argz is : ", tmp->argz[i]);
 	}
 }
 
 void	token_initing(t_token *arg, char **envp)
 {
 	arg->envp = envp;
-	arg->command = NULL;
-	arg->argz = NULL;
-	arg->path = NULL;
-	arg->command = NULL;
 	arg->unix_paths = NULL;
+	arg->argz = NULL;
+	arg->command = NULL;
+	arg->path = NULL;
 }
 
 char	*ft_strjoin_new(char *s1, char *s2, int flag)
