@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/27 14:16:54 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/06/27 20:00:57 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_command {
 t_command		*parse_line(char *str);
 //EXECUTING
 void			last_exec(t_command *cmd, char **envp);
-void			exec_command(t_command *cmd, char **envp);
+bool			exec_command(t_command *cmd, char **envp);
 //FREEING_PARSING
 void			freeing_unix(t_token *arg);
 void			freeing_command(t_token *arg);

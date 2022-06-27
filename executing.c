@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:15 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/27 14:21:24 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/06/27 20:12:16 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,17 +75,18 @@ void	waitpiding(t_command *cmd)
 	}
 }
 
-void	exec_command(t_command *cmd, char **envp)
+bool	exec_command(t_command *cmd, char **envp)
 {
 	t_command	*tmp;
 
 	if (!cmd)
-		return ;
+		return (0);
 	tmp = cmd;
 	redirectionning(tmp);
 	while (tmp != NULL)
 	{
-		parse_argument(tmp->arg, envp);
+		if (parse_argument(tmp->arg, envp) == 0)
+			return(perror("oups"), 0);
 		print_fd(tmp->fd_in);
 		print_fd(tmp->fd_out);
 		exec_token(tmp);
@@ -95,4 +96,5 @@ void	exec_command(t_command *cmd, char **envp)
 	}
 	waitpiding(cmd);
 	closing_fd(cmd);
+	return (1);
 }
