@@ -43,7 +43,8 @@ void	print_all(t_command *cmd)
 				tmp->redir = tmp->redir->next;
 			}
 		}
-		writing("trying next command", " ");
+		if (tmp->next != NULL)
+			writing("next command", " ");
 		tmp = tmp->next;
 	}
 }

@@ -10,6 +10,7 @@ t_command	*new_cmd(int i)
 		return (NULL);
 	new->fd_in = -1;
 	new->fd_out = -1;
+	new->is_piped = 0;
 	new->arg = NULL;
 	new->redir = NULL;
 	new->next = NULL;
