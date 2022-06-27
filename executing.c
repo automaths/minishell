@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   executing.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/27 12:10:15 by nsartral          #+#    #+#             */
+/*   Updated: 2022/06/27 12:10:45 by nsartral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "execution.h"
 
 void	exec_token(t_command *cmd)
@@ -57,15 +69,14 @@ void	exec_token(t_command *cmd)
 
 void	exec_command(t_command *cmd, char **envp)
 {
-	int i;
-	t_command *tmp;
+	int			i;
+	t_command	*tmp;
 
 	if (!cmd)
 		return ;
 	tmp = cmd;
 	redirectionning(tmp);
 	print_all(tmp);
-
 	i = 0;
 	while (tmp != NULL)
 	{
@@ -84,5 +95,4 @@ void	exec_command(t_command *cmd, char **envp)
 		close(tmp->fd_out);
 		tmp = tmp->next;
 	}
-	
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/27 12:22:16 by nsartral          #+#    #+#             */
+/*   Updated: 2022/06/27 12:24:06 by nsartral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "execution.h"
 
 bool	command_trim(t_token *arg)
@@ -28,10 +40,10 @@ bool	command_trim(t_token *arg)
 
 bool	find_path(t_token *arg, char *unix_path)
 {
-	char	aarg[1];
+	char	slash[1];
 
-	aarg[0] = '/';
-	arg->path = ft_strjoin_new(unix_path, aarg, 0);
+	slash[0] = '/';
+	arg->path = ft_strjoin_new(unix_path, slash, 0);
 	if (arg->path == NULL)
 		return (0);
 	arg->path = ft_strjoin_new(arg->path, arg->command, 1);

@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_structuring_three.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/27 12:28:09 by nsartral          #+#    #+#             */
+/*   Updated: 2022/06/27 12:28:10 by nsartral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "execution.h"
 
 char	*quoting_ruling(char *str)
 {
-	int i;
-	
+	int	i;
+
 	i = -1;
 	while (str[++i])
 	{
@@ -23,9 +35,9 @@ char	*quoting_ruling(char *str)
 
 char	**split_cleaning(char **split)
 {
-	int i;
-	int j;
-	
+	int	i;
+	int	j;
+
 	i = -1;
 	while (split[++i])
 	{

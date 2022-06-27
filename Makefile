@@ -1,7 +1,5 @@
 SRCS			=	./utils.c \
 					./utils_parsing.c \
-					./utils_opening.c \
-					./utils_inputing.c \
 					./utils_structuring_one.c \
 					./utils_structuring_two.c \
 					./utils_structuring_three.c \

@@ -1,20 +1,20 @@
-#include "execution.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_redirectionning_two.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/27 12:28:17 by nsartral          #+#    #+#             */
+/*   Updated: 2022/06/27 12:28:19 by nsartral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// <<a : 
-// 		heredoc link avec le fichier temporaire
-// <a : 
-// 		si mauvais chmod ou existe pas erreur traite aucune commande 
-// 		si a la suite le dernier est ouvert
-// >a : 
-// 		cree un fichier chmod 644 si existe pas 
-// 		si mauvais chmod erreur traite aucune commande
-// 		si elle se suive seulement derniere
-// >>a : 
-// 		comme >a mais en mode append
+#include "execution.h"
 
 int	opening_append(char *content)
 {
-	int fd;
+	int	fd;
 
 	content = ft_strtrim(content, "> ");
 	if (access(content, F_OK) == 0)
@@ -30,7 +30,7 @@ int	opening_append(char *content)
 
 int	opening_standard_output(char *content)
 {
-	int fd;
+	int	fd;
 
 	content = ft_strtrim(content, "> ");
 	if (access(content, F_OK) == 0)
@@ -46,7 +46,8 @@ int	opening_standard_output(char *content)
 
 int	opening_heredoc(char *content)
 {
-	int fd;
+	int	fd;
+
 	(void)content;
 	fd = open("tmp_file", O_RDWR);
 	return (fd);
@@ -54,7 +55,7 @@ int	opening_heredoc(char *content)
 
 int	opening_standard_input(char *content)
 {
-	int fd;
+	int	fd;
 
 	content = ft_strtrim(content, "< ");
 	if (access(content, F_OK) == 0)

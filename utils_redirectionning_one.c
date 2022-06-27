@@ -1,42 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_redirectionning_one.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/27 12:28:22 by nsartral          #+#    #+#             */
+/*   Updated: 2022/06/27 12:33:17 by nsartral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "execution.h"
-
-int	is_heredoc(char *str)
-{
-	int i;
-	int j;
-
-	i = -1;
-	j = 0;
-	while (str[++i])
-	{
-		if (str[i] == '<')
-			++j;	
-	}
-	if (j == 2)
-		return (2);
-	if (j == 1)
-		return (1);
-	return (0);
-}
-
-int	is_append(char *str)
-{
-	int i;
-	int j;
-
-	i = -1;
-	j = 0;
-	while (str[++i])
-	{
-		if (str[i] == '>')
-			++j;	
-	}
-	if (j == 2)
-		return (2);
-	if (j == 1)
-		return (1);
-	return (0);
-}
 
 void	piping(t_command *cmd)
 {
@@ -49,9 +23,9 @@ void	piping(t_command *cmd)
 
 void	init_fd_in(t_command *cmd)
 {
-	t_token *tmp;
-	char *content;
-	
+	t_token		*tmp;
+	char		*content;
+
 	tmp = cmd->redir;
 	content = NULL;
 	while (tmp != NULL)
@@ -73,9 +47,9 @@ void	init_fd_in(t_command *cmd)
 
 void	init_fd_out(t_command *cmd)
 {
-	t_token *tmp;
-	char *content;
-	
+	t_token		*tmp;
+	char		*content;
+
 	tmp = cmd->redir;
 	content = NULL;
 	while (tmp != NULL)
@@ -99,8 +73,8 @@ void	init_fd_out(t_command *cmd)
 
 void	redirectionning(t_command *cmd)
 {
-	t_command *tmp;
-	
+	t_command	*tmp;
+
 	tmp = cmd;
 	while (tmp != NULL)
 	{
@@ -108,6 +82,4 @@ void	redirectionning(t_command *cmd)
 		init_fd_out(tmp);
 		tmp = tmp->next;
 	}
-	
-	
 }

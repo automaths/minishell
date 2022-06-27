@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_parsing.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/27 12:28:28 by nsartral          #+#    #+#             */
+/*   Updated: 2022/06/27 12:28:30 by nsartral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "execution.h"
 
 void	print_parsed(t_command *cmd)
 {
-	t_token *tmp;
-	int i;
-	
+	t_token		*tmp;
+	int			i;
+
 	tmp = cmd->arg;
 	if (cmd->arg != NULL)
 	{
