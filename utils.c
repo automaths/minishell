@@ -6,11 +6,22 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:27:59 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/27 20:01:02 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/02 14:52:46 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
+
+void	writing_error(char *str, int num)
+{
+	if (num == 1)
+	{
+		write(2, "bash: ", 6);
+		if (str != NULL)
+			write(2, str, ft_strlen(str));
+		write(2, ": command not found\n", 20);
+	}
+}
 
 void	writing(char *intro, char *content)
 {

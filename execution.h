@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/27 20:00:57 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/02 14:21:41 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <stdbool.h>
 # include "./libft/libft.h"
 # include "errno.h"
+
+#define CMD_NOT_FOUND 1
 
 typedef struct s_token {
 	char			*content;
@@ -78,6 +80,7 @@ void			token_initing(t_token *arg, char **envp);
 char			*ft_strjoin_new(char *s1, char *s2, int flag);
 bool			is_whitespace(char c);
 bool			is_lowercase(char c);
+bool			is_printable_except_space(char c);
 //UTILS_STRUCTURING_ONE
 t_command		*new_cmd(int i);
 t_token			*new_tkn(char *arg);
@@ -97,6 +100,7 @@ void			writing(char *intro, char *content);
 void			print_fd(int fd);
 int				is_heredoc(char *str);
 int				is_append(char *str);
+void			writing_error(char *str, int num);
 //UTILS_REDIRECTIONNING_ONE
 void			piping(t_command *cmd);
 void			init_fd_in(t_command *cmd);

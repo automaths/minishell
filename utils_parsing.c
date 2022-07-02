@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:28:28 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/27 12:28:30 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/02 14:21:28 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,11 @@ bool	is_lowercase(char c)
 	if (c >= 'a' && c <= 'z')
 		return (1);
 	return (0);
+}
+
+bool	is_printable_except_space(char c)
+{
+	if (c < 33 || c > 126)
+		return (0);
+	return (1);
 }
