@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:15 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/02 16:08:16 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/02 19:51:44 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,15 @@ bool	exec_command(t_command *cmd, char **envp)
 	redirectionning(tmp);
 	while (tmp != NULL)
 	{
-		
 		if (parse_argument(tmp->arg, envp) == 0)
-			return (0);
-		exec_token(tmp);
-		// print_fd(tmp->fd_in);
-		// print_fd(tmp->fd_out);
+		{
+			if (tmp->next != NULL)
+				tmp->next->fd_in = -1;
+		}
+		else
+			exec_token(tmp);
+		print_fd(tmp->fd_in);
+		print_fd(tmp->fd_out);
 		tmp = tmp->next;
 		if (tmp == NULL)
 			break ;
