@@ -6,17 +6,20 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:28:22 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/02 20:39:23 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/02 23:13:18 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
 
-void	piping(t_command *cmd)
+void	piping(t_command *cmd, char *content)
 {
 	if (pipe(cmd->fd) == -1)
 		return ;
-	cmd->fd_out = cmd->fd[1];
+	if (content == NULL)
+		cmd->fd_out = cmd->fd[1];
+	else 
+		close (cmd->fd[1]);
 	cmd->next->fd_in = cmd->fd[0];
 	cmd->next->is_piped = 1;
 }
@@ -89,8 +92,8 @@ int	init_fd_out(t_command *cmd)
 		if (is_append(content) == 1)
 			cmd->fd_out = opening_standard_output(content);
 	}
-	if (content == NULL && cmd->next != NULL)
-		piping(cmd);
+	if (cmd->next != NULL)
+		piping(cmd, content);
 	if (content == NULL && cmd->next == NULL)
 		cmd->fd_out = 1;
 	return (1);

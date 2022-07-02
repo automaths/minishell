@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/02 20:31:14 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/02 23:13:38 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int				is_heredoc(char *str);
 int				is_append(char *str);
 void			writing_error(char *str, int num);
 //UTILS_REDIRECTIONNING_ONE
-void			piping(t_command *cmd);
+void			piping(t_command *cmd, char *content);
 void			init_fd_in(t_command *cmd);
 int				init_fd_out(t_command *cmd);
 int				redirectionning(t_command *cmd);
