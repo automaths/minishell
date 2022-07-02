@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:27:59 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/02 14:52:46 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/02 20:37:23 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,20 @@ void	writing_error(char *str, int num)
 		if (str != NULL)
 			write(2, str, ft_strlen(str));
 		write(2, ": command not found\n", 20);
+	}
+	if (num == 2)
+	{
+		write(2, "bash: ", 6);
+		if (str != NULL)
+			write(2, str, ft_strlen(str));
+		write(2, ": no such file or directory\n", ft_strlen(": no such file or directory\n"));
+	}
+	if (num == 3)
+	{
+		write(2, "bash: ", 6);
+		if (str != NULL)
+			write(2, str, ft_strlen(str));
+		write(2, ": permission denied\n", ft_strlen(": permission denied\n"));
 	}
 }
 

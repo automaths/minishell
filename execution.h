@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/02 14:21:41 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/02 20:31:14 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include "errno.h"
 
 #define CMD_NOT_FOUND 1
+#define NO_FILE 2
+#define WRONG_CHMOD 3
 
 typedef struct s_token {
 	char			*content;
@@ -104,8 +106,9 @@ void			writing_error(char *str, int num);
 //UTILS_REDIRECTIONNING_ONE
 void			piping(t_command *cmd);
 void			init_fd_in(t_command *cmd);
-void			init_fd_out(t_command *cmd);
-void			redirectionning(t_command *cmd);
+int				init_fd_out(t_command *cmd);
+int				redirectionning(t_command *cmd);
+bool			check_fd_out(char *content, t_token *redir);
 //UTILS_REDIRECTIONNING_TWO
 int				opening_append(char *content);
 int				opening_standard_output(char *content);

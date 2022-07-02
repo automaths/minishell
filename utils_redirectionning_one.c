@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_redirectionning_one.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:28:22 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/27 12:33:17 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/02 20:39:23 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,27 @@ void	init_fd_in(t_command *cmd)
 		cmd->fd_in = 0;
 }
 
-void	init_fd_out(t_command *cmd)
+bool	check_fd_out(char *content, t_token *redir)
+{
+	int fd; 
+
+	content = ft_strtrim(content, "> ");
+	if (access(content, F_OK) == 0)
+	{
+		if (access(content, W_OK) == -1)
+			return (writing_error(ft_strtrim(content, "> "), WRONG_CHMOD), 0);
+	}
+	if (redir != NULL)
+	{
+		fd = open(content, O_CREAT | O_RDWR, 0644);
+		if (fd == -1)
+			return (writing("cant open file", " "), -1);
+		close(fd);	
+	}
+	return (1);
+}
+
+int	init_fd_out(t_command *cmd)
 {
 	t_token		*tmp;
 	char		*content;
@@ -55,7 +75,11 @@ void	init_fd_out(t_command *cmd)
 	while (tmp != NULL)
 	{
 		if (is_redirection(tmp->content) == 2)
+		{
+			if (check_fd_out(tmp->content, tmp->next) == 0)
+				return (0);
 			content = tmp->content;
+		}
 		tmp = tmp->next;
 	}
 	if (content != NULL)
@@ -69,9 +93,10 @@ void	init_fd_out(t_command *cmd)
 		piping(cmd);
 	if (content == NULL && cmd->next == NULL)
 		cmd->fd_out = 1;
+	return (1);
 }
 
-void	redirectionning(t_command *cmd)
+int	redirectionning(t_command *cmd)
 {
 	t_command	*tmp;
 
@@ -79,7 +104,9 @@ void	redirectionning(t_command *cmd)
 	while (tmp != NULL)
 	{
 		init_fd_in(tmp);
-		init_fd_out(tmp);
+		if (init_fd_out(tmp) == 0)
+			return (0);
 		tmp = tmp->next;
 	}
+	return (1);
 }
