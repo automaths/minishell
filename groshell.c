@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   groshell.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:08 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/27 13:49:24 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/04 13:33:05 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,13 @@ int	main(int argc, char **argv, char **envp)
 	int			count;
 	char		*str;
 	t_command	*cmd;
+	t_env *env;
+	
+	
 
 	(void)argc;
 	(void)argv;
+	env = env_to_list(envp);
 	str = (char *)malloc(sizeof(char) * 4096);
 	while (1)
 	{
@@ -28,6 +32,7 @@ int	main(int argc, char **argv, char **envp)
 		str[count] = '\0';
 		if ((ft_strncmp(str, "exit", 4) == 0) && ft_strlen(str) == 5)
 			break ;
+		str = environning(str, env);
 		cmd = parse_line(str);
 		exec_command(cmd, envp);
 	}

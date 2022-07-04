@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/03 13:48:51 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/04 13:34:21 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ typedef struct s_command {
 	int					fd_out;
 	struct s_command	*next;
 }	t_command;
+
+typedef struct s_env {
+	char *name;
+	char *content;
+	struct s_env *next;
+} t_env;
 
 // <<a : 
 // 		heredoc link avec le fichier temporaire
@@ -118,5 +124,22 @@ int				init_fd_out(t_command *cmd);
 bool			check_fd_in(char *content);
 bool			check_fd_out(char *content, t_token *redir);
 char			*last_redir(t_command *cmd);
+//UTILS_ENVIRONNING_ONE
+char		*get_content(char *envp);
+char		*get_name(char *envp);
+int			has_equal(char *str);
+bool		check_envp(char **envp);
+t_env		*env_to_list(char **envp);
+void		read_list(t_env *env);
+//UTILS_ENVIRONNING_TWO
+t_env		*new_lst(char *name, char *content);
+void		add_back_lst(t_env **lst, t_env *new);
+int			strnstr_int(char *str, char *to_find);
+//ENVIRONNING
+char		*environning(char *str, t_env *env);
+char		*change_envz(char *str, t_env *env);
+char		*find_content(char *name, t_env *env);
+char		*updated_env(char *str, char *name, char *content);
+bool		check_envz(char *str);
 
 #endif

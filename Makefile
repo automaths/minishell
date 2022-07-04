@@ -7,11 +7,14 @@ SRCS			=	./utils_one.c \
 					./utils_redirectionning.c \
 					./utils_opening_fds.c \
 					./utils_fding.c \
+					./utils_environning_one.c \
+					./utils_environning_two.c \
 					./structuring.c \
 					./executing.c \
 					./groshell.c \
 					./parsing.c \
 					./freeing_parsing.c \
+					./environning.c \
 
 OBJS			= 	$(SRCS:.c=.o)
 
