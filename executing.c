@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:15 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/04 13:20:35 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/06 17:23:55 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,12 @@ bool	exec_command(t_command *cmd, char **envp)
 				tmp->next->fd_in = -1;
 		}
 		else
-			exec_token(tmp);
+		{
+			if (check_builts(tmp->arg->argz))
+				exec_token_builts(tmp);
+			else
+				exec_token(tmp);
+		} 
 		print_fd(tmp->fd_in);
 		print_fd(tmp->fd_out);
 		tmp = tmp->next;

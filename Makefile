@@ -9,12 +9,14 @@ SRCS			=	./utils_one.c \
 					./utils_fding.c \
 					./utils_environning_one.c \
 					./utils_environning_two.c \
+					./utils_environning_three.c \
 					./structuring.c \
 					./executing.c \
 					./groshell.c \
 					./parsing.c \
 					./freeing_parsing.c \
 					./environning.c \
+					./echo.c \
 
 OBJS			= 	$(SRCS:.c=.o)
 

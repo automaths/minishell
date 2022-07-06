@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/04 13:34:21 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/06 17:19:44 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,11 +135,15 @@ void		read_list(t_env *env);
 t_env		*new_lst(char *name, char *content);
 void		add_back_lst(t_env **lst, t_env *new);
 int			strnstr_int(char *str, char *to_find);
+//UTILS_ENVIRONNING_THREE
+bool	check_builts(char **argz);
 //ENVIRONNING
 char		*environning(char *str, t_env *env);
 char		*change_envz(char *str, t_env *env);
 char		*find_content(char *name, t_env *env);
 char		*updated_env(char *str, char *name, char *content);
 bool		check_envz(char *str);
+//ECHO
+void	exec_token_builts(t_command *cmd);
 
 #endif
