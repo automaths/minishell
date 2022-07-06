@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:16 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/03 13:43:06 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/06 21:40:52 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,15 @@ bool	find_path(t_token *arg, char *unix_path)
 bool	get_the_path(t_token *arg)
 {
 	int	i;
+	char **envp;
 
 	i = 0;
-	while (arg->envp[i] && ft_strncmp(arg->envp[i], "PATH=", 5) != 0)
+	envp = envp_to_char(arg->envp);
+	while (envp[i] && ft_strncmp(envp[i], "PATH=", 5) != 0)
 		i++;
-	if (arg->envp[i] == NULL)
+	if (envp[i] == NULL)
 		return (0);
-	arg->unix_paths = ft_split(&arg->envp[i][4], ':');
+	arg->unix_paths = ft_split(&envp[i][4], ':');
 	if (arg->unix_paths == NULL)
 		return (0);
 	if (command_trim(arg) == 0)
@@ -82,7 +84,7 @@ bool	get_the_path(t_token *arg)
 	return (freeing_unix(arg), 1);
 }
 
-bool	parse_argument(t_token *arg, char **envp)
+bool	parse_argument(t_token *arg, t_env *envp)
 {
 	char	**tmp;
 	int		i;

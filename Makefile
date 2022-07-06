@@ -10,13 +10,18 @@ SRCS			=	./utils_one.c \
 					./utils_environning_one.c \
 					./utils_environning_two.c \
 					./utils_environning_three.c \
+					./utils_builts.c \
 					./structuring.c \
 					./executing.c \
 					./groshell.c \
 					./parsing.c \
 					./freeing_parsing.c \
 					./environning.c \
-					./echo.c \
+					./builts_echo.c \
+					./builts_env.c \
+					./builts_pwd.c \
+					./builts_export.c \
+					
 
 OBJS			= 	$(SRCS:.c=.o)
 

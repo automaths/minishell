@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:15 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/06 17:23:55 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/06 18:36:03 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@ void	forking(t_command *cmd)
 		close(cmd->fd_in);
 	if (cmd->fd_out != 1)
 		close(cmd->fd_out);
-	if (execve(cmd->arg->path, cmd->arg->argz, cmd->arg->envp) == -1)
+	if (execve(cmd->arg->path, cmd->arg->argz, cmd->arg->envp_char) == -1)
 		return ;
 }
 
 void	exec_token(t_command *cmd)
 {
+	cmd->arg->envp_char = envp_to_char(cmd->arg->envp);
 	cmd->arg->pid = fork();
 	if (cmd->arg->pid == -1)
 		return ;
@@ -75,7 +76,7 @@ void	waitpiding(t_command *cmd)
 	}
 }
 
-bool	exec_command(t_command *cmd, char **envp)
+bool	exec_command(t_command *cmd, t_env *envp)
 {
 	t_command	*tmp;
 

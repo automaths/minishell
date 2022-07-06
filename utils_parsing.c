@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:28:28 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/03 13:40:18 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/06 18:41:02 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	print_parsed(t_command *cmd)
 	}
 }
 
-void	token_initing(t_token *arg, char **envp)
+void	token_initing(t_token *arg, t_env *envp)
 {
 	arg->envp = envp;
 	arg->unix_paths = NULL;

@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/06 17:19:44 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/06 21:42:21 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,16 @@
 # define NO_FILE 2
 # define WRONG_CHMOD 3
 
+typedef struct s_env {
+	char *name;
+	char *content;
+	struct s_env *next;
+} t_env;
+
 typedef struct s_token {
 	char			*content;
-	char			**envp;
+	t_env			*envp;
+	char			**envp_char;
 	char			**unix_paths;
 	char			**argz;
 	char			*command;
@@ -48,12 +55,6 @@ typedef struct s_command {
 	struct s_command	*next;
 }	t_command;
 
-typedef struct s_env {
-	char *name;
-	char *content;
-	struct s_env *next;
-} t_env;
-
 // <<a : 
 // 		heredoc link avec le fichier temporaire
 // <a : 
@@ -68,7 +69,7 @@ typedef struct s_env {
 t_command		*parse_line(char *str);
 //EXECUTING
 void			last_exec(t_command *cmd, char **envp);
-bool			exec_command(t_command *cmd, char **envp);
+bool	exec_command(t_command *cmd, t_env *envp);
 //FREEING_PARSING
 void			freeing_unix(t_token *arg);
 void			freeing_command(t_token *arg);
@@ -79,12 +80,12 @@ void			freeing_path_and_argz(t_token *arg);
 bool			command_trim(t_token *arg);
 bool			find_path(t_token *arg, char *unix_path);
 bool			get_the_path(t_token *arg);
-bool			parse_argument(t_token *arg, char **envp);
+bool	parse_argument(t_token *arg, t_env *envp);
 //STRUCTURING
 t_command		*parse_line(char *str);
 //UTILS_PARSING
 void			print_parsed(t_command *cmd);
-void			token_initing(t_token *arg, char **envp);
+void	token_initing(t_token *arg, t_env *envp);
 char			*ft_strjoin_new(char *s1, char *s2, int flag);
 //UTILS_STRUCTURING_ONE
 t_command		*new_cmd(int i);
@@ -107,9 +108,13 @@ int				is_heredoc(char *str);
 int				is_append(char *str);
 void			writing_error(char *str, int num);
 //UTILS_TWO
+int	lst_len(t_env *env);
 bool			is_whitespace(char c);
 bool			is_lowercase(char c);
 bool			is_printable_except_space(char c);
+char	*alloc_line(char *name, char *content);
+char **envp_to_char(t_env *env);
+
 //UTILS_REDIRECTIONNING
 void			piping(t_command *cmd, char *content);
 int				redirectionning(t_command *cmd);
@@ -143,7 +148,17 @@ char		*change_envz(char *str, t_env *env);
 char		*find_content(char *name, t_env *env);
 char		*updated_env(char *str, char *name, char *content);
 bool		check_envz(char *str);
+//UTILS_BUILTS
+void		exec_token_builts(t_command *cmd);
+void		forking_builts(t_command *cmd);
 //ECHO
-void	exec_token_builts(t_command *cmd);
+void		exec_echo(t_command *cmd);
+//ENV
+void	exec_env(t_env *env);
+//PWD
+void	exec_pwd(t_env *env);
+//EXPORT
+void	exec_export(char *str, t_env *env);
+
 
 #endif
