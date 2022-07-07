@@ -4,7 +4,7 @@ void	exec_env(t_command *cmd)
 {
 	t_env *tmp;
 	
-	tmp = cmd->envp;
+	tmp = cmd->env;
 	while (tmp != NULL)
 	{
 		write(1, tmp->name, ft_strlen(tmp->name));

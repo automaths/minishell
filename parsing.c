@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:16 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/06 21:40:52 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/07 12:49:58 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,25 @@ bool	find_path(t_token *arg, char *unix_path)
 	return (free(arg->path), 0);
 }
 
+bool	is_builts(char *command)
+{
+	if (ft_strncmp(command, "echo", 5) == 0)
+		return (1);
+	if (ft_strncmp(command, "cd", 3) == 0)
+		return (1);
+	if (ft_strncmp(command, "pwd", 4) == 0)
+		return (1);
+	if (ft_strncmp(command, "export", 7) == 0)
+		return (1);
+	if (ft_strncmp(command, "unset", 6) == 0)
+		return (1);
+	if (ft_strncmp(command, "env", 4) == 0)
+		return (1);
+	if (ft_strncmp(command, "exit", 5) == 0)
+		return (1);
+	return (0);	
+}
+
 bool	get_the_path(t_token *arg)
 {
 	int	i;
@@ -72,6 +91,8 @@ bool	get_the_path(t_token *arg)
 		return (freeing_unix(arg), writing_error(NULL, CMD_NOT_FOUND), 0);
 	if (arg->command == NULL)
 		return (0);
+	if (is_builts(arg->command))
+		return (1);
 	i = 0;
 	while (arg->unix_paths[i] && find_path(arg, arg->unix_paths[i]) == 0)
 		i++;

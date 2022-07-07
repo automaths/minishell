@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:28 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/06 21:41:03 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/07 12:45:33 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	**spliting_plus(char *str)
 	return (split);
 }
 
-t_command	*parse_line(char *str)
+t_command	*parse_line(char *str, t_env *env)
 {
 	char			**split;
 	t_command		*cmd;
@@ -34,7 +34,7 @@ t_command	*parse_line(char *str)
 
 	split = spliting_plus(str);
 	i = -1;
-	cmd = new_cmd(i);
+	cmd = new_cmd(i, env);
 	tmp = cmd;
 	while (split[++i])
 	{
@@ -44,7 +44,7 @@ t_command	*parse_line(char *str)
 			add_back_tkn(&tmp->redir, new_tkn(split[i]));
 		if (is_new_cmd(split[i]))
 		{
-			add_back_cmd(&tmp, new_cmd(i));
+			add_back_cmd(&tmp, new_cmd(i, env));
 			tmp = tmp->next;
 		}
 	}

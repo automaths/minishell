@@ -16,14 +16,16 @@ void	exec_builts(t_command *cmd)
 	// if (ft_strncmp(cmd->arg->argz[0], "unset", 6) == 0)
 	// 	exec_unset(content, env);
 	if (ft_strncmp(cmd->arg->argz[0], "env", 4) == 0)
-		exec_env(cmd->arg->envp);
+		exec_env(cmd);
 	// if (ft_strncmp(cmd->arg->argz[0], "exit", 5) == 0)
 	// 	exec_exit(content);
+	// read_envz(cmd->env);
 	exit(0);
 }
 
 bool	check_builts(char **argz)
 {
+	write(1, "isbuild", 6);
 	if (ft_strncmp("echo", argz[0], 5) == 0)
 		return (1);
 	if (ft_strncmp("env", argz[0], 4) == 0)

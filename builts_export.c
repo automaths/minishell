@@ -128,6 +128,33 @@ int	update_env(char *name, char *content, t_env *env)
 	return (0);
 }
 
+void	read_envz(t_env *env)
+{
+	t_env *tmp;
+
+	tmp = env;
+	while (tmp != NULL)
+	{
+		write(1, tmp->name, ft_strlen(tmp->name));
+		write(1, "=", 1);
+		write(1, tmp->content, ft_strlen(tmp->content));
+		write(1, "\n", 1);
+		tmp = tmp->next;
+	}
+}
+
+void	update_all_envz(t_command *cmd, t_env *env)
+{
+	t_command *tmp;
+	
+	tmp = cmd;
+	while (tmp != NULL)
+	{
+		tmp->env = env;
+		tmp = tmp->next;
+	}
+}
+
 void	exec_export(t_command *cmd)
 {
 	char *name;
@@ -137,7 +164,9 @@ void	exec_export(t_command *cmd)
 		return ;
 	name = export_name(cmd->arg->argz[1]);
 	content = export_content(cmd->arg->argz[1]);
-	if(update_env(name, content, cmd->envp))
+	if(update_env(name, content, cmd->env))
 		return ;
-	add_back_env(name, content, cmd->envp);
+	add_back_env(name, content, cmd->env);
+	// read_envz(cmd->env);
+	update_all_envz(cmd, cmd->env);
 }

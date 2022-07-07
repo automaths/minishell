@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:08 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/06 21:40:56 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/07 13:05:37 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int argc, char **argv, char **envp)
 	char		*str;
 	t_command	*cmd;
 	t_env *env;
+	t_env *tmp;
 	
 	
 
@@ -33,8 +34,10 @@ int	main(int argc, char **argv, char **envp)
 		if ((ft_strncmp(str, "exit", 4) == 0) && ft_strlen(str) == 5)
 			break ;
 		str = environning(str, env);
-		cmd = parse_line(str);
-		exec_command(cmd, env);
+		cmd = parse_line(str, env);
+		tmp = exec_command(cmd, env);
+		if (tmp != NULL)
+			env = tmp;
 	}
 	return (0);
 }

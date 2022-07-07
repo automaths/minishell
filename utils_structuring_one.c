@@ -6,13 +6,13 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:28:13 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/06 21:43:02 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/07 12:45:14 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
 
-t_command	*new_cmd(int i)
+t_command	*new_cmd(int i, t_env *env)
 {
 	t_command	*new;
 
@@ -20,6 +20,7 @@ t_command	*new_cmd(int i)
 	new = (t_command *)malloc(sizeof(t_command));
 	if (new == NULL)
 		return (NULL);
+	new->env = env;
 	new->fd_in = -1;
 	new->fd_out = -1;
 	new->is_piped = 0;

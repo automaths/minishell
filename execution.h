@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/06 21:42:21 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/07 13:12:56 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_token {
 typedef struct s_command {
 	t_token				*arg;
 	t_token				*redir;
+	t_env				*env;
 	int					is_piped;
 	int					fd[2];
 	int					fd_in;
@@ -66,10 +67,10 @@ typedef struct s_command {
 // 		si elle se suive seulement derniere
 // >>a : 
 // 		comme >a mais en mode append
-t_command		*parse_line(char *str);
+t_command	*parse_line(char *str, t_env *env);
 //EXECUTING
 void			last_exec(t_command *cmd, char **envp);
-bool	exec_command(t_command *cmd, t_env *envp);
+t_env	*exec_command(t_command *cmd, t_env *envp);
 //FREEING_PARSING
 void			freeing_unix(t_token *arg);
 void			freeing_command(t_token *arg);
@@ -82,13 +83,12 @@ bool			find_path(t_token *arg, char *unix_path);
 bool			get_the_path(t_token *arg);
 bool	parse_argument(t_token *arg, t_env *envp);
 //STRUCTURING
-t_command		*parse_line(char *str);
 //UTILS_PARSING
 void			print_parsed(t_command *cmd);
 void	token_initing(t_token *arg, t_env *envp);
 char			*ft_strjoin_new(char *s1, char *s2, int flag);
 //UTILS_STRUCTURING_ONE
-t_command		*new_cmd(int i);
+t_command		*new_cmd(int i, t_env *env);
 t_token			*new_tkn(char *arg);
 void			add_back_tkn(t_token **tkn, t_token *new);
 void			add_back_cmd(t_command **cmd, t_command *new);
@@ -110,6 +110,8 @@ void			writing_error(char *str, int num);
 //UTILS_TWO
 int	lst_len(t_env *env);
 bool			is_whitespace(char c);
+bool	is_whitespace2(char c);
+int	ft_strcmp(const char *s1, const char *s2);
 bool			is_lowercase(char c);
 bool			is_printable_except_space(char c);
 char	*alloc_line(char *name, char *content);
@@ -151,14 +153,15 @@ bool		check_envz(char *str);
 //UTILS_BUILTS
 void		exec_token_builts(t_command *cmd);
 void		forking_builts(t_command *cmd);
+void	read_envz(t_env *env);
 //ECHO
 void		exec_echo(t_command *cmd);
 //ENV
-void	exec_env(t_env *env);
+void	exec_env(t_command *cmd);
 //PWD
 void	exec_pwd(t_env *env);
 //EXPORT
-void	exec_export(char *str, t_env *env);
+void	exec_export(t_command *cmd);
 
 
 #endif
