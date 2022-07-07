@@ -1,26 +1,28 @@
-SRCS			=	./utils_one.c \
-					./utils_two.c \
-					./utils_parsing.c \
-					./utils_structuring_one.c \
-					./utils_structuring_two.c \
-					./utils_structuring_three.c \
-					./utils_redirectionning.c \
-					./utils_opening_fds.c \
-					./utils_fding.c \
-					./utils_environning_one.c \
-					./utils_environning_two.c \
-					./utils_environning_three.c \
-					./utils_builts.c \
-					./structuring.c \
-					./executing.c \
-					./groshell.c \
-					./parsing.c \
-					./freeing_parsing.c \
-					./environning.c \
-					./builts_echo.c \
-					./builts_env.c \
-					./builts_pwd.c \
-					./builts_export.c \
+SRCS			=	./builts/cd.c \
+					./builts/echo.c \
+					./builts/env.c \
+					./builts/exit.c \
+					./builts/export.c \
+					./builts/pwd.c \
+					./builts/unset.c \
+					./executing/builtsing_fork.c \
+					./executing/builtsing_nofork.c \
+					./executing/checking_fds.c \
+					./executing/executing.c \
+					./executing/execving.c \
+					./executing/opening_fds.c \
+					./executing/parsing_arg.c \
+					./executing/redirecting.c \
+					./parsing/creating_tkn_cmd.c \
+					./parsing/environning.c \
+					./parsing/groshell.c \
+					./parsing/identifying.c \
+					./parsing/parsing_spliting.c \
+					./utils/env_char_to_lst.c \
+					./utils/env_lst_to_char.c \
+					./utils/freeing.c \
+					./utils/libft_plus.c \
+					./utils/printing.c \
 					
 
 OBJS			= 	$(SRCS:.c=.o)

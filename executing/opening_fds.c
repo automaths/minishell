@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_redirectionning_two.c                        :+:      :+:    :+:   */
+/*   opening_fds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:28:17 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/27 13:42:19 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/07 18:09:22 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execution.h"
+#include "../execution.h"
 
 int	opening_append(char *content)
 {

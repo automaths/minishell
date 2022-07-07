@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/07 13:12:56 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/07 18:27:35 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ t_token			*new_tkn(char *arg);
 void			add_back_tkn(t_token **tkn, t_token *new);
 void			add_back_cmd(t_command **cmd, t_command *new);
 //UTILS_STRUCTURING_TWO
-int				count_commands(char *str);
 void			print_all(t_command *cmd);
 bool			is_arg(char *str);
 int				is_redirection(char *str);
@@ -139,6 +138,9 @@ bool		check_envp(char **envp);
 t_env		*env_to_list(char **envp);
 void		read_list(t_env *env);
 //UTILS_ENVIRONNING_TWO
+bool	check_builts_nofork(char **argz);
+void	exec_token_builts_nofork(t_command *cmd);
+void	exec_token(t_command *cmd);
 t_env		*new_lst(char *name, char *content);
 void		add_back_lst(t_env **lst, t_env *new);
 int			strnstr_int(char *str, char *to_find);

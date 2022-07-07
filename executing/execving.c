@@ -1,20 +1,6 @@
-#include "execution.h"
+#include "../execution.h"
 
-void	exec_echo(t_command *cmd)
-{
-	int i;
-	
-	i = 0;
-	write(1, "Using built in", ft_strlen("using built in"));
-	while (cmd->arg->argz[++i])
-	{
-		write(1, cmd->arg->argz[i], ft_strlen(cmd->arg->argz[i]));
-		write(1, " ", 1);
-	}
-	exit(0);
-}
-
-void	forking_builts(t_command *cmd)
+void	forking(t_command *cmd)
 {
 	if (cmd->fd_in != 0)
 	{
@@ -30,16 +16,18 @@ void	forking_builts(t_command *cmd)
 		close(cmd->fd_in);
 	if (cmd->fd_out != 1)
 		close(cmd->fd_out);
-	exec_echo(cmd);
+	if (execve(cmd->arg->path, cmd->arg->argz, cmd->arg->envp_char) == -1)
+		return ;
 }
 
-void	exec_token_builts(t_command *cmd)
+void	exec_token(t_command *cmd)
 {
+	cmd->arg->envp_char = envp_to_char(cmd->arg->envp);
 	cmd->arg->pid = fork();
 	if (cmd->arg->pid == -1)
 		return ;
 	if (cmd->arg->pid == 0)
-		forking_builts(cmd);
+		forking(cmd);
 	else
 	{
 		if (cmd->fd_in != 0)

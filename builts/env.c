@@ -3,23 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:07:02 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/27 12:09:02 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/07 17:12:51 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execution.h"
 
-void	env(int fd, char **envp)
+void	exec_env(t_command *cmd)
 {
-	int	i;
-
-	i = -1;
-	while (envp[++i])
+	t_env *tmp;
+	
+	tmp = cmd->env;
+	while (tmp != NULL)
 	{
-		write(fd, envp[i], ft_strlen(envp[i]));
-		write(fd, "\n", 1);
+		write(1, tmp->name, ft_strlen(tmp->name));
+		write(1, "=", 1);
+		write(1, tmp->content, ft_strlen(tmp->content));
+		write(1, "\n", 1);
+		tmp = tmp->next;
 	}
 }
