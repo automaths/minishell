@@ -2,14 +2,19 @@
 
 bool	check_builts(char **argz)
 {
-	write(1, "isbuild", 6);
 	if (ft_strncmp("echo", argz[0], 5) == 0)
 		return (1);
 	if (ft_strncmp("env", argz[0], 4) == 0)
 		return (1);
 	if (ft_strncmp("pwd", argz[0], 4) == 0)
 		return (1);
-	if (ft_strncmp(argz[0], "export", 7) == 0)
+	if (ft_strncmp("export", argz[0], 7) == 0)
+		return (1);
+	if (ft_strncmp("unset", argz[0], 6) == 0)
+		return (1);
+	if (ft_strncmp("cd", argz[0], 3) == 0)
+		return (1);
+	if (ft_strncmp("exit", argz[0], 5) == 0)
 		return (1);
 	return (0);
 }
