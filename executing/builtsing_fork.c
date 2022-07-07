@@ -16,24 +16,13 @@ bool	check_builts(char **argz)
 
 void	exec_builts(t_command *cmd)
 {
-	write(1, "\n", 1);
-	write(1, "using builts", ft_strlen("using builts"));
-	write(1, "\n", 1);
+	write(1, "witfork", ft_strlen("witfork"));
 	if (ft_strncmp(cmd->arg->argz[0], "echo", 5) == 0)
 		exec_echo(cmd);
-	// if (ft_strncmp(cmd->arg->argz[0], "cd", 3) == 0)
-	// 	exec_cd(content, env);
 	if (ft_strncmp(cmd->arg->argz[0], "pwd", 4) == 0)
-		exec_pwd(cmd->arg->envp);
-	if (ft_strncmp(cmd->arg->argz[0], "export", 7) == 0)
-		exec_export(cmd);
-	// if (ft_strncmp(cmd->arg->argz[0], "unset", 6) == 0)
-	// 	exec_unset(content, env);
+		exec_pwd(cmd);
 	if (ft_strncmp(cmd->arg->argz[0], "env", 4) == 0)
 		exec_env(cmd);
-	// if (ft_strncmp(cmd->arg->argz[0], "exit", 5) == 0)
-	// 	exec_exit(content);
-	// read_envz(cmd->env);
 	exit(0);
 }
 
