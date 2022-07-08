@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/07 19:38:49 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/08 08:24:09 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_env {
 typedef struct s_token {
 	char			*content;
 	t_env			*envp;
-	char			**envp_char;
 	char			**unix_paths;
 	char			**argz;
 	char			*command;
@@ -49,6 +48,7 @@ typedef struct s_command {
 	t_token				*arg;
 	t_token				*redir;
 	t_env				*env;
+	char				**envp_char;
 	int					is_piped;
 	int					fd[2];
 	int					fd_in;
