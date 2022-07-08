@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:15 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/07 18:23:50 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/08 08:34:34 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	waitpiding(t_command *cmd)
 	}
 }
 
-t_env	*exec_command(t_command *cmd, t_env *envp)
+t_env	*exec_command(t_command *cmd)
 {
 	t_command	*tmp;
 
@@ -50,7 +50,7 @@ t_env	*exec_command(t_command *cmd, t_env *envp)
 		return (NULL);
 	while (tmp != NULL)
 	{
-		if (parse_argument(tmp->arg, envp) == 0)
+		if (parse_argument(tmp) == 0)
 		{
 			if (tmp->next != NULL)
 				tmp->next->fd_in = -1;

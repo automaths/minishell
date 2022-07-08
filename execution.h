@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/08 08:24:09 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/08 08:34:45 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef struct s_env {
 
 typedef struct s_token {
 	char			*content;
-	t_env			*envp;
 	char			**unix_paths;
 	char			**argz;
 	char			*command;
@@ -90,7 +89,7 @@ char			*last_redir(t_command *cmd);
 //executing
 void			closing_fd(t_command *cmd);
 void			waitpiding(t_command *cmd);
-t_env			*exec_command(t_command *cmd, t_env *envp);
+t_env			*exec_command(t_command *cmd);
 //execving
 void			forking(t_command *cmd);
 void			exec_token(t_command *cmd);
@@ -100,12 +99,12 @@ int				opening_standard_output(char *content);
 int				opening_heredoc(char *content);
 int				opening_standard_input(char *content);
 //parsing_arg
-void			token_initing(t_token *arg, t_env *envp);
-bool			command_trim(t_token *arg);
+void			token_initing(t_command *cmd);
+bool			command_trim(t_command *cmd);
 bool			find_path(t_token *arg, char *unix_path);
 bool			is_builts(char *command);
-bool			get_the_path(t_token *arg);
-bool			parse_argument(t_token *arg, t_env *envp);
+bool			get_the_path(t_command *cmd);
+bool			parse_argument(t_command *cmd);
 //redirecting
 bool			init_fd_in(t_command *cmd);
 int				init_fd_out(t_command *cmd);

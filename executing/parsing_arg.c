@@ -6,44 +6,43 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:16 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/07 18:25:27 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/08 08:33:13 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execution.h"
 
-void	token_initing(t_token *arg, t_env *envp)
+void	token_initing(t_command *cmd)
 {
-	arg->envp = envp;
-	arg->unix_paths = NULL;
-	arg->argz = NULL;
-	arg->command = NULL;
-	arg->path = NULL;
+	cmd->arg->unix_paths = NULL;
+	cmd->arg->argz = NULL;
+	cmd->arg->command = NULL;
+	cmd->arg->path = NULL;
 }
 
-bool	command_trim(t_token *arg)
+bool	command_trim(t_command *cmd)
 {
 	int		i;
 	int		j;
 
 	i = 0;
-	while (is_whitespace(arg->content[i]))
+	while (is_whitespace(cmd->arg->content[i]))
 		i++;
 	j = 0;
-	while (is_printable_except_space(arg->content[i + j]))
+	while (is_printable_except_space(cmd->arg->content[i + j]))
 		j++;
 	if (j == 0)
 		return (0);
-	arg->command = (char *)malloc(sizeof(char) * (j + 1));
-	if (arg->command == NULL)
+	cmd->arg->command = (char *)malloc(sizeof(char) * (j + 1));
+	if (cmd->arg->command == NULL)
 		return (0);
 	j = 0;
-	while (is_printable_except_space(arg->content[i + j]))
+	while (is_printable_except_space(cmd->arg->content[i + j]))
 	{
-		arg->command[j] = arg->content[i + j];
+		cmd->arg->command[j] = cmd->arg->content[i + j];
 		j++;
 	}
-	arg->command[j] = '\0';
+	cmd->arg->command[j] = '\0';
 	return (1);
 }
 
@@ -82,61 +81,61 @@ bool	is_builts(char *command)
 	return (0);	
 }
 
-bool	get_the_path(t_token *arg)
+bool	get_the_path(t_command *cmd)
 {
 	int	i;
 	char **envp;
 
 	i = 0;
-	envp = envp_to_char(arg->envp);
+	envp = envp_to_char(cmd->env);
 	while (envp[i] && ft_strncmp(envp[i], "PATH=", 5) != 0)
 		i++;
 	if (envp[i] == NULL)
 		return (0);
-	arg->unix_paths = ft_split(&envp[i][4], ':');
-	if (arg->unix_paths == NULL)
+	cmd->arg->unix_paths = ft_split(&envp[i][4], ':');
+	if (cmd->arg->unix_paths == NULL)
 		return (0);
-	if (command_trim(arg) == 0)
-		return (freeing_unix(arg), writing_error(NULL, CMD_NOT_FOUND), 0);
-	if (arg->command == NULL)
+	if (command_trim(cmd) == 0)
+		return (freeing_unix(cmd->arg), writing_error(NULL, CMD_NOT_FOUND), 0);
+	if (cmd->arg->command == NULL)
 		return (0);
-	if (is_builts(arg->command))
+	if (is_builts(cmd->arg->command))
 		return (1);
 	i = 0;
-	while (arg->unix_paths[i] && find_path(arg, arg->unix_paths[i]) == 0)
+	while (cmd->arg->unix_paths[i] && find_path(cmd->arg, cmd->arg->unix_paths[i]) == 0)
 		i++;
-	if (arg->unix_paths[i] == NULL)
-		return (writing_error(arg->command, CMD_NOT_FOUND)
-			, freeing_unix(arg), free(arg->command), 0);
-	if (arg->path == NULL)
-		return (writing_error(arg->command, CMD_NOT_FOUND)
-			, freeing_unix(arg), free(arg->command), 0);
-	return (freeing_unix(arg), 1);
+	if (cmd->arg->unix_paths[i] == NULL)
+		return (writing_error(cmd->arg->command, CMD_NOT_FOUND)
+			, freeing_unix(cmd->arg), free(cmd->arg->command), 0);
+	if (cmd->arg->path == NULL)
+		return (writing_error(cmd->arg->command, CMD_NOT_FOUND)
+			, freeing_unix(cmd->arg), free(cmd->arg->command), 0);
+	return (freeing_unix(cmd->arg), 1);
 }
 
-bool	parse_argument(t_token *arg, t_env *envp)
+bool	parse_argument(t_command *cmd)
 {
 	char	**tmp;
 	int		i;
 	int		j;
 
-	token_initing(arg, envp);
-	if (get_the_path(arg) == 0)
+	token_initing(cmd);
+	if (get_the_path(cmd) == 0)
 		return (0);
 	i = 0;
-	tmp = ft_split(arg->content, ' ');
+	tmp = ft_split(cmd->arg->content, ' ');
 	while (tmp[i])
 		i++;
 	if (i == 0)
 		return (0);
-	arg->argz = (char **)malloc(sizeof(char *) * (i + 2));
-	if (arg->argz == NULL)
+	cmd->arg->argz = (char **)malloc(sizeof(char *) * (i + 2));
+	if (cmd->arg->argz == NULL)
 		return (0);
-	arg->argz[0] = arg->command;
+	cmd->arg->argz[0] = cmd->arg->command;
 	j = 0;
 	while (++j <= i)
-		arg->argz[j] = tmp[j];
-	arg->argz[j] = NULL;
+		cmd->arg->argz[j] = tmp[j];
+	cmd->arg->argz[j] = NULL;
 	free(tmp[0]);
 	free(tmp);
 	return (1);
