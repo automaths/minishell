@@ -137,7 +137,7 @@ t_first *step_one(char *str)
             if (mode == R_REDIR_MODE && str[i] == '>')
             {
                 add_back_uno(&uno, new_uno(APPEND, alloc_content(&str[i - 1], 2)));
-                mode = 0;
+                mode = NEUTRAL_MODE;
                 break;
             }
 
@@ -156,7 +156,7 @@ t_first *step_one(char *str)
             if (mode == L_REDIR_MODE && str[i] == '<')
             {
                 add_back_uno(&uno, new_uno(HEREDOC, alloc_content(&str[i - 1], 2)));
-                mode = 0;
+                mode = NEUTRAL_MODE;
                 break;
             }
             
@@ -187,30 +187,31 @@ t_first *step_one(char *str)
                 if ((actual_mode(str[i + j]) != WORD_MODE) && (mode == WORD_MODE))
                 {
                     mode = NEUTRAL_MODE;
-                    j--;
                     break;
                 }
                 if (str[i + j] == '"' && mode == DQUOTE_MODE)
                 {
+                    j++;
                     mode = WORD_MODE;
-                    if (actual_mode(str[i + j + 1]) != WORD_MODE)
-                    {
-                        mode = NEUTRAL_MODE;
-                        break;
-                    }
+                    mode = NEUTRAL_MODE;
+                    break;
                 }
                 if (str[i + j] == '\'' && mode == SQUOTE_MODE)
                 {
+                    j++;
                     mode = WORD_MODE;
-                    if (actual_mode(str[i + j + 1]) != WORD_MODE)
-                    {
-                        mode = NEUTRAL_MODE;
-                        break;
-                    }
+                    mode = NEUTRAL_MODE;
+                    break;
+                }
+                if (!str[i + j + 1])
+                {
+                    mode = NEUTRAL_MODE;
+                    break;
                 }
             }
-            add_back_uno(&uno, new_uno(WORD, alloc_content(&str[i], j + 1)));
-            i += j;
+            if (mode != WORD_MODE)
+                add_back_uno(&uno, new_uno(WORD, alloc_content(&str[i], j)));
+            i += j - 1;
             break;
         }
     }

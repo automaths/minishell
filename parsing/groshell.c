@@ -12,11 +12,6 @@
 
 #include "../execution.h"
 
-void	freeing_uno(t_first **uno)
-{
-	
-}
-
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -53,7 +48,6 @@ int	main(int argc, char **argv, char **envp)
 			// if (tmp != NULL)
 			// 	env = tmp;
 		}
-		freeing_uno(&uno);
 	}
 	return (0);
 }
