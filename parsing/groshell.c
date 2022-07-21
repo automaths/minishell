@@ -12,6 +12,12 @@
 
 #include "../execution.h"
 
+void	freeing_uno(t_first **uno)
+{
+	
+}
+
+
 int	main(int argc, char **argv, char **envp)
 {
 	int			count;
@@ -47,7 +53,7 @@ int	main(int argc, char **argv, char **envp)
 			// if (tmp != NULL)
 			// 	env = tmp;
 		}
-		uno = NULL;
+		freeing_uno(&uno);
 	}
 	return (0);
 }

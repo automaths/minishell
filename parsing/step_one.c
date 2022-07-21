@@ -125,6 +125,9 @@ t_first *step_one(char *str)
     {
         while (1)
         {
+            if (str[i] == ' ' || str[i] == ';')
+                break;
+
             if (str[i] == '>' && mode == NEUTRAL_MODE)
             {
                 mode = R_REDIR_MODE;
@@ -169,9 +172,6 @@ t_first *step_one(char *str)
                 break;
             }
             
-            if (str[i] == ' ')
-                break;
-            
             if (str[i] == '"')
                 mode = DQUOTE_MODE;
             
@@ -187,6 +187,7 @@ t_first *step_one(char *str)
                 if ((actual_mode(str[i + j]) != WORD_MODE) && (mode == WORD_MODE))
                 {
                     mode = NEUTRAL_MODE;
+                    j--;
                     break;
                 }
                 if (str[i + j] == '"' && mode == DQUOTE_MODE)
