@@ -23,7 +23,7 @@ bool	init_fd_in(t_command *cmd)
     {
         if (tmp->redir->type == HEREDOC || tmp->redir->type == READ)
         {
-            if (check_fin_in(tmp->redir->content) == 0)
+            if (check_fd_in(tmp->redir->content) == 0)
                 return (0);
             the_one = tmp->redir;
         }
@@ -40,21 +40,65 @@ bool	init_fd_in(t_command *cmd)
 		cmd->fd_in = 0;
 }
 
+bool	check_fd_out(t_token *redir)
+{
+	int		fd;
+	char	*file;
+
+	file = ft_strtrim(redir->content, "> ");
+	if (access(file, F_OK) == 0)
+	{
+		if (access(file, W_OK) == -1)
+			return (writing_error(ft_strtrim(file, "> "), WRONG_CHMOD), 0);
+	}
+	if (redir != NULL)
+	{
+		if (is_append(redir->content) == 2)
+			fd = open(file, O_CREAT | O_RDWR, 0644);
+		if (is_append(redir->content) == 1)
+			fd = open(file, O_CREAT | O_RDWR | O_TRUNC, 0644);
+		if (fd == -1)
+			return (writing("cant open file", " "), 0);
+		close(fd);
+	}
+	return (1);
+}
+
+t_token *last_redir(t_command *cmd)
+{
+	t_command	*tmp;
+	t_token *the_one;
+
+	tmp = cmd;
+	the_one = NULL;
+	while (tmp->redir != NULL)
+	{
+		if (tmp->redir->type == APPEND || tmp->redir->type == WRITE)
+		{
+			if (check_fd_out(tmp->next) == 0)
+				return (0);
+			the_one = tmp->redir;
+		}
+		tmp->redir = tmp->redir->next;
+	}
+	return (the_one);
+}
+
 int	init_fd_out(t_command *cmd)
 {
-	char		*content;
+	t_token *redir;
 
-	content = last_redir(cmd);
-	if (content != NULL)
+	redir = last_redir(cmd);
+	if (redir != NULL)
 	{
-		if (is_append(content) == 2)
-			cmd->fd_out = opening_append(content);
-		if (is_append(content) == 1)
-			cmd->fd_out = opening_standard_output(content);
+		if (redir->type == APPEND)
+			cmd->fd_out = opening_append(redir->content);
+		if (redir->type == WRITE)
+			cmd->fd_out = opening_standard_output(redir->content);
 	}
 	if (cmd->next != NULL)
-		piping(cmd, content);
-	if (content == NULL && cmd->next == NULL)
+		piping(cmd, redir->content);
+	if (redir == NULL && cmd->next == NULL)
 		cmd->fd_out = 1;
 	return (1);
 }
