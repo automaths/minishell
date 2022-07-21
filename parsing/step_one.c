@@ -215,7 +215,7 @@ t_first *step_one(char *str)
     }
     if (mode == DQUOTE_MODE)
         return (write(1, "Error, double quotes not ended\n", 31), NULL);
-        if (mode == SQUOTE_MODE)
+    if (mode == SQUOTE_MODE)
         return (write(1, "Error, single quotes not ended\n", 31), NULL);
     return (uno);
 }
