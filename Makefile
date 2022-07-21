@@ -28,6 +28,8 @@ SRCS			=	./builts/cd.c \
 					./parsing_lexer/step_one_utils.c \
 					./parsing_cmd/step_two.c \
 					./parsing_cmd/command_validation.c \
+					./execution_new/executing_new.c \
+					./execution_new/redirecting_new.c \
 					
 
 OBJS			= 	$(SRCS:.c=.o)

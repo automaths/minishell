@@ -148,13 +148,13 @@ char			*environning(char *str, t_env *env);
 int				main(int argc, char **argv, char **envp);
 //identifying
 bool			is_arg(char *str);
-int				is_redirection(char *str);
+int				is_redirection(t_token *redir);
 bool			is_new_cmd(char *str);
 //parsing_spliting
 char			**spliting_plus(char *str);
 char			*quoting_ruling(char *str);
 char			**split_cleaning(char **split);
-t_command		*parse_line(char *str, t_env *env);
+// t_command		*parse_line(char *str, t_env *env);
 //UTILS
 //env_char_to_lst
 t_env			*new_lst(char *name, char *content);

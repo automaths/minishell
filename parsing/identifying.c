@@ -13,8 +13,9 @@ bool	is_arg(char *str)
 	return (1);
 }
 
-int	is_redirection(char *str)
+int	is_redirection(t_token *redir)
 {
+	if (typ)
 	if (ft_strncmp(str, "<<", 2) == 0)
 		return (1);
 	if (ft_strncmp(str, "<", 1) == 0)

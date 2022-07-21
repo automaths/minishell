@@ -50,7 +50,7 @@ int	main(int argc, char **argv, char **envp)
 				{
 					print_all(cmd);
 					// cmd = parse_line(str, env);
-					// tmp = exec_command(cmd);
+					tmp = exec_command(cmd);
 					// if (tmp != NULL)
 					// 	env = tmp;
 				}
