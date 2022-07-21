@@ -185,22 +185,30 @@ t_first *step_one(char *str)
             while (str[i + ++j] && (mode == 3 || mode == 4 || mode == 5))
             {
                 if ((actual_mode(str[i + j]) != WORD_MODE) && (mode == WORD_MODE))
+                {
+                    mode = NEUTRAL_MODE;
                     break;
+                }
                 if (str[i + j] == '"' && mode == DQUOTE_MODE)
                 {
                     mode = WORD_MODE;
                     if (actual_mode(str[i + j + 1]) != WORD_MODE)
+                    {
+                        mode = NEUTRAL_MODE;
                         break;
+                    }
                 }
                 if (str[i + j] == '\'' && mode == SQUOTE_MODE)
                 {
                     mode = WORD_MODE;
                     if (actual_mode(str[i + j + 1]) != WORD_MODE)
+                    {
+                        mode = NEUTRAL_MODE;
                         break;
+                    }
                 }
             }
             add_back_uno(&uno, new_uno(WORD, alloc_content(&str[i], j + 1)));
-            mode = NEUTRAL_MODE;
             i += j;
             break;
         }
