@@ -52,28 +52,28 @@ char	**split_cleaning(char **split)
 	return (split);
 }
 
-t_command	*parse_line(char *str, t_env *env)
-{
-	char			**split;
-	t_command		*cmd;
-	t_command		*tmp;
-	int				i;
+// t_command	*parse_line(char *str, t_env *env)
+// {
+// 	char			**split;
+// 	t_command		*cmd;
+// 	t_command		*tmp;
+// 	int				i;
 
-	split = spliting_plus(str);
-	i = -1;
-	cmd = new_cmd(i, env);
-	tmp = cmd;
-	while (split[++i])
-	{
-		if (is_arg(split[i]))
-			add_back_tkn(&tmp->arg, new_tkn(split[i]));
-		if (is_redirection(split[i]))
-			add_back_tkn(&tmp->redir, new_tkn(split[i]));
-		if (is_new_cmd(split[i]))
-		{
-			add_back_cmd(&tmp, new_cmd(i, env));
-			tmp = tmp->next;
-		}
-	}
-	return (cmd);
-}
+// 	split = spliting_plus(str);
+// 	i = -1;
+// 	cmd = new_cmd(env);
+// 	tmp = cmd;
+// 	while (split[++i])
+// 	{
+// 		if (is_arg(split[i]))
+// 			add_back_tkn(&tmp->arg, new_tkn(split[i]));
+// 		if (is_redirection(split[i]))
+// 			add_back_tkn(&tmp->redir, new_tkn(split[i]));
+// 		if (is_new_cmd(split[i]))
+// 		{
+// 			add_back_cmd(&tmp, new_cmd(env));
+// 			tmp = tmp->next;
+// 		}
+// 	}
+// 	return (cmd);
+// }

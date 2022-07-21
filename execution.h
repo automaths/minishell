@@ -56,6 +56,7 @@ typedef struct s_env {
 
 typedef struct s_token {
 	char			*content;
+	int				type;
 	char			**unix_paths;
 	char			**argz;
 	char			*command;
@@ -133,9 +134,9 @@ void			piping(t_command *cmd, char *content);
 int				redirectionning(t_command *cmd);
 //PARSING
 //creating_tkn_cmd
-t_command		*new_cmd(int i, t_env *env);
+t_command		*new_cmd(t_env *env);
 void			add_back_cmd(t_command **cmd, t_command *new);
-t_token			*new_tkn(char *arg);
+t_token			*new_tkn(char *arg, int type);
 void			add_back_tkn(t_token **tkn, t_token *new);
 //environning
 bool			check_envz(char *str);
@@ -204,5 +205,7 @@ char	*ft_strdup(const char *str);
 char	**ft_split(char const *s, char c);
 int	ft_atoi(const char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
+//STEP_TWO
+t_command	*step_two(t_first *uno, t_env *env);
 
 #endif

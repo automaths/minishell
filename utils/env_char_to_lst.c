@@ -99,7 +99,8 @@ t_env	*env_to_list(char **envp)
 {
 	int i;
 	t_env *env;
-	
+
+	env = NULL;
 	if (envp[0] == NULL)
 		return (printf("no env"), NULL);
 	if (check_envp(envp) == 0)

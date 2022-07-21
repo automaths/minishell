@@ -2,7 +2,6 @@
 
 void	print_all(t_command *cmd)
 {
-	int			i;
 	t_command	*tmp;
 
 	tmp = cmd;
@@ -11,22 +10,42 @@ void	print_all(t_command *cmd)
 		if (tmp->arg != NULL)
 		{
 			writing ("the arg is :", tmp->arg->content);
-			if (tmp->arg->argz != NULL)
-			{
-				i = -1;
-				while (tmp->arg->argz[++i])
-					writing ("with option :", tmp->arg->argz[i]);
+			tmp->arg = tmp->arg->next;
+			while (tmp->arg != NULL)
+			{				
+				writing ("with option :", tmp->arg->content);
+				tmp->arg = tmp->arg->next;
 			}
 		}
 		if (tmp->redir != NULL)
 		{
-			writing ("the redirection is :", tmp->redir->content);
+			write(1, "the redirection is a ", 21);
+			if (tmp->redir->type == WRITE)
+				write(1, "write ", 6);
+			if (tmp->redir->type == HEREDOC)
+				write(1, "heredoc ", 8);
+			if (tmp->redir->type == READ)
+				write(1, "read ", 5);
+			if (tmp->redir->type == APPEND)
+				write(1, "append ", 7);
+			write(1, tmp->redir->content, ft_strlen(tmp->redir->content));
 			tmp->redir = tmp->redir->next;
 			while (tmp->redir != NULL)
-			{				
-				writing ("next redirection is :", tmp->redir->content);
+			{		
+				write(1, "\n", 1);		
+				write(1, "the next redirection is a ", 27);
+				if (tmp->redir->type == WRITE)
+					write(1, "write ", 6);
+				if (tmp->redir->type == HEREDOC)
+					write(1, "heredoc ", 8);
+				if (tmp->redir->type == READ)
+					write(1, "read ", 5);
+				if (tmp->redir->type == APPEND)
+					write(1, "append ", 7);
+				write(1, tmp->redir->content, ft_strlen(tmp->redir->content));
 				tmp->redir = tmp->redir->next;
 			}
+			write(1, "\n", 1);
 		}
 		if (tmp->next != NULL)
 			writing("next command", " ");

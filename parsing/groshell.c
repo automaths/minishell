@@ -24,7 +24,7 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
-	// env = env_to_list(envp);
+	env = env_to_list(envp);
 	str = (char *)malloc(sizeof(char) * 4096);
 	(void)envp;
 	(void)env;
@@ -43,6 +43,8 @@ int	main(int argc, char **argv, char **envp)
 			printf("step one is success:\n");
 			print_step_one(uno);
 			// str = environning(str, env);
+			cmd = step_two(uno, env);
+			print_all(cmd);
 			// cmd = parse_line(str, env);
 			// tmp = exec_command(cmd);
 			// if (tmp != NULL)
