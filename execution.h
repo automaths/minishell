@@ -41,7 +41,6 @@
 # define WORD_MODE 3
 # define DQUOTE_MODE 4
 # define SQUOTE_MODE 5
-# define 
 
 typedef struct s_first {
 	int type;
@@ -189,5 +188,20 @@ void			writing_error(char *str, int num);
 void			writing(char *intro, char *content);
 void			print_fd(int fd);
 void			print_parsed(t_command *cmd);
+//step_one
+t_first *step_one(char *str);
+void	add_back_uno(t_first **uno, t_first *new);
+t_first	*new_uno(int type, char *content);
+void print_step_one(t_first *uno);
+char *alloc_content(char *str, unsigned int size);
+int actual_mode(char c);
+//TMP_LIBFT
+char	*ft_strtrim(const char *s1, const char *set);
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
+size_t	ft_strlen(const char *str);
+char	*ft_strdup(const char *str);
+char	**ft_split(char const *s, char c);
+int	ft_atoi(const char *str);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif

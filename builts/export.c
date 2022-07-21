@@ -90,6 +90,7 @@ char	*export_content(char *str)
 	char *content;
 	int i;
 	int j;
+	i = 0;
 	while (str[i] && is_whitespace2(str[i]))
 		i++;
 	while (str[i] && is_export(str[i]))

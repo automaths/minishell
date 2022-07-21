@@ -23,8 +23,12 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
-	env = env_to_list(envp);
+	// env = env_to_list(envp);
 	str = (char *)malloc(sizeof(char) * 4096);
+	(void)envp;
+	(void)env;
+	(void)cmd;
+	(void)tmp;
 	while (1)
 	{
 		write(1, "groshell> ", 10);

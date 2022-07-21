@@ -40,19 +40,47 @@ void print_step_one(t_first *uno)
     while (tmp != NULL)
     {
         if (tmp->type == APPEND)
-            printf("[%s] = %s\n", "APPEND", tmp->content);
+        {
+            write(1, "[APPEND] = ", 11);
+            write(1, tmp->content, ft_strlen(tmp->content));
+            write(1, "\n", 1);
+        }
         if (tmp->type == WRITE)
-            printf("[%s] = %s\n", "WRITE", tmp->content);
+        {
+            write(1, "[WRITE] = ", 10);
+            write(1, tmp->content, ft_strlen(tmp->content));
+            write(1, "\n", 1);
+        }
         if (tmp->type == HEREDOC)
-            printf("[%s] = %s\n", "HEREDOC", tmp->content);
+        {
+            write(1, "[HEREDOC] = ", 12);
+            write(1, tmp->content, ft_strlen(tmp->content));
+            write(1, "\n", 1);
+        }
         if (tmp->type == READ)
-            printf("[%s] = %s\n", "READ", tmp->content);
+        {
+            write(1, "[READ] = ", 9);
+            write(1, tmp->content, ft_strlen(tmp->content));
+            write(1, "\n", 1);
+        }
         if (tmp->type == PIPE)
-            printf("[%s] = %s\n", "PIPE", tmp->content);
+        {
+            write(1, "[READ] = ", 9);
+            write(1, tmp->content, ft_strlen(tmp->content));
+            write(1, "\n", 1);
+        }
         if (tmp->type == WORD)
-            printf("[%s] = %s\n", "WORD", tmp->content);
+        {
+            write(1, "[WORD] = ", 9);
+            write(1, tmp->content, ft_strlen(tmp->content));
+            write(1, "\n", 1);
+        }
         if (tmp->type == BEGIN)
-            printf("[%s] = %s\n", "BEGIN", tmp->content);
+        {
+            write(1, "[BEGIN] = ", 10);
+            write(1, tmp->content, ft_strlen(tmp->content));
+            write(1, "\n", 1);
+        }
         tmp = tmp->next;
     }
 }
@@ -88,9 +116,11 @@ void	add_back_uno(t_first **uno, t_first *new)
 t_first *step_one(char *str)
 {
     unsigned int mode = NEUTRAL_MODE;
+    int i;
+    int j;
     t_first *uno;
     uno = new_uno(7, "start of chained list");
-    unsigned int i = -1;
+    i = -1;
     while (str[++i])
     {
         while (1)
@@ -100,44 +130,74 @@ t_first *step_one(char *str)
                 mode = R_REDIR_MODE;
                 break;
             }
-            if (mode == R_REDIR_MODE)
+            else if (mode == R_REDIR_MODE)
             {
                 if (str[i] == '>')
                 {
-                    add_back_uno(&uno, new_uno(APPEND, alloc_content(str[i - 1], 2)));
+                    add_back_uno(&uno, new_uno(APPEND, alloc_content(&str[i - 1], 2)));
                     mode = 0;
                     break;
                 }
                 else
                 {
-                    add_back_uno(&uno, new_uno(WRITE, alloc_content(str[i - 1], 1)));
+                    add_back_uno(&uno, new_uno(WRITE, alloc_content(&str[i - 1], 1)));
                     mode = actual_mode(str[i]); //if pipe action need to be taken adequately
                     break;
                 }
             }
-            if (str[i] == '<' && mode == NEUTRAL_MODE)
+            else if (str[i] == '<' && mode == NEUTRAL_MODE)
             {
                 mode = L_REDIR_MODE;
                 break;
             }
-            if (mode == L_REDIR_MODE)
+            else if (mode == L_REDIR_MODE)
             {
                 if (str[i] == '<')
                 {
-                    add_back_uno(&uno, new_uno(HEREDOC, alloc_content(str[i - 1], 2)));
+                    add_back_uno(&uno, new_uno(HEREDOC, alloc_content(&str[i - 1], 2)));
                     mode = 0;
                     break;
                 }
                 else
                 {
-                    add_back_uno(&uno, new_uno(READ, alloc_content(str[i - 1], 1)));
+                    add_back_uno(&uno, new_uno(READ, alloc_content(&str[i - 1], 1)));
                     mode = actual_mode(str[i]); //if pipe action need to be taken adequately
                     break;
                 }
             }
-            
+            else if (str[i] == '|' && mode == NEUTRAL_MODE)
+            {
+                add_back_uno(&uno, new_uno(PIPE, alloc_content(&str[i], 1)));
+                break;
+            }
+            else if (str[i] == ' ')
+                break;
+            else 
+            {
+                if (str[i] == '"')
+                    mode = DQUOTE_MODE;
+                else if (str[i] == '\'')
+                    mode = SQUOTE_MODE;
+                else
+                    mode = WORD_MODE;
+                j = 0;
+                while (str[i + ++j] && (mode == 3 || mode == 4 || mode == 5))
+                {
+                    if (actual_mode(str[i + j] != WORD_MODE) && mode == WORD_MODE)
+                    {
+                        add_back_uno(&uno, new_uno(WORD, alloc_content(&str[i], j + 1)));
+                        break;
+                    }
+                    if (str[i + j] == '"' && mode == DQUOTE_MODE)
+                        mode = WORD_MODE;
+                    if (str[i + j] == '\'' && mode == SQUOTE_MODE)
+                        mode = WORD_MODE;
+                }
+                i += j - 1;
+            }
         }
     }
+    return (uno);
 }
 
 
