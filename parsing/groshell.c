@@ -47,6 +47,7 @@ int	main(int argc, char **argv, char **envp)
 			// if (tmp != NULL)
 			// 	env = tmp;
 		}
+		uno = NULL;
 	}
 	return (0);
 }
