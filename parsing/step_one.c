@@ -65,7 +65,7 @@ void print_step_one(t_first *uno)
         }
         if (tmp->type == PIPE)
         {
-            write(1, "[READ] = ", 9);
+            write(1, "[PIPE] = ", 9);
             write(1, tmp->content, ft_strlen(tmp->content));
             write(1, "\n", 1);
         }
@@ -130,73 +130,85 @@ t_first *step_one(char *str)
                 mode = R_REDIR_MODE;
                 break;
             }
-            else if (mode == R_REDIR_MODE)
+
+            if (mode == R_REDIR_MODE && str[i] == '>')
             {
-                if (str[i] == '>')
-                {
-                    add_back_uno(&uno, new_uno(APPEND, alloc_content(&str[i - 1], 2)));
-                    mode = 0;
-                    break;
-                }
-                else
-                {
-                    add_back_uno(&uno, new_uno(WRITE, alloc_content(&str[i - 1], 1)));
-                    mode = actual_mode(str[i]); //if pipe action need to be taken adequately
-                    break;
-                }
+                add_back_uno(&uno, new_uno(APPEND, alloc_content(&str[i - 1], 2)));
+                mode = 0;
+                break;
             }
-            else if (str[i] == '<' && mode == NEUTRAL_MODE)
+
+            if (mode == R_REDIR_MODE && str[i] != '>')
+            {
+                add_back_uno(&uno, new_uno(WRITE, alloc_content(&str[i - 1], 1)));
+                mode = actual_mode(str[i]);
+            }
+
+            if (str[i] == '<' && mode == NEUTRAL_MODE)
             {
                 mode = L_REDIR_MODE;
                 break;
             }
-            else if (mode == L_REDIR_MODE)
+
+            if (mode == L_REDIR_MODE && str[i] == '<')
             {
-                if (str[i] == '<')
-                {
-                    add_back_uno(&uno, new_uno(HEREDOC, alloc_content(&str[i - 1], 2)));
-                    mode = 0;
-                    break;
-                }
-                else
-                {
-                    add_back_uno(&uno, new_uno(READ, alloc_content(&str[i - 1], 1)));
-                    mode = actual_mode(str[i]); //if pipe action need to be taken adequately
-                    break;
-                }
+                add_back_uno(&uno, new_uno(HEREDOC, alloc_content(&str[i - 1], 2)));
+                mode = 0;
+                break;
             }
-            else if (str[i] == '|' && mode == NEUTRAL_MODE)
+            
+            if (mode == L_REDIR_MODE&& str[i] != '<')
+            {
+                add_back_uno(&uno, new_uno(READ, alloc_content(&str[i - 1], 1)));
+                mode = actual_mode(str[i]);
+            }
+            
+            if (str[i] == '|')
             {
                 add_back_uno(&uno, new_uno(PIPE, alloc_content(&str[i], 1)));
                 break;
             }
-            else if (str[i] == ' ')
+            
+            if (str[i] == ' ')
                 break;
-            else 
+            
+            if (str[i] == '"')
+                mode = DQUOTE_MODE;
+            
+            else if (str[i] == '\'')
+                mode = SQUOTE_MODE;
+            
+            else
+                mode = WORD_MODE;
+            
+            j = 0;
+            while (str[i + ++j] && (mode == 3 || mode == 4 || mode == 5))
             {
-                if (str[i] == '"')
-                    mode = DQUOTE_MODE;
-                else if (str[i] == '\'')
-                    mode = SQUOTE_MODE;
-                else
-                    mode = WORD_MODE;
-                j = 0;
-                while (str[i + ++j] && (mode == 3 || mode == 4 || mode == 5))
+                if ((actual_mode(str[i + j]) != WORD_MODE) && (mode == WORD_MODE))
+                    break;
+                if (str[i + j] == '"' && mode == DQUOTE_MODE)
                 {
-                    if (actual_mode(str[i + j] != WORD_MODE) && mode == WORD_MODE)
-                    {
-                        add_back_uno(&uno, new_uno(WORD, alloc_content(&str[i], j + 1)));
+                    mode = WORD_MODE;
+                    if (actual_mode(str[i + j + 1]) != WORD_MODE)
                         break;
-                    }
-                    if (str[i + j] == '"' && mode == DQUOTE_MODE)
-                        mode = WORD_MODE;
-                    if (str[i + j] == '\'' && mode == SQUOTE_MODE)
-                        mode = WORD_MODE;
                 }
-                i += j - 1;
+                if (str[i + j] == '\'' && mode == SQUOTE_MODE)
+                {
+                    mode = WORD_MODE;
+                    if (actual_mode(str[i + j + 1]) != WORD_MODE)
+                        break;
+                }
             }
+            add_back_uno(&uno, new_uno(WORD, alloc_content(&str[i], j + 1)));
+            mode = NEUTRAL_MODE;
+            i += j;
+            break;
         }
     }
+    if (mode == DQUOTE_MODE)
+        return (write(1, "Error, double quotes not ended\n", 31), NULL);
+        if (mode == SQUOTE_MODE)
+        return (write(1, "Error, single quotes not ended\n", 31), NULL);
     return (uno);
 }
 
