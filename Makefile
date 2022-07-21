@@ -25,6 +25,7 @@ SRCS			=	./builts/cd.c \
 					./utils/printing.c \
 					./tmp_libft/libft.c \
 					./parsing_lexer/step_one.c \
+					./parsing_lexer/step_one_utils.c \
 					
 
 OBJS			= 	$(SRCS:.c=.o)

@@ -190,9 +190,10 @@ void			print_fd(int fd);
 void			print_parsed(t_command *cmd);
 //step_one
 t_first *step_one(char *str);
+//set_one_utils
+void print_step_one(t_first *uno);
 void	add_back_uno(t_first **uno, t_first *new);
 t_first	*new_uno(int type, char *content);
-void print_step_one(t_first *uno);
 char *alloc_content(char *str, unsigned int size);
 int actual_mode(char c);
 //TMP_LIBFT

@@ -1,0 +1,3 @@
+[console_scripts]
+norminette = norminette.__main__:main
+
