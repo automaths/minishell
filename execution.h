@@ -207,5 +207,6 @@ int	ft_atoi(const char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
 //STEP_TWO
 t_command	*step_two(t_first *uno, t_env *env);
+bool command_validation(t_first *uno);
 
 #endif
