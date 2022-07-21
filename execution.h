@@ -27,6 +27,28 @@
 # define NO_FILE 2
 # define WRONG_CHMOD 3
 
+# define APPEND 1
+# define WRITE 2
+# define HEREDOC 3
+# define READ 4
+# define PIPE 5
+# define WORD 6
+# define BEGIN 7
+
+# define NEUTRAL_MODE 0
+# define R_REDIR_MODE 1
+# define L_REDIR_MODE 2
+# define WORD_MODE 3
+# define DQUOTE_MODE 4
+# define SQUOTE_MODE 5
+# define 
+
+typedef struct s_first {
+	int type;
+	char *content;
+	struct s_first *next;
+} t_first;
+
 typedef struct s_env {
 	char *name;
 	char *content;

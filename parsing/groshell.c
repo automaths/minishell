@@ -17,6 +17,7 @@ int	main(int argc, char **argv, char **envp)
 	int			count;
 	char		*str;
 	t_command	*cmd;
+	t_first *uno;
 	t_env *env;
 	t_env *tmp;
 
@@ -31,11 +32,17 @@ int	main(int argc, char **argv, char **envp)
 		str[count] = '\0';
 		if ((ft_strncmp(str, "exit", 4) == 0) && ft_strlen(str) == 5)
 			break ;
-		str = environning(str, env);
-		cmd = parse_line(str, env);
-		tmp = exec_command(cmd);
-		if (tmp != NULL)
-			env = tmp;
+		uno = step_one(str);
+		if (uno != NULL)
+		{
+			printf("step one is success:\n");
+			print_step_one(uno);
+			// str = environning(str, env);
+			// cmd = parse_line(str, env);
+			// tmp = exec_command(cmd);
+			// if (tmp != NULL)
+			// 	env = tmp;
+		}
 	}
 	return (0);
 }
