@@ -1,4 +1,5 @@
-SRCS			=	./builts/cd.c \
+SRCS			=	./groshell.c \
+					./builts/cd.c \
 					./builts/echo.c \
 					./builts/env.c \
 					./builts/exit.c \
@@ -15,7 +16,6 @@ SRCS			=	./builts/cd.c \
 					./executing/redirecting.c \
 					./parsing/creating_tkn_cmd.c \
 					./parsing/environning.c \
-					./parsing/groshell.c \
 					./parsing/parsing_spliting.c \
 					./utils/env_char_to_lst.c \
 					./utils/env_lst_to_char.c \
@@ -29,6 +29,7 @@ SRCS			=	./builts/cd.c \
 					./parsing_cmd/command_validation.c \
 					./execution_new/executing_new.c \
 					./execution_new/redirecting_new.c \
+					./execution_new/parsing_arg_new.c \
 					
 
 OBJS			= 	$(SRCS:.c=.o)

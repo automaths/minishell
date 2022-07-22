@@ -11,23 +11,23 @@ t_env	*exec_command(t_command *cmd)
 		return (NULL);
 	while (tmp != NULL)
 	{
-		// if (parse_argument(tmp) == 0)
-		// {
-		// 	if (tmp->next != NULL)
-		// 		tmp->next->fd_in = -1;
-		// }
-		// else
-		// {
-		// 	if (check_builts(tmp->arg->argz))
-		// 	{
-		// 		if (check_builts_nofork(tmp->arg->argz))
-		// 			exec_token_builts_nofork(tmp);
-		// 		else
-		// 			exec_token_builts(tmp);
-		// 	}
-		// 	else
-		// 		exec_token(tmp);
-		// }
+		if (parse_argument(tmp) == 0)
+		{
+			if (tmp->next != NULL)
+				tmp->next->fd_in = -1;
+		}
+		else
+		{
+			if (check_builts(tmp->arg->argz))
+			{
+				if (check_builts_nofork(tmp->arg->argz))
+					exec_token_builts_nofork(tmp);
+				else
+					exec_token_builts(tmp);
+			}
+			else
+				exec_token(tmp);
+		}
 		print_fd(tmp->fd_in);
 		print_fd(tmp->fd_out);
 		tmp = tmp->next;
