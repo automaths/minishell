@@ -1,5 +1,35 @@
 #include "../execution.h"
 
+bool	get_the_path(t_command *cmd)
+{
+	int	i;
+	char **envp;
+
+	i = 0;
+	envp = envp_to_char(cmd->env);
+	while (envp[i] && ft_strncmp(envp[i], "PATH=", 5) != 0)
+		i++;
+	if (envp[i] == NULL)
+		return (0);
+	cmd->arg->unix_paths = ft_split(&envp[i][4], ':');
+	if (cmd->arg->unix_paths == NULL)
+		return (0);
+	if (command_trim(cmd) == 0)
+		return (writing_error(NULL, CMD_NOT_FOUND), 0);
+	if (cmd->arg->command == NULL)
+		return (0);
+	if (is_builts(cmd->arg->command))
+		return (1);
+	i = 0;
+	while (cmd->arg->unix_paths[i] && find_path(cmd->arg, cmd->arg->unix_paths[i]) == 0)
+		i++;
+	if (cmd->arg->unix_paths[i] == NULL)
+		return (writing_error(cmd->arg->command, CMD_NOT_FOUND), 0);
+	if (cmd->arg->path == NULL)
+		return (writing_error(cmd->arg->command, CMD_NOT_FOUND), 0);
+	return (1);
+}
+
 bool	parse_argument(t_command *cmd)
 {
 	t_token *tmp_tkn;

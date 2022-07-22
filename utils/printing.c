@@ -7,7 +7,7 @@ void	print_all(t_command *cmd)
 
 	tmp_cmd = cmd;
 	while (tmp_cmd != NULL)
-	{	
+	{
 		tmp_tkn = tmp_cmd->arg;
 		if (tmp_tkn != NULL)
 		{

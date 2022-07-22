@@ -48,9 +48,10 @@ bool	command_trim(t_command *cmd)
 
 bool	find_path(t_token *arg, char *unix_path)
 {
-	char	slash[1];
+	char	slash[2];
 
 	slash[0] = '/';
+	slash[1] = '\0';
 	arg->path = ft_strjoin_new(unix_path, slash, 0);
 	if (arg->path == NULL)
 		return (0);
@@ -81,37 +82,37 @@ bool	is_builts(char *command)
 	return (0);	
 }
 
-bool	get_the_path(t_command *cmd)
-{
-	int	i;
-	char **envp;
+// bool	get_the_path(t_command *cmd)
+// {
+// 	int	i;
+// 	char **envp;
 
-	i = 0;
-	envp = envp_to_char(cmd->env);
-	while (envp[i] && ft_strncmp(envp[i], "PATH=", 5) != 0)
-		i++;
-	if (envp[i] == NULL)
-		return (0);
-	cmd->arg->unix_paths = ft_split(&envp[i][4], ':');
-	if (cmd->arg->unix_paths == NULL)
-		return (0);
-	if (command_trim(cmd) == 0)
-		return (freeing_unix(cmd->arg), writing_error(NULL, CMD_NOT_FOUND), 0);
-	if (cmd->arg->command == NULL)
-		return (0);
-	if (is_builts(cmd->arg->command))
-		return (1);
-	i = 0;
-	while (cmd->arg->unix_paths[i] && find_path(cmd->arg, cmd->arg->unix_paths[i]) == 0)
-		i++;
-	if (cmd->arg->unix_paths[i] == NULL)
-		return (writing_error(cmd->arg->command, CMD_NOT_FOUND)
-			, freeing_unix(cmd->arg), free(cmd->arg->command), 0);
-	if (cmd->arg->path == NULL)
-		return (writing_error(cmd->arg->command, CMD_NOT_FOUND)
-			, freeing_unix(cmd->arg), free(cmd->arg->command), 0);
-	return (freeing_unix(cmd->arg), 1);
-}
+// 	i = 0;
+// 	envp = envp_to_char(cmd->env);
+// 	while (envp[i] && ft_strncmp(envp[i], "PATH=", 5) != 0)
+// 		i++;
+// 	if (envp[i] == NULL)
+// 		return (0);
+// 	cmd->arg->unix_paths = ft_split(&envp[i][4], ':');
+// 	if (cmd->arg->unix_paths == NULL)
+// 		return (0);
+// 	if (command_trim(cmd) == 0)
+// 		return (freeing_unix(cmd->arg), writing_error(NULL, CMD_NOT_FOUND), 0);
+// 	if (cmd->arg->command == NULL)
+// 		return (0);
+// 	if (is_builts(cmd->arg->command))
+// 		return (1);
+// 	i = 0;
+// 	while (cmd->arg->unix_paths[i] && find_path(cmd->arg, cmd->arg->unix_paths[i]) == 0)
+// 		i++;
+// 	if (cmd->arg->unix_paths[i] == NULL)
+// 		return (writing_error(cmd->arg->command, CMD_NOT_FOUND)
+// 			, freeing_unix(cmd->arg), free(cmd->arg->command), 0);
+// 	if (cmd->arg->path == NULL)
+// 		return (writing_error(cmd->arg->command, CMD_NOT_FOUND)
+// 			, freeing_unix(cmd->arg), free(cmd->arg->command), 0);
+// 	return (freeing_unix(cmd->arg), 1);
+// }
 
 // bool	parse_argument(t_command *cmd)
 // {

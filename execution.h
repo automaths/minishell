@@ -130,7 +130,7 @@ bool			parse_argument(t_command *cmd);
 //redirecting
 bool			init_fd_in(t_command *cmd);
 int				init_fd_out(t_command *cmd);
-void			piping(t_command *cmd, char *content);
+void			piping(t_command *cmd, t_token *redir);
 int				redirectionning(t_command *cmd);
 //PARSING
 //creating_tkn_cmd

@@ -99,18 +99,18 @@ int	init_fd_out(t_command *cmd)
 		if (redir->type == WRITE)
 			cmd->fd_out = opening_standard_output(redir->content);
 	}
-	if (redir != NULL && cmd->next != NULL)
-		piping(cmd, redir->content);
+	if (cmd->next != NULL)
+		piping(cmd, redir);
 	if (redir == NULL && cmd->next == NULL)
 		cmd->fd_out = 1;
 	return (1);
 }
 
-void	piping(t_command *cmd, char *content)
+void	piping(t_command *cmd, t_token *redir)
 {
 	if (pipe(cmd->fd) == -1)
 		return ;
-	if (content == NULL)
+	if (redir == NULL)
 		cmd->fd_out = cmd->fd[1];
 	else
 		close (cmd->fd[1]);
