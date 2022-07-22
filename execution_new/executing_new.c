@@ -34,8 +34,8 @@ t_env	*exec_command(t_command *cmd)
 		// if (tmp == NULL)
 		// 	break ;
 	}
-	// waitpiding(cmd);
-	// closing_fd(cmd);
+	waitpiding(cmd);
+	closing_fd(cmd);
 	// tmp = cmd;
 	// while (tmp->next != NULL)
 	// 	tmp = tmp->next;
