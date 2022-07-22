@@ -2,54 +2,57 @@
 
 void	print_all(t_command *cmd)
 {
-	t_command	*tmp;
+	t_command	*tmp_cmd;
+	t_token	*tmp_tkn;
 
-	tmp = cmd;
-	while (tmp != NULL)
-	{
-		if (tmp->arg != NULL)
+	tmp_cmd = cmd;
+	while (tmp_cmd != NULL)
+	{	
+		tmp_tkn = tmp_cmd->arg;
+		if (tmp_tkn != NULL)
 		{
-			writing ("the arg is :", tmp->arg->content);
-			tmp->arg = tmp->arg->next;
-			while (tmp->arg != NULL)
+			writing ("the arg is :", tmp_tkn->content);
+			tmp_tkn = tmp_tkn->next;
+			while (tmp_tkn != NULL)
 			{				
-				writing ("with option :", tmp->arg->content);
-				tmp->arg = tmp->arg->next;
+				writing ("with option :", tmp_tkn->content);
+				tmp_tkn = tmp_tkn->next;
 			}
 		}
-		if (tmp->redir != NULL)
+		tmp_tkn = tmp_cmd->redir;
+		if (tmp_tkn != NULL)
 		{
 			write(1, "the redirection is a ", 21);
-			if (tmp->redir->type == WRITE)
+			if (tmp_tkn->type == WRITE)
 				write(1, "write ", 6);
-			if (tmp->redir->type == HEREDOC)
+			if (tmp_tkn->type == HEREDOC)
 				write(1, "heredoc ", 8);
-			if (tmp->redir->type == READ)
+			if (tmp_tkn->type == READ)
 				write(1, "read ", 5);
-			if (tmp->redir->type == APPEND)
+			if (tmp_tkn->type == APPEND)
 				write(1, "append ", 7);
-			write(1, tmp->redir->content, ft_strlen(tmp->redir->content));
-			tmp->redir = tmp->redir->next;
-			while (tmp->redir != NULL)
+			write(1, tmp_tkn->content, ft_strlen(tmp_tkn->content));
+			tmp_tkn = tmp_tkn->next;
+			while (tmp_tkn != NULL)
 			{		
 				write(1, "\n", 1);		
 				write(1, "the next redirection is a ", 27);
-				if (tmp->redir->type == WRITE)
+				if (tmp_tkn->type == WRITE)
 					write(1, "write ", 6);
-				if (tmp->redir->type == HEREDOC)
+				if (tmp_tkn->type == HEREDOC)
 					write(1, "heredoc ", 8);
-				if (tmp->redir->type == READ)
+				if (tmp_tkn->type == READ)
 					write(1, "read ", 5);
-				if (tmp->redir->type == APPEND)
+				if (tmp_tkn->type == APPEND)
 					write(1, "append ", 7);
-				write(1, tmp->redir->content, ft_strlen(tmp->redir->content));
-				tmp->redir = tmp->redir->next;
+				write(1, tmp_tkn->content, ft_strlen(tmp_tkn->content));
+				tmp_tkn = tmp_tkn->next;
 			}
 			write(1, "\n", 1);
 		}
-		if (tmp->next != NULL)
+		if (tmp_cmd->next != NULL)
 			writing("next command", " ");
-		tmp = tmp->next;
+		tmp_cmd = tmp_cmd->next;
 	}
 }
 

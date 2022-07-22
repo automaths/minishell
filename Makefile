@@ -16,7 +16,6 @@ SRCS			=	./builts/cd.c \
 					./parsing/creating_tkn_cmd.c \
 					./parsing/environning.c \
 					./parsing/groshell.c \
-					./parsing/identifying.c \
 					./parsing/parsing_spliting.c \
 					./utils/env_char_to_lst.c \
 					./utils/env_lst_to_char.c \

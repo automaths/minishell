@@ -14,20 +14,20 @@
 
 bool	init_fd_in(t_command *cmd)
 {
-    t_command *tmp;
+    t_token *tmp;
     t_token *the_one;
 
-    tmp = cmd;
+    tmp = cmd->redir;
     the_one = NULL;
-    while (tmp->redir != NULL)
+    while (tmp != NULL)
     {
-        if (tmp->redir->type == HEREDOC || tmp->redir->type == READ)
+        if (tmp->type == HEREDOC || tmp->type == READ)
         {
-            if (check_fd_in(tmp->redir->content) == 0)
+            if (check_fd_in(tmp->content) == 0)
                 return (0);
-            the_one = tmp->redir;
+            the_one = tmp;
         }
-        tmp->redir = tmp->redir->next;
+        tmp = tmp->next;
     }
 	if (the_one != NULL)
 	{
@@ -38,6 +38,7 @@ bool	init_fd_in(t_command *cmd)
 	}
     if (the_one == NULL && cmd->is_piped == 0)
 		cmd->fd_in = 0;
+	return (1);
 }
 
 bool	check_fd_out(t_token *redir)
@@ -75,7 +76,7 @@ t_token *last_redir(t_command *cmd)
 	{
 		if (tmp->redir->type == APPEND || tmp->redir->type == WRITE)
 		{
-			if (check_fd_out(tmp->next) == 0)
+			if (check_fd_out(tmp->redir) == 0)
 				return (0);
 			the_one = tmp->redir;
 		}
