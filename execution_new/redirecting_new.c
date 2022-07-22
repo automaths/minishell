@@ -67,20 +67,20 @@ bool	check_fd_out(t_token *redir)
 
 t_token *last_redir(t_command *cmd)
 {
-	t_command	*tmp;
+	t_token	*tmp;
 	t_token *the_one;
 
-	tmp = cmd;
+	tmp = cmd->redir;
 	the_one = NULL;
-	while (tmp->redir != NULL)
+	while (tmp != NULL)
 	{
-		if (tmp->redir->type == APPEND || tmp->redir->type == WRITE)
+		if (tmp->type == APPEND || tmp->type == WRITE)
 		{
-			if (check_fd_out(tmp->redir) == 0)
+			if (check_fd_out(tmp) == 0)
 				return (0);
-			the_one = tmp->redir;
+			the_one = tmp;
 		}
-		tmp->redir = tmp->redir->next;
+		tmp = tmp->next;
 	}
 	return (the_one);
 }
@@ -88,6 +88,8 @@ t_token *last_redir(t_command *cmd)
 int	init_fd_out(t_command *cmd)
 {
 	t_token *redir;
+	(void)redir;
+	(void)cmd;
 
 	redir = last_redir(cmd);
 	if (redir != NULL)
@@ -97,7 +99,7 @@ int	init_fd_out(t_command *cmd)
 		if (redir->type == WRITE)
 			cmd->fd_out = opening_standard_output(redir->content);
 	}
-	if (cmd->next != NULL)
+	if (redir != NULL && cmd->next != NULL)
 		piping(cmd, redir->content);
 	if (redir == NULL && cmd->next == NULL)
 		cmd->fd_out = 1;
