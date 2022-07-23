@@ -1,14 +1,46 @@
 #include "../execution.h"
 
-bool	check_fd_in(char *content)
-{
-	content = ft_strtrim(content, "< ");
-	if (access(content, F_OK) != 0)
-		return (writing_error(ft_strtrim(content, "> "), NO_FILE), 0);
-	if (access(content, R_OK) == -1)
-		return (writing_error(ft_strtrim(content, "> "), WRONG_CHMOD), 0);
-	return (1);
-}
+// t_env	*exec_command(t_command *cmd)
+// {
+// 	t_command	*tmp;
+
+// 	if (!cmd)
+// 		return (NULL);
+// 	tmp = cmd;
+// 	if (redirectionning(tmp) == 0)
+// 		return (NULL);
+// 	while (tmp != NULL)
+// 	{
+// 		if (parse_argument(tmp) == 0)
+// 		{
+// 			if (tmp->next != NULL)
+// 				tmp->next->fd_in = -1;
+// 		}
+// 		else
+// 		{
+// 			if (check_builts(tmp->arg->argz))
+// 			{
+// 				if (check_builts_nofork(tmp->arg->argz))
+// 					exec_token_builts_nofork(tmp);
+// 				else
+// 					exec_token_builts(tmp);
+// 			}
+// 			else
+// 				exec_token(tmp);
+// 		}
+// 		print_fd(tmp->fd_in);
+// 		print_fd(tmp->fd_out);
+// 		tmp = tmp->next;
+// 		if (tmp == NULL)
+// 			break ;
+// 	}
+// 	waitpiding(cmd);
+// 	closing_fd(cmd);
+// 	tmp = cmd;
+// 	while (tmp->next != NULL)
+// 		tmp = tmp->next;
+// 	return (tmp->env);
+// }
 
 // bool	check_fd_out(char *content, t_token *redir)
 // {
@@ -53,41 +85,3 @@ bool	check_fd_in(char *content)
 // 	}
 // 	return (content);
 // }
-
-int	is_heredoc(char *str)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	j = 0;
-	while (str[++i])
-	{
-		if (str[i] == '<')
-			++j;
-	}
-	if (j == 2)
-		return (2);
-	if (j == 1)
-		return (1);
-	return (0);
-}
-
-int	is_append(char *str)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	j = 0;
-	while (str[++i])
-	{
-		if (str[i] == '>')
-			++j;
-	}
-	if (j == 2)
-		return (2);
-	if (j == 1)
-		return (1);
-	return (0);
-}

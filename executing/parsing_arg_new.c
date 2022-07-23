@@ -36,6 +36,8 @@ bool	parse_argument(t_command *cmd)
 	int		i;
 	int		j;
 
+	if (cmd->arg == NULL)
+		return (0);
 	token_initing(cmd);
 	if (get_the_path(cmd) == 0)
 		return (0);

@@ -8,12 +8,12 @@ SRCS			=	./groshell.c \
 					./builts/unset.c \
 					./executing/builtsing_fork.c \
 					./executing/builtsing_nofork.c \
-					./executing/checking_fds.c \
 					./executing/executing.c \
 					./executing/execving.c \
 					./executing/opening_fds.c \
 					./executing/parsing_arg.c \
 					./executing/redirecting.c \
+					./executing/parsing_arg_new.c \
 					./parsing/creating_tkn_cmd.c \
 					./parsing/environning.c \
 					./parsing/parsing_spliting.c \
@@ -27,9 +27,6 @@ SRCS			=	./groshell.c \
 					./parsing_lexer/step_one_utils.c \
 					./parsing_cmd/step_two.c \
 					./parsing_cmd/command_validation.c \
-					./execution_new/executing_new.c \
-					./execution_new/redirecting_new.c \
-					./execution_new/parsing_arg_new.c \
 					
 
 OBJS			= 	$(SRCS:.c=.o)

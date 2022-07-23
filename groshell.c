@@ -21,7 +21,6 @@ void working_magic(char *str, t_env **env)
 	uno = step_one(str);
 	if (uno->next != NULL)
 	{
-		printf("step one is success:\n");
 		// print_step_one(uno);
 		if (command_validation(uno))
 		{

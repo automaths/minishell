@@ -21,7 +21,6 @@ bool	check_builts(char **argz)
 
 void	exec_builts(t_command *cmd)
 {
-	write(1, "witfork\n", ft_strlen("witfork\n"));
 	if (ft_strncmp(cmd->arg->argz[0], "echo", 5) == 0)
 		exec_echo(cmd);
 	if (ft_strncmp(cmd->arg->argz[0], "pwd", 4) == 0)

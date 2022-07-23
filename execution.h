@@ -103,8 +103,6 @@ void			exec_token_builts(t_command *cmd);
 bool			check_builts_nofork(char **argz);
 void			exec_token_builts_nofork(t_command *cmd);
 //checking_fds
-int				is_heredoc(char *str);
-int				is_append(char *str);
 bool			check_fd_in(char *content);
 bool			check_fd_out(t_token *redir);
 t_token			*last_redir(t_command *cmd);
