@@ -19,7 +19,7 @@ void working_magic(char *str, t_env **env)
 	t_env *tmp;
 
 	uno = step_one(str);
-	if (uno->next != NULL)
+	if (uno != NULL && uno->next != NULL)
 	{
 		// print_step_one(uno);
 		if (command_validation(uno))

@@ -75,14 +75,12 @@ void     lexer_id_three(t_first **uno, char *str, int *mode, int *i)
         if (str[*i + j] == '"' && *mode == DQUOTE_MODE)
         {
             j++;
-            *mode = WORD_MODE;
             *mode = NEUTRAL_MODE;
             break;
         }
         if (str[*i + j] == '\'' && *mode == SQUOTE_MODE)
         {
             j++;
-            *mode = WORD_MODE;
             *mode = NEUTRAL_MODE;
             break;
         }
@@ -97,11 +95,53 @@ void     lexer_id_three(t_first **uno, char *str, int *mode, int *i)
     *i = *i + j - 1;
 }
 
+bool check_quotes(char *str)
+{
+    int i;
+    int mode;
+
+    i = -1;
+    mode = 0;
+    while (str[++i])
+    {
+        while (1)
+        {
+            if (str[i] == '"' && mode == NEUTRAL_MODE)
+            {
+                mode = DQUOTE_MODE;
+                break;
+            }
+            if (str[i] == '"' && mode == DQUOTE_MODE)
+            {
+                mode = NEUTRAL_MODE;
+                break;
+            }
+            if (str[i] == '\'' && mode == NEUTRAL_MODE)
+            {
+                mode = SQUOTE_MODE;
+                break;
+            }
+            if (str[i] == '\'' && mode == SQUOTE_MODE)
+            {
+                mode = NEUTRAL_MODE;
+                break;
+            }
+            break;
+        }
+    }
+    if (mode == SQUOTE_MODE || mode == DQUOTE_MODE)
+        return (0);
+    return (1);
+}
+
 t_first *step_one(char *str)
 {
     t_first *uno;
     int mode;
     int i;
+
+    if (check_quotes(str) == 0)
+        return (write(1, "Error, double quotes not ended\n", 31), NULL);
 
     mode = NEUTRAL_MODE;
     uno = new_uno(7, "start of chained list");
@@ -118,10 +158,6 @@ t_first *step_one(char *str)
             break;
         }
     }
-    if (mode == DQUOTE_MODE)
-        return (write(1, "Error, double quotes not ended\n", 31), NULL);
-    if (mode == SQUOTE_MODE)
-        return (write(1, "Error, single quotes not ended\n", 31), NULL);
     return (uno);
 }
 
