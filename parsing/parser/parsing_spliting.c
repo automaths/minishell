@@ -1,4 +1,4 @@
-#include "../execution.h"
+#include "../../execution.h"
 
 char	**spliting_plus(char *str)
 {

@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 21:49:48 by jucheval          #+#    #+#             */
-/*   Updated: 2022/07/29 13:32:25 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 14:32:44 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../../execution.h"
 
 char	*find_variable_value(char *name, t_env *env)
 {

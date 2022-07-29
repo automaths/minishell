@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 21:50:02 by jucheval          #+#    #+#             */
-/*   Updated: 2022/07/29 13:32:32 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 14:32:38 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../../execution.h"
 
 void	replace_negativ_char(t_command *cmd)
 {
