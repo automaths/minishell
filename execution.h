@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/08 08:34:45 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/29 12:57:10 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 # include <sys/wait.h>
 # include <fcntl.h>
 # include <stdbool.h>
-# include "./libft/libft.h"
+# include <readline/readline.h>
+# include <readline/history.h>
 # include "errno.h"
+# include "./libft/libft.h"
 
 # define CMD_NOT_FOUND 1
 # define NO_FILE 2

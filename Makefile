@@ -38,7 +38,7 @@ RM				= 	rm -f
 CFLAGS			= 	-Wall -Wextra -Werror
 
 all:			$(OBJS)
-				gcc $(CFLAGS) -g3 $(OBJS)
+				gcc $(CFLAGS) -g3 $(OBJS) -lreadline
 
 clean:
 				$(RM) $(OBJS)

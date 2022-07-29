@@ -90,9 +90,8 @@ void     lexer_id_three(t_first **uno, char *str, int *mode, int *i)
             break;
         }
     }
-    if (*mode != WORD_MODE)
-        add_back_uno(uno, new_uno(WORD, alloc_content(&str[*i], j)));
-    *i = *i + j - 1;
+    add_back_uno(uno, new_uno(WORD, alloc_content(&str[*i], j + 1)));
+    *i = *i + j;
 }
 
 bool check_quotes(char *str)

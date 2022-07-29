@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   groshell.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:08 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/08 08:35:01 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/29 13:16:44 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void working_magic(char *str, t_env **env)
 
 int	main(int argc, char **argv, char **envp)
 {
-	int			count;
 	char		*str;
 	t_env		*env;
 
@@ -48,10 +47,9 @@ int	main(int argc, char **argv, char **envp)
 	str = (char *)malloc(sizeof(char) * 4096);
 	while (1)
 	{
-		write(1, "groshell> ", 10);
-		count = read(1, str, 4096);
-		str[count] = '\0';
-		if ((ft_strncmp(str, "exit", 4) == 0) && ft_strlen(str) == 5)
+		str = readline("groshell> ");
+        add_history(str);
+		if (!(ft_strncmp(str, "exit", 5)))
 			break ;
 		working_magic(str, &env);
 	}
