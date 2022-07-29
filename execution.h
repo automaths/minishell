@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 12:57:10 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 13:26:13 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,33 @@
 # include "errno.h"
 # include "./libft/libft.h"
 
-# define CMD_NOT_FOUND 1
-# define NO_FILE 2
-# define WRONG_CHMOD 3
+typedef enum e_exec
+{
+	CMD_NOT_FOUND = 1,
+	NO_FILE,
+	WRONG_CHMOD,
+}	t_enum_exec;
 
-# define APPEND 1
-# define WRITE 2
-# define HEREDOC 3
-# define READ 4
-# define PIPE 5
-# define WORD 6
-# define BEGIN 7
+typedef enum e_type
+{
+	APPEND = 1,
+	WRITE,
+	HEREDOC,
+	READ,
+	PIPE,
+	WORD,
+	BEGIN,
+}	t_enum_type;
 
-# define NEUTRAL_MODE 0
-# define R_REDIR_MODE 1
-# define L_REDIR_MODE 2
-# define WORD_MODE 3
-# define DQUOTE_MODE 4
-# define SQUOTE_MODE 5
+typedef enum e_mode
+{
+	NEUTRAL_MODE = 1,
+	R_REDIR_MODE,
+	L_REDIR_MODE,
+	WORD_MODE,
+	DQUOTE_MODE,
+	SQUOTE_MODE,
+}	t_enum_mode;
 
 typedef struct s_first {
 	int type;
