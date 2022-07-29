@@ -132,7 +132,7 @@ bool    check_quotes(char *str)
     return (1);
 }
 
-t_first *step_one(char *str)
+t_first *lexer(char *str)
 {
     t_first *uno;
     int     mode;

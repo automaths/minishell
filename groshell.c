@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:08 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 15:14:53 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 17:05:56 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void working_magic(char *str, t_env **env)
 	t_first *uno;
 	t_env *tmp;
 
-	uno = step_one(str);
+	uno = lexer(str);
 	if (uno != NULL && uno->next != NULL)
 	{
 		if (command_validation(uno))
