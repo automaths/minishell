@@ -87,11 +87,12 @@ void     lexer_id_three(t_first **uno, char *str, int *mode, int *i)
         if (!str[*i + j + 1])
         {
             *mode = NEUTRAL_MODE;
+            j++;
             break;
         }
     }
-    add_back_uno(uno, new_uno(WORD, alloc_content(&str[*i], j + 1)));
-    *i = *i + j;
+    add_back_uno(uno, new_uno(WORD, alloc_content(&str[*i], j)));
+    *i = *i + j - 1;
 }
 
 bool check_quotes(char *str)

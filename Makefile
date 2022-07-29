@@ -27,6 +27,8 @@ SRCS			=	./groshell.c \
 					./parsing_lexer/step_one_utils.c \
 					./parsing_cmd/step_two.c \
 					./parsing_cmd/command_validation.c \
+					./expander/expand.c \
+					./expander/expand_utils.c \
 					
 
 OBJS			= 	$(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 13:26:13 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 13:29:37 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,17 @@ typedef struct s_command {
 	struct s_command	*next;
 }	t_command;
 
+
+//EXPANDER
+char	*find_variable_value(char *name, t_env *env);
+char	*string_with_var_value(char *cmd, char *name, int size_old_var);
+char	*replace_one_variable(char *str, t_env *env, int i);
+int	replace_variable(t_command *cmd, t_env *env);
+int	replace_all_variable(t_command *cmd, t_env *env);
+void	replace_negativ_char(t_command *cmd);
+int	ft_isalnum(int c);
+int	what_state(char *str, int j);
+void	parse_dollars(t_command *cmd);
 
 //BUILTS
 //cd
