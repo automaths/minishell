@@ -6,38 +6,18 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:07:09 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 14:24:47 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 15:23:22 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../execution.h"
 
-bool	is_export(char c)
-{
-	if (c == 'e' || c == 'x' || c == 'p' || c == 'o' || c == 'r' || c == 't')
-		return (1);
-	return (0);
-}
-
-bool	check_equal(char *str)
-{
-	int i;
-	
-	i = -1;
-	while (str[++i])
-	{
-		if (str[i] == '=')
-			return (1);
-	}
-	return (0);
-}
-
 int	check_export(char *str)
 {
-	int i;
-	int j;
-	int k;
-	
+	int	i;
+	int	j;
+	int	k;
+
 	i = 0;
 	if (check_equal(str) == 0)
 		return (printf("no equal"), 0);
@@ -61,10 +41,10 @@ int	check_export(char *str)
 
 char	*export_name(char *str)
 {
-	char *name;
-	int i;
-	int j;
-	
+	char	*name;
+	int		i;
+	int		j;
+
 	i = 0;
 	while (str[i] && is_whitespace2(str[i]))
 		i++;
@@ -87,9 +67,10 @@ char	*export_name(char *str)
 
 char	*export_content(char *str)
 {
-	char *content;
-	int i;
-	int j;
+	char	*content;
+	int		i;
+	int		j;
+
 	i = 0;
 	while (str[i] && is_whitespace2(str[i]))
 		i++;
@@ -111,21 +92,9 @@ char	*export_content(char *str)
 	return (content);
 }
 
-void	add_back_env(char *name, char *content, t_env *env)
-{
-	t_env *tmp;
-	
-	tmp = env;
-	if (tmp == NULL)
-		return ;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp->next = new_lst(name, content);
-}
-
 int	update_env(char *name, char *content, t_env *env)
 {
-	t_env *tmp;
+	t_env	*tmp;
 
 	tmp = env;
 	while (tmp != NULL)
@@ -141,37 +110,10 @@ int	update_env(char *name, char *content, t_env *env)
 	return (0);
 }
 
-void	read_envz(t_env *env)
-{
-	t_env *tmp;
-
-	tmp = env;
-	while (tmp != NULL)
-	{
-		write(1, tmp->name, ft_strlen(tmp->name));
-		write(1, "=", 1);
-		write(1, tmp->content, ft_strlen(tmp->content));
-		write(1, "\n", 1);
-		tmp = tmp->next;
-	}
-}
-
-void	update_all_envz(t_command *cmd, t_env *env)
-{
-	t_command *tmp;
-	
-	tmp = cmd;
-	while (tmp != NULL)
-	{
-		tmp->env = env;
-		tmp = tmp->next;
-	}
-}
-
 void	exec_export(t_command *cmd)
 {
-	char *name;
-	char *content;
+	char	*name;
+	char	*content;
 
 	if (check_export(cmd->arg->argz[1]) == 0)
 		return ;

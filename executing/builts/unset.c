@@ -6,16 +6,16 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:07:18 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 14:24:54 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 15:20:11 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../execution.h"
 
-void remove_env(char *name, t_env **env)
+void    remove_env(char *name, t_env **env)
 {
-    t_env     *tmp;
-    t_env     *ptr;
+    t_env   *tmp;
+    t_env   *ptr;
 
     tmp = (*env);
 	ptr = tmp;
@@ -39,10 +39,10 @@ void remove_env(char *name, t_env **env)
     }
 }
 
-void	exec_unset(t_command *cmd)
+void    exec_unset(t_command *cmd)
 {
-	char *name;
-	
+	char    *name;
+
 	name = get_name(cmd->arg->argz[1]);
 	remove_env(name, &cmd->env);
 }

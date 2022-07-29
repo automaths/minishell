@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:08 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 14:11:31 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 15:14:53 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@ void working_magic(char *str, t_env **env)
 	uno = step_one(str);
 	if (uno != NULL && uno->next != NULL)
 	{
-		// print_step_one(uno);
 		if (command_validation(uno))
 		{
 			cmd = step_two(uno, *env);
 			if (cmd != NULL)
 			{
-				// print_all(cmd);
 				if (!replace_all_variable(cmd, *env))
 					return ;
 				tmp = exec_command(cmd);

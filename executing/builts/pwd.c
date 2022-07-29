@@ -6,15 +6,15 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:07:14 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 14:24:50 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 15:17:19 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../execution.h"
 
-char *find_pwd(t_command *cmd)
+char	*find_pwd(t_command *cmd)
 {
-	t_env *tmp;
+	t_env	*tmp;
 
 	tmp = cmd->env;
 	while (tmp != NULL)
@@ -28,7 +28,8 @@ char *find_pwd(t_command *cmd)
 
 void	exec_pwd(t_command *cmd)
 {
-	char *path;
+	char	*path;
+
 	path = find_pwd(cmd);
 	write(1, path, ft_strlen(path));
 	write(1, "\n", 1);

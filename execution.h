@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 14:22:56 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 15:25:14 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "errno.h"
-# include "./libft/libft.h"
 
 typedef enum e_exec
 {
@@ -104,7 +103,11 @@ typedef struct s_command {
 
 
 
-
+bool	is_export(char c);
+bool	check_equal(char *str);
+void	add_back_env(char *name, char *content, t_env *env);
+void	read_envz(t_env *env);
+void	update_all_envz(t_command *cmd, t_env *env);
 
 
 

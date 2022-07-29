@@ -19,11 +19,12 @@ SRCS			=	./groshell.c \
 					./executing/builts/env.c \
 					./executing/builts/exit.c \
 					./executing/builts/export.c \
+					./executing/builts/export_utils.c \
 					./executing/builts/pwd.c \
 					./executing/builts/unset.c \
 					./utils/env_char_to_lst.c \
+					./utils/env_char_to_lst_utils.c \
 					./utils/env_lst_to_char.c \
-					./utils/env_lst_to_char_utils.c \
 					./utils/freeing.c \
 					./utils/printing.c \
 					./utils/tmp_debug.c \
