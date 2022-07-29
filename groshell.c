@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:08 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 17:05:56 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 17:18:39 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void working_magic(char *str, t_env **env)
 	t_command *cmd;
 	t_first *uno;
 	t_env *tmp;
+	//create a copy of env;
 
 	uno = lexer(str);
 	if (uno != NULL && uno->next != NULL)

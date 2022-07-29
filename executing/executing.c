@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:15 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/08 08:34:34 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/29 17:19:16 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,12 @@ t_env	*exec_command(t_command *cmd)
 			else
 				exec_token(tmp);
 		}
-		// print_parsed(cmd);
-		// print_fd(tmp->fd_in);
-		// print_fd(tmp->fd_out);
 		tmp = tmp->next;
 		if (tmp == NULL)
 			break ;
 	}
 	waitpiding(cmd);
 	closing_fd(cmd);
-	// tmp = cmd;
-	// while (tmp->next != NULL)
-	// 	tmp = tmp->next;
-	// return (tmp->env);
 	return (NULL);
 }
-
+	// return (tmp->env);

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:16 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 15:39:01 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 17:16:44 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,5 @@ bool	is_builts(char *command)
 		return (1);
 	if (ft_strncmp(command, "exit", 5) == 0)
 		return (1);
-	return (0);	
+	return (0);
 }

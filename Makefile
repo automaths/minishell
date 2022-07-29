@@ -13,6 +13,7 @@ SRCS			=	./groshell.c \
 					./executing/opening_fds.c \
 					./executing/parsing_arg.c \
 					./executing/redirecting.c \
+					./executing/redirecting_utils.c \
 					./executing/parsing_arg_new.c \
 					./executing/builts/cd.c \
 					./executing/builts/echo.c \
