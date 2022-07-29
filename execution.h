@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 17:07:27 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 17:41:05 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,7 @@ void		replace_negativ_char(t_command *cmd);
 // parsing/parser/parser.c
 bool		redirection_validation(t_first *uno);
 bool		pipes_validation(t_first *uno);
-bool    	command_validation(t_first *uno);
+bool		command_validation(t_first *uno);
 
 // parsing/parser/parser_utils.c
 t_command	*new_cmd(t_env *env);
@@ -205,7 +205,7 @@ char		**split_cleaning(char **split);
 
 // parsing/lexer/lexer.c
 t_first		*lexer(char *str);
-void			lexer_id_three(t_first **uno, char *str, int *mode, int *i);
+void		lexer_id_three(t_first **uno, char *str, int *mode, int *i);
 int			lexer_id_two(t_first **uno, char *str, int *mode);
 int			lexer_id_one(char c, int *mode);
 

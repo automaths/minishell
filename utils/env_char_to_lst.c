@@ -2,10 +2,10 @@
 
 char *get_content(char *envp)
 {
-	char *str;
-	int i;
-	int j;
-	
+	char	*str;
+	int		i;
+	int		j;
+
 	i = -1;
 	j = -1;
 	while (envp[++i] && envp[i] != '=')
@@ -25,9 +25,9 @@ char *get_content(char *envp)
 
 char *get_name(char *envp)
 {
-	char *str;
-	int i;
-	
+	char	*str;
+	int		i;
+
 	i = -1;
 	while (envp[++i] && envp[i] != '=')
 		;
@@ -43,8 +43,8 @@ char *get_name(char *envp)
 
 t_env	*env_to_list(char **envp)
 {
-	int i;
-	t_env *env;
+	int		i;
+	t_env	*env;
 
 	env = NULL;
 	if (envp[0] == NULL)

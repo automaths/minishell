@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:47:38 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 15:47:47 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 17:37:38 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,3 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 	return (one[i] - two[i]);
 }
-

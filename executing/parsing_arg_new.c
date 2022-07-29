@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_arg_new.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/29 17:33:05 by nsartral          #+#    #+#             */
+/*   Updated: 2022/07/29 17:34:22 by nsartral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../execution.h"
 
 bool	get_the_path(t_command *cmd)
@@ -21,7 +33,7 @@ bool	get_the_path(t_command *cmd)
 	if (is_builts(cmd->arg->command))
 		return (1);
 	i = 0;
-	while (cmd->arg->unix_paths[i]\
+	while (cmd->arg->unix_paths[i] \
 		&& find_path(cmd->arg, cmd->arg->unix_paths[i]) == 0)
 		i++;
 	if (cmd->arg->unix_paths[i] == NULL)
@@ -43,26 +55,26 @@ bool	parse_argument(t_command *cmd)
 	if (get_the_path(cmd) == 0)
 		return (0);
 	i = 0;
-    tmp_tkn = cmd->arg;
-    while (tmp_tkn != NULL)
-    {
-        i++;        
-        tmp_tkn = tmp_tkn->next;
-    }
+	tmp_tkn = cmd->arg;
+	while (tmp_tkn != NULL)
+	{
+		i++;
+		tmp_tkn = tmp_tkn->next;
+	}
 	if (i == 0)
 		return (0);
 	cmd->arg->argz = (char **)malloc(sizeof(char *) * (i + 2));
 	if (cmd->arg->argz == NULL)
 		return (0);
-    tmp_tkn = cmd->arg;
+	tmp_tkn = cmd->arg;
 	cmd->arg->argz[0] = cmd->arg->command;
-    tmp_tkn = tmp_tkn->next;
+	tmp_tkn = tmp_tkn->next;
 	j = 0;
 	while (++j < i)
-    {
+	{
 		cmd->arg->argz[j] = tmp_tkn->content;
-        tmp_tkn = tmp_tkn->next;
-    }
+		tmp_tkn = tmp_tkn->next;
+	}
 	cmd->arg->argz[j] = NULL;
 	return (1);
 }

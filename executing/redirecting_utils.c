@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:26:02 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 17:31:10 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 17:40:30 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../executing"
+#include "../execution.h"
 
 bool	check_fd_in(char *content)
 {

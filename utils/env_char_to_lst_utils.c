@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env_char_to_lst_utils.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/29 17:37:05 by nsartral          #+#    #+#             */
+/*   Updated: 2022/07/29 17:37:12 by nsartral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "../execution.h"
 
 t_env	*new_lst(char *name, char *content)
@@ -30,8 +42,8 @@ void	add_back_lst(t_env **lst, t_env *new)
 
 int	has_equal(char *str)
 {
-	int i;
-	
+	int	i;
+
 	i = -1;
 	while (str[++i])
 	{
@@ -43,8 +55,8 @@ int	has_equal(char *str)
 
 bool	check_envp(char **envp)
 {
-	int i;
-	
+	int	i;
+
 	i = -1;
 	while (envp[++i])
 	{

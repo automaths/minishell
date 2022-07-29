@@ -6,18 +6,18 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:08 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 17:18:39 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 17:41:35 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
 
+	//create a copy of env;
 void working_magic(char *str, t_env **env)
 {
-	t_command *cmd;
-	t_first *uno;
-	t_env *tmp;
-	//create a copy of env;
+	t_command	*cmd;
+	t_first		*uno;
+	t_env		*tmp;
 
 	uno = lexer(str);
 	if (uno != NULL && uno->next != NULL)
@@ -39,8 +39,8 @@ void working_magic(char *str, t_env **env)
 
 int	main(int argc, char **argv, char **envp)
 {
-	char		*str;
-	t_env		*env;
+	char	*str;
+	t_env	*env;
 
 	(void)argc;
 	(void)argv;
@@ -49,7 +49,7 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		str = readline("groshell> ");
-        add_history(str);
+		add_history(str);
 		if (!(ft_strncmp(str, "exit", 5)))
 			break ;
 		working_magic(str, &env);
