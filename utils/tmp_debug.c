@@ -99,3 +99,55 @@ void	read_list(t_env *env)
 	}
 }
 
+void print_step_one(t_first *uno)
+{
+    t_first *tmp;
+
+    tmp = uno;
+    while (tmp != NULL)
+    {
+        if (tmp->type == APPEND)
+        {
+            write(1, "[APPEND] = ", 11);
+            write(1, tmp->content, ft_strlen(tmp->content));
+            write(1, "\n", 1);
+        }
+        if (tmp->type == WRITE)
+        {
+            write(1, "[WRITE] = ", 10);
+            write(1, tmp->content, ft_strlen(tmp->content));
+            write(1, "\n", 1);
+        }
+        if (tmp->type == HEREDOC)
+        {
+            write(1, "[HEREDOC] = ", 12);
+            write(1, tmp->content, ft_strlen(tmp->content));
+            write(1, "\n", 1);
+        }
+        if (tmp->type == READ)
+        {
+            write(1, "[READ] = ", 9);
+            write(1, tmp->content, ft_strlen(tmp->content));
+            write(1, "\n", 1);
+        }
+        if (tmp->type == PIPE)
+        {
+            write(1, "[PIPE] = ", 9);
+            write(1, tmp->content, ft_strlen(tmp->content));
+            write(1, "\n", 1);
+        }
+        if (tmp->type == WORD)
+        {
+            write(1, "[WORD] = ", 9);
+            write(1, tmp->content, ft_strlen(tmp->content));
+            write(1, "\n", 1);
+        }
+        if (tmp->type == BEGIN)
+        {
+            write(1, "[BEGIN] = ", 10);
+            write(1, tmp->content, ft_strlen(tmp->content));
+            write(1, "\n", 1);
+        }
+        tmp = tmp->next;
+    }
+}

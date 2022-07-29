@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirecting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 13:34:47 by nimrod            #+#    #+#             */
-/*   Updated: 2022/07/07 18:17:31 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/29 15:40:50 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ bool	check_fd_in(char *content)
 
 bool	init_fd_in(t_command *cmd)
 {
-    t_token *tmp;
-    t_token *the_one;
+    t_token	*tmp;
+    t_token	*the_one;
 
     tmp = cmd->redir;
     the_one = NULL;
@@ -75,10 +75,10 @@ bool	check_fd_out(t_token *redir)
 	return (1);
 }
 
-t_token *last_redir(t_command *cmd)
+t_token	*last_redir(t_command *cmd)
 {
 	t_token	*tmp;
-	t_token *the_one;
+	t_token	*the_one;
 
 	tmp = cmd->redir;
 	the_one = NULL;
@@ -97,9 +97,7 @@ t_token *last_redir(t_command *cmd)
 
 int	init_fd_out(t_command *cmd)
 {
-	t_token *redir;
-	(void)redir;
-	(void)cmd;
+	t_token	*redir;
 
 	redir = last_redir(cmd);
 	if (redir != NULL)

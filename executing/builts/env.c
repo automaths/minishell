@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:07:02 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 14:24:40 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 15:35:59 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	exec_env(t_command *cmd)
 {
-	t_env *tmp;
-	
+	t_env	*tmp;
+
 	tmp = cmd->env;
 	while (tmp != NULL)
 	{

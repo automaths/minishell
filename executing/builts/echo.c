@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:06:58 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 14:24:36 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 15:35:47 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ bool	check_echo_flag(char **argz)
 
 void	exec_echo(t_command *cmd)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	if (check_echo_flag(cmd->arg->argz))
 		i++;

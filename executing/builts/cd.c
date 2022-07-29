@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:06:53 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 14:40:17 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 15:37:09 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*find_content_cd(char *name, t_env *env)
 {
-	t_env *tmp;
-	
+	t_env	*tmp;
+
 	tmp = env;
 	while (tmp != NULL)
 	{
@@ -46,8 +46,8 @@ int	change_dir(char *str, t_env *env)
 
 bool	is_single_cd(char *str)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (str[i] && is_whitespace2(str[i]))
 		++i;
@@ -60,7 +60,6 @@ bool	is_single_cd(char *str)
 	if (i != (int)ft_strlen(str))
 		return (0);
 	return (1);
-	
 }
 
 void	exec_cd(t_command *cmd)
@@ -79,7 +78,8 @@ void	exec_cd(t_command *cmd)
 	else
 	{
 		getcwd(pwd, 500);
-		cmd->arg->argz[1] = ft_strjoin("OLDPWD=", find_content_cd("PWD", cmd->env));
+		cmd->arg->argz[1] = ft_strjoin("OLDPWD="\
+			, find_content_cd("PWD", cmd->env));
 		exec_export(cmd);
 		free(cmd->arg->argz[1]);
 		cmd->arg->argz[1] = ft_strjoin("PWD=", pwd);

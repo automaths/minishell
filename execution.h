@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 15:25:14 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 15:35:14 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,29 +87,11 @@ typedef struct s_command {
 	struct s_command	*next;
 }	t_command;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 bool	is_export(char c);
 bool	check_equal(char *str);
 void	add_back_env(char *name, char *content, t_env *env);
 void	read_envz(t_env *env);
 void	update_all_envz(t_command *cmd, t_env *env);
-
-
 
 //EXPANDER
 char	*find_variable_value(char *name, t_env *env);

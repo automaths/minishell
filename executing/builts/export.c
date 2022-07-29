@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:07:09 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 15:23:22 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 15:35:31 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	exec_export(t_command *cmd)
 		return ;
 	name = export_name(cmd->arg->argz[1]);
 	content = export_content(cmd->arg->argz[1]);
-	if(update_env(name, content, cmd->env))
+	if (update_env(name, content, cmd->env))
 	{
 		update_all_envz(cmd, cmd->env);
 		return ;

@@ -2,8 +2,8 @@
 
 bool	get_the_path(t_command *cmd)
 {
-	int	i;
-	char **envp;
+	int		i;
+	char	**envp;
 
 	i = 0;
 	envp = envp_to_char(cmd->env);
@@ -21,7 +21,8 @@ bool	get_the_path(t_command *cmd)
 	if (is_builts(cmd->arg->command))
 		return (1);
 	i = 0;
-	while (cmd->arg->unix_paths[i] && find_path(cmd->arg, cmd->arg->unix_paths[i]) == 0)
+	while (cmd->arg->unix_paths[i]\
+		&& find_path(cmd->arg, cmd->arg->unix_paths[i]) == 0)
 		i++;
 	if (cmd->arg->unix_paths[i] == NULL)
 		return (writing_error(cmd->arg->command, CMD_NOT_FOUND), 0);
@@ -32,7 +33,7 @@ bool	get_the_path(t_command *cmd)
 
 bool	parse_argument(t_command *cmd)
 {
-	t_token *tmp_tkn;
+	t_token	*tmp_tkn;
 	int		i;
 	int		j;
 
@@ -42,9 +43,6 @@ bool	parse_argument(t_command *cmd)
 	if (get_the_path(cmd) == 0)
 		return (0);
 	i = 0;
-	// tmp = ft_split(cmd->arg->content, ' ');
-	// while (tmp[i])
-		// i++;
     tmp_tkn = cmd->arg;
     while (tmp_tkn != NULL)
     {
@@ -66,7 +64,5 @@ bool	parse_argument(t_command *cmd)
         tmp_tkn = tmp_tkn->next;
     }
 	cmd->arg->argz[j] = NULL;
-	// free(tmp[0]);
-	// free(tmp);
 	return (1);
 }

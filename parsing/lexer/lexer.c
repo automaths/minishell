@@ -1,6 +1,6 @@
 #include "../../execution.h"
 
-int    lexer_id_one(char c, int *mode)
+int lexer_id_one(char c, int *mode)
 {
     if (c == ' ' || c == ';')
         return (0);
@@ -17,9 +17,10 @@ int    lexer_id_one(char c, int *mode)
     return (1);        
 }
 
-int     lexer_id_two(t_first **uno, char *str, int *mode)
+int lexer_id_two(t_first **uno, char *str, int *mode)
 {
     int i;
+
     i = 1;
     if (*mode == R_REDIR_MODE && str[i] == '>')
     {
@@ -51,19 +52,16 @@ int     lexer_id_two(t_first **uno, char *str, int *mode)
     return (1);
 }
 
-void     lexer_id_three(t_first **uno, char *str, int *mode, int *i)
+void    lexer_id_three(t_first **uno, char *str, int *mode, int *i)
 {
     int j;
 
     if (str[*i] == '"')
         *mode = DQUOTE_MODE;
-    
     else if (str[*i] == '\'')
         *mode = SQUOTE_MODE;
-    
     else
         *mode = WORD_MODE;
-    
     j = 0;
     while (str[*i + ++j] && (*mode == 3 || *mode == 4 || *mode == 5))
     {
@@ -95,7 +93,7 @@ void     lexer_id_three(t_first **uno, char *str, int *mode, int *i)
     *i = *i + j - 1;
 }
 
-bool check_quotes(char *str)
+bool    check_quotes(char *str)
 {
     int i;
     int mode;
@@ -137,12 +135,11 @@ bool check_quotes(char *str)
 t_first *step_one(char *str)
 {
     t_first *uno;
-    int mode;
-    int i;
+    int     mode;
+    int     i;
 
     if (check_quotes(str) == 0)
         return (write(1, "Error, double quotes not ended\n", 31), NULL);
-
     mode = NEUTRAL_MODE;
     uno = new_uno(7, "start of chained list");
     i = -1;
@@ -160,25 +157,3 @@ t_first *step_one(char *str)
     }
     return (uno);
 }
-
-/*
-mode 0:
-    if > mode 1
-        if > append
-        else write
-    if < mode 2
-        if < heredoc
-        else read
-    if | pipe 
-    if alphanumeric mode 3
-        if alphanumeric mode 3
-        if ' mode 4 
-        if " mode 5
-        if space < > | word mode 0
-    if ' mode 4
-        if ' mode 3
-        if " mode 5
-    if " mode 5
-        if " mode 3
-        if ' mode 4
-*/

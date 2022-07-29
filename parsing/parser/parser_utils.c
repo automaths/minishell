@@ -1,9 +1,16 @@
-#include "../../execution.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/29 15:47:12 by nsartral          #+#    #+#             */
+/*   Updated: 2022/07/29 15:47:18 by nsartral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-/*
-Errors in bash
-types : APPEND WRITE HEREDOC READ PIPE WORD 
-*/
+#include "../../execution.h"
 
 t_command	*new_cmd(t_env *env)
 {
@@ -70,7 +77,7 @@ t_command	*step_two(t_first *uno, t_env *env)
 	t_command		*cmd;
 	t_command		*tmp_cmd;
     t_first         *tmp_uno;
-    int t;
+    int				t;
 
 	cmd = new_cmd(env);
 	tmp_cmd = cmd;

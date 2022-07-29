@@ -1,15 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/29 15:46:55 by nsartral          #+#    #+#             */
+/*   Updated: 2022/07/29 15:47:04 by nsartral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../execution.h"
 
-/*
-Error case : 
-pipe beginning or end 
-successive pipes 
-successive redirections without word between
-redirection without word after 
-only redirection
-
-valid identifier for export 
-*/
 bool    redirection_validation(t_first *uno)
 {
     t_first *tmp;
@@ -46,7 +48,7 @@ bool    pipes_validation(t_first *uno)
     return (1);
 }
 
-bool command_validation(t_first *uno)
+bool    command_validation(t_first *uno)
 {
     if (redirection_validation(uno) == 0)
         return (write(1, "syntax error\n", 13), 0);
