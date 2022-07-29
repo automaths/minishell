@@ -6,14 +6,14 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:08 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 17:41:35 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 18:01:51 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
 
 	//create a copy of env;
-void working_magic(char *str, t_env **env)
+void	working_magic(char *str, t_env **env)
 {
 	t_command	*cmd;
 	t_first		*uno;

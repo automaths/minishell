@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env_char_to_lst.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/29 17:55:44 by nsartral          #+#    #+#             */
+/*   Updated: 2022/07/29 17:55:51 by nsartral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../execution.h"
 
-char *get_content(char *envp)
+char	*get_content(char *envp)
 {
 	char	*str;
 	int		i;
@@ -23,7 +35,7 @@ char *get_content(char *envp)
 	return (str);
 }
 
-char *get_name(char *envp)
+char	*get_name(char *envp)
 {
 	char	*str;
 	int		i;

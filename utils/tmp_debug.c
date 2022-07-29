@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tmp_debug.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/29 18:03:08 by nsartral          #+#    #+#             */
+/*   Updated: 2022/07/29 18:03:10 by nsartral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../execution.h"
 
 void	print_fd(int fd)
@@ -64,8 +76,8 @@ void	print_all(t_command *cmd)
 			write(1, tmp_tkn->content, ft_strlen(tmp_tkn->content));
 			tmp_tkn = tmp_tkn->next;
 			while (tmp_tkn != NULL)
-			{		
-				write(1, "\n", 1);		
+			{
+				write(1, "\n", 1);
 				write(1, "the next redirection is a ", 27);
 				if (tmp_tkn->type == WRITE)
 					write(1, "write ", 6);
@@ -99,7 +111,7 @@ void	read_list(t_env *env)
 	}
 }
 
-void print_step_one(t_first *uno)
+void	print_step_one(t_first *uno)
 {
 	t_first	*tmp;
 

@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:37:05 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 17:37:12 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 17:55:27 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../execution.h"
+#include "../execution.h"
 
 t_env	*new_lst(char *name, char *content)
 {

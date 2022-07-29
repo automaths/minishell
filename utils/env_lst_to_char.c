@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:39:13 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 17:40:02 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/29 18:02:38 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ char	*alloc_line(char *name, char *content)
 	int		i;
 	int		j;
 
-	line = (char *)malloc(sizeof(char) * (ft_strlen(name) + ft_strlen(content) + 2));
+	line = (char *)malloc(sizeof(char) * (ft_strlen(name) \
+		+ ft_strlen(content) + 2));
 	if (line == NULL)
 		return (NULL);
 	i = -1;
@@ -46,7 +47,7 @@ char	*alloc_line(char *name, char *content)
 	return (line);
 }
 
-char **envp_to_char(t_env *env)
+char	**envp_to_char(t_env *env)
 {
 	char	**split;
 	t_env	*tmp;
@@ -65,4 +66,3 @@ char **envp_to_char(t_env *env)
 	}
 	return (split);
 }
-
