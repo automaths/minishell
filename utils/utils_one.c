@@ -22,37 +22,6 @@ int	strnstr_int(char *str, char *to_find)
 	return (0);
 }
 
-
-bool	is_whitespace(char c)
-{
-	if (c == ' ' && c == '\t' && c == '\v'
-		&& c == '\n' && c == '\r' && c == '\f')
-		return (1);
-	return (0);
-}
-
-bool	is_whitespace2(char c)
-{
-	if (c == ' ' || c == '\t' || c == '\v'
-		|| c == '\n' || c == '\r' || c == '\f')
-		return (1);
-	return (0);
-}
-
-bool	is_lowercase(char c)
-{
-	if (c >= 'a' && c <= 'z')
-		return (1);
-	return (0);
-}
-
-bool	is_printable_except_space(char c)
-{
-	if (c < 33 || c > 126)
-		return (0);
-	return (1);
-}
-
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	size_t			i;

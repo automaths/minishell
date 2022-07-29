@@ -1,33 +1,5 @@
 #include "../execution.h"
 
-t_env	*new_lst(char *name, char *content)
-{
-	t_env	*new;
-
-	new = (t_env *)malloc(sizeof(t_env));
-	if (new == NULL)
-		return (NULL);
-	new->name = name;
-	new->content = content;
-	new->next = NULL;
-	return (new);
-}
-
-void	add_back_lst(t_env **lst, t_env *new)
-{
-	t_env	*tmp;
-
-	if (*lst)
-	{
-		tmp = *lst;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
-	else if (lst)
-		*lst = new;
-}
-
 char *get_content(char *envp)
 {
 	char *str;
@@ -67,32 +39,6 @@ char *get_name(char *envp)
 	while (envp[++i] && envp[i] != '=')
 		str[i] = envp[i];
 	return (str);
-}
-
-int	has_equal(char *str)
-{
-	int i;
-	
-	i = -1;
-	while (str[++i])
-	{
-		if (str[i] == '=')
-			return (i);
-	}
-	return (0);
-}
-
-bool	check_envp(char **envp)
-{
-	int i;
-	
-	i = -1;
-	while (envp[++i])
-	{
-		if (has_equal(envp[i]) < 1)
-			return (printf("wrong env variable"), 0);
-	}
-	return (1);
 }
 
 t_env	*env_to_list(char **envp)

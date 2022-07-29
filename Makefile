@@ -6,12 +6,6 @@ SRCS			=	./groshell.c \
 					./parsing/parser/parsing_spliting.c \
 					./parsing/expander/expand.c \
 					./parsing/expander/expand_utils.c \
-					./utils/env_char_to_lst.c \
-					./utils/env_lst_to_char.c \
-					./utils/freeing.c \
-					./utils/libft_plus.c \
-					./utils/printing.c \
-					./tmp_libft/libft.c \
 					./executing/builtsing_fork.c \
 					./executing/builtsing_nofork.c \
 					./executing/executing.c \
@@ -27,11 +21,21 @@ SRCS			=	./groshell.c \
 					./executing/builts/export.c \
 					./executing/builts/pwd.c \
 					./executing/builts/unset.c \
+					./utils/env_char_to_lst.c \
+					./utils/env_lst_to_char.c \
+					./utils/env_lst_to_char_utils.c \
+					./utils/freeing.c \
+					./utils/printing.c \
+					./utils/tmp_debug.c \
+					./utils/ft_split.c \
+					./utils/ft_strtrim.c \
+					./utils/utils_one.c \
+					./utils/utils_two.c \
+					./utils/utils_three.c \
+					./utils/utils_four.c \
 					
 
 OBJS			= 	$(SRCS:.c=.o)
-
-# LIBS			=  -L ./libft -lft
 
 CC				= 	gcc
 RM				= 	rm -f
