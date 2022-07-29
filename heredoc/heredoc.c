@@ -75,8 +75,9 @@ bool	reading_heredoc(char **argv, int fd_in)
 		str = readline("groshell> ");
 		if (!(ft_strncmp(str, "exit", 5)))
 			break ;
+		write(fd_in, str, ft_strlen(str));
 	}
-	return (0);
+	exit(1);
 }
 
 int	forking_heredoc(char **argv)
@@ -85,9 +86,9 @@ int	forking_heredoc(char **argv)
 	int pid;
 	if (pipe(fd) == -1)
 		return (0);
-	if (dup2(STDIN_FILENO, fd[0]) == -1)
-		return (0);
-	// if (dup2(STDOUT_FILENO, fd[1]) == -1)
+	// if (dup2(STDIN_FILENO, fd[1]) == -1)
+	// 	return (0);
+	// if (dup2(fd[1], STDOUT_FILENO) == -1)
 	// 	return (0);
 	// close (STDIN_FILENO);
 	// close(STDOUT_FILENO);
@@ -96,25 +97,26 @@ int	forking_heredoc(char **argv)
 		return (0);
 	if (pid == 0)
 	{
-		reading_heredoc(argv, fd[0]);
+		reading_heredoc(argv, fd[1]);
 	}
-	else
-	{
-		// if (cmd->fd_in != 0)
-		// 	close(cmd->fd_in);
-		// if (cmd->fd_out != 1)
-		// 	close(cmd->fd_out);
-		waitpid(pid, 0, 0);
-	}
-	//READING FROM THE PIPE
+	waitpid(pid, 0, 0);
+	char *str;
+	int count;
+	str = (char *)malloc(sizeof(char) * 4096);
+	if (str == NULL)
+		return (0);
+	count = read(fd[0], str, 4096);
+	str[count] = '\0';
+	write(1, str, ft_strlen(str));
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	if (argc != 2)
-		return (0);
-	// forking_heredoc(argv);
-	reading_heredoc(argv, 0);
+	(void)argc;
+	// if (argc != 2)
+	// 	return (0);
+	forking_heredoc(argv);
+	// reading_heredoc(argv, 0);
 	return (0);
 }
