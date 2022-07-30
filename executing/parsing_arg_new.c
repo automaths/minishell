@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:33:05 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 15:04:44 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 15:27:47 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,40 @@ bool	get_the_path(t_command *cmd)
 	return (1);
 }
 
+int	count_token(t_token *tkn)
+{
+	t_token	*tmp_tkn;
+	int		i;
+
+	tmp_tkn = tkn;
+	i = 0;
+	while (tmp_tkn != NULL)
+	{
+		i++;
+		tmp_tkn = tmp_tkn->next;
+	}
+	return (i);
+}
+
+bool	parse_argument_one(t_command *cmd)
+{
+	if (cmd->arg == NULL)
+		return (0);
+	token_initing(cmd);
+	if (get_the_path(cmd) == 0)
+		return (0);
+	return (1);
+}
+
 bool	parse_argument(t_command *cmd)
 {
 	t_token	*tmp_tkn;
 	int		i;
 	int		j;
 
-	if (cmd->arg == NULL)
+	if (parse_argument_one(cmd) == 0)
 		return (0);
-	token_initing(cmd);
-	if (get_the_path(cmd) == 0)
-		return (0);
-	i = 0;
-	tmp_tkn = cmd->arg;
-	while (tmp_tkn != NULL)
-	{
-		i++;
-		tmp_tkn = tmp_tkn->next;
-	}
+	i = count_token(cmd->arg);
 	if (i == 0)
 		return (0);
 	cmd->arg->argz = (char **)malloc(sizeof(char *) * (i + 2));
