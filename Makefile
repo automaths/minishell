@@ -12,6 +12,7 @@ SRCS			=	./groshell.c \
 					./executing/execving.c \
 					./executing/opening_fds.c \
 					./executing/parsing_arg.c \
+					./executing/redirecting_heredoc.c \
 					./executing/redirecting.c \
 					./executing/redirecting_utils.c \
 					./executing/parsing_arg_new.c \

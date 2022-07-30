@@ -6,11 +6,13 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:08 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 18:01:51 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 11:26:00 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
+
+void	print_all(t_command *cmd);
 
 	//create a copy of env;
 void	working_magic(char *str, t_env **env)
@@ -27,6 +29,8 @@ void	working_magic(char *str, t_env **env)
 			cmd = step_two(uno, *env);
 			if (cmd != NULL)
 			{
+				// print_all(cmd);
+				// (void)tmp;
 				if (!replace_all_variable(cmd, *env))
 					return ;
 				tmp = exec_command(cmd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   opening_fds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:28:17 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/07 18:09:22 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/07/30 11:21:11 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,6 @@ int	opening_standard_output(char *content)
 	fd = open(content, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (fd == -1)
 		return (writing("cant open file", " "), -1);
-	return (fd);
-}
-
-int	opening_heredoc(char *content)
-{
-	int	fd;
-
-	(void)content;
-	fd = open("tmp_file", O_RDWR);
 	return (fd);
 }
 
