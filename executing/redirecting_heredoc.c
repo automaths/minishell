@@ -1,10 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirecting_heredoc.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/30 14:55:20 by nsartral          #+#    #+#             */
+/*   Updated: 2022/07/30 14:55:21 by nsartral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../execution.h"
 
 bool	reading_heredoc(char *limiter, int fd_in);
 
 int	forking_heredoc(int fd_in, char *str)
 {
-	int pid;
+	int	pid;
+
 	pid = fork();
 	if (pid == -1)
 		return (0);
@@ -19,7 +32,8 @@ int	forking_heredoc(int fd_in, char *str)
 bool	heredoc_ception(char *str)
 {
 	str = ft_strtrim(str, " ");
-	if (ft_strlen(str) < 3 || str[0] != '<' || str[1] != '<' || str[2] < 33 || str[2] > 126)
+	if (ft_strlen(str) < 3 || str[0] != '<' || str[1] != '<'\
+		|| str[2] < 33 || str[2] > 126)
 		return (0);
 	return (1);
 }
@@ -32,7 +46,8 @@ bool	reading_heredoc(char *limiter, int fd_in)
 	while (1)
 	{
 		str = readline("> ");
-		if (!(ft_strncmp(str, limiter, ft_strlen(limiter))) && (ft_strlen(str) == ft_strlen(limiter)))
+		if (!(ft_strncmp(str, limiter, ft_strlen(limiter))) \
+			&& (ft_strlen(str) == ft_strlen(limiter)))
 			break ;
 		if (heredoc_ception(str))
 			forking_heredoc(fd_in, ft_strtrim(str, "<\"\'"));
@@ -47,8 +62,9 @@ bool	reading_heredoc(char *limiter, int fd_in)
 
 int	opening_heredoc(char *content)
 {
+	int	fd[2];
+
 	content = ft_strtrim(content, "<\"\'");
-	int fd[2];
 	if (pipe(fd) == -1)
 		return (0);
 	forking_heredoc(fd[1], content);

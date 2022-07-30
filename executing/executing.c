@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:15 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 14:45:01 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 14:50:21 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,19 @@ void	waitpiding(t_command *cmd)
 	}
 }
 
+void	launching_execution(t_command *cmd)
+{
+	if (check_builts(cmd->arg->argz))
+	{
+		if (check_builts_nofork(cmd->arg->argz))
+			exec_token_builts_nofork(cmd);
+		else
+			exec_token_builts(cmd);
+	}
+	else
+		exec_token(cmd);
+}
+
 t_env	*exec_command(t_command *cmd)
 {
 	t_command	*tmp;
@@ -57,21 +70,10 @@ t_env	*exec_command(t_command *cmd)
 				tmp->next->fd_in = -1;
 		}
 		else
-		{
-			if (check_builts(tmp->arg->argz))
-			{
-				if (check_builts_nofork(tmp->arg->argz))
-					exec_token_builts_nofork(tmp);
-				else
-					exec_token_builts(tmp);
-			}
-			else
-				exec_token(tmp);
-		}
+			launching_execution(tmp);
 		tmp = tmp->next;
 	}
 	waitpiding(cmd);
 	closing_fd(cmd);
 	return (NULL);
 }
-	// return (tmp->env);

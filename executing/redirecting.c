@@ -6,11 +6,25 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 13:34:47 by nimrod            #+#    #+#             */
-/*   Updated: 2022/07/30 11:52:19 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 14:59:19 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execution.h"
+
+bool	init_fd_in_bis(t_command *cmd, t_token *the_one)
+{
+	if (the_one != NULL)
+	{
+		if (the_one->type == HEREDOC)
+			cmd->fd_in = opening_heredoc(the_one->content);
+		if (the_one->type == READ)
+			cmd->fd_in = opening_standard_input(the_one->content);
+	}
+	if (the_one == NULL && cmd->is_piped == 0)
+		cmd->fd_in = 0;
+	return (1);
+}
 
 bool	init_fd_in(t_command *cmd)
 {
@@ -32,15 +46,7 @@ bool	init_fd_in(t_command *cmd)
 		}
 		tmp = tmp->next;
 	}
-	if (the_one != NULL)
-	{
-		if (the_one->type == HEREDOC)
-			cmd->fd_in = opening_heredoc(the_one->content);
-		if (the_one->type == READ)
-			cmd->fd_in = opening_standard_input(the_one->content);
-	}
-	if (the_one == NULL && cmd->is_piped == 0)
-		cmd->fd_in = 0;
+	init_fd_in_bis(cmd, the_one);
 	return (1);
 }
 
