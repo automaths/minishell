@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 13:53:58 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 16:13:03 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,9 +205,13 @@ char		**split_cleaning(char **split);
 
 // parsing/lexer/lexer.c
 t_first		*lexer(char *str);
+int			lexer_id_one(char c, int *mode);
+
+
+
+
 void		lexer_id_three(t_first **uno, char *str, int *mode, int *i);
 int			lexer_id_two(t_first **uno, char *str, int *mode);
-int			lexer_id_one(char c, int *mode);
 
 // parsing/lexer/lexer_utils.c
 void		print_lexer(t_first *uno);
@@ -215,6 +219,9 @@ void		add_back_uno(t_first **uno, t_first *new);
 t_first		*new_uno(int type, char *content);
 char		*alloc_content(char *str, unsigned int size);
 int			actual_mode(char c);
+
+//parsing/lexer/check_quotes.c
+bool	check_quotes(char *str);
 
 // parsing/lexer/lexer_utils_two.c
 t_first		*new_uno(int type, char *content);
@@ -242,7 +249,6 @@ char		**envp_to_char(t_env *env);
 
 //utils/erroring.c 
 void		ft_error(char *str, int error_type, bool update);
-
 
 //utils/freeing.c
 void		freeing_unix(t_token *arg);

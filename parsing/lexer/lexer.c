@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:35:25 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 17:46:21 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 16:12:01 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,45 +105,6 @@ void	lexer_id_three(t_first **uno, char *str, int *mode, int *i)
 	*i = *i + j - 1;
 }
 
-bool	check_quotes(char *str)
-{
-	int	i;
-	int	mode;
-
-	i = -1;
-	mode = 0;
-	while (str[++i])
-	{
-		while (1)
-		{
-			if (str[i] == '"' && mode == NEUTRAL_MODE)
-			{
-				mode = DQUOTE_MODE;
-				break ;
-			}
-			if (str[i] == '"' && mode == DQUOTE_MODE)
-			{
-				mode = NEUTRAL_MODE;
-				break ;
-			}
-			if (str[i] == '\'' && mode == NEUTRAL_MODE)
-			{
-				mode = SQUOTE_MODE;
-				break ;
-			}
-			if (str[i] == '\'' && mode == SQUOTE_MODE)
-			{
-				mode = NEUTRAL_MODE;
-				break ;
-			}
-			break ;
-		}
-	}
-	if (mode == SQUOTE_MODE || mode == DQUOTE_MODE)
-		return (0);
-	return (1);
-}
-
 t_first	*lexer(char *str)
 {
 	t_first		*uno;
@@ -151,7 +112,7 @@ t_first	*lexer(char *str)
 	int			i;
 
 	if (check_quotes(str) == 0)
-		return (write(1, "Error, double quotes not ended\n", 31), NULL);
+		return (write(1, "Error, quotes not ended\n", 31), NULL);
 	mode = NEUTRAL_MODE;
 	uno = new_uno(7, "start of chained list");
 	i = -1;

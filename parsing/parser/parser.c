@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:46:55 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 18:04:54 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 15:39:02 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ bool	redirection_validation(t_first *uno)
 	tmp = uno->next;
 	while (tmp != NULL)
 	{
-		if (tmp->type == APPEND || tmp->type == WRITE
-            || tmp->type == READ || tmp->type == HEREDOC)
+		if (tmp->type == APPEND || tmp->type == WRITE \
+			|| tmp->type == READ || tmp->type == HEREDOC)
 		{
 			if (!tmp->next || tmp->next->type != WORD)
 				return (0);

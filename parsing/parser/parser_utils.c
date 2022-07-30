@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:47:12 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 18:00:24 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 15:40:14 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,14 @@ t_command	*step_two(t_first *uno, t_env *env)
 		{
 			if (tmp_uno->next != NULL && tmp_uno->next->type == WORD)
 			{
-				add_back_tkn(&tmp_cmd->redir\
-					, new_tkn(ft_strjoin(tmp_uno->content\
+				add_back_tkn(&tmp_cmd->redir \
+					, new_tkn(ft_strjoin(tmp_uno->content \
 						, tmp_uno->next->content), tmp_uno->type));
 				t = 1;
 			}
-			else 
+			else
 				add_back_tkn(&tmp_cmd->redir \
-					,new_tkn(tmp_uno->content, tmp_uno->type));
+					, new_tkn(tmp_uno->content, tmp_uno->type));
 		}
 		if (tmp_uno->type == PIPE)
 		{
