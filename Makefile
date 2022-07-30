@@ -7,7 +7,11 @@ SRCS			=	./groshell.c \
 					./parsing/parser/parser_utils.c \
 					./parsing/parser/parsing_spliting.c \
 					./parsing/expander/expand.c \
+					./parsing/expander/expand_redir_list.c \
 					./parsing/expander/expand_utils.c \
+					./parsing/expander/delete_quote.c \
+					./parsing/expander/delete_quote_redir_list.c \
+					./parsing/expander/return_value.c \
 					./executing/builtsing_fork.c \
 					./executing/builtsing_nofork.c \
 					./executing/executing.c \
@@ -41,24 +45,30 @@ SRCS			=	./groshell.c \
 					./utils/utils_two.c \
 					./utils/utils_three.c \
 					./utils/utils_four.c \
+					./utils/ft_itoa.c \
 					
 
 OBJS			= 	$(SRCS:.c=.o)
 
 CC				= 	gcc
+
 RM				= 	rm -f
+
 CFLAGS			= 	-Wall -Wextra -Werror
 
-all:			$(OBJS)
-				gcc $(CFLAGS) -g3 $(OBJS) -lreadline
+NAME			= 	a.out
+
+all:		$(NAME)
+
+$(NAME):	$(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -lreadline -o $(NAME)
 
 clean:
-				$(RM) $(OBJS)
-				$(RM) $(OBJS_BONUS)
+	$(RM) $(OBJS)
 
-fclean:			clean
-				$(RM) $(NAME) $(OBJS)
+fclean:		clean
+	$(RM) $(NAME)
 
-re:				all
+re:		fclean $(NAME)
 
-.PHONY:			all clean fclean re bonus
+.PHONY:		all clean fclean re

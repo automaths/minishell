@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 00:09:29 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 00:35:28 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,11 +185,32 @@ char		*replace_one_variable(char *str, t_env *env, int i);
 char		*string_with_var_value(char *cmd, char *name, int size_old_var);
 char		*find_variable_value(char *name, t_env *env);
 
+// parsing/expand/expand_redir_list.c
+int			delete_redir_char_in_redir_list(t_command *cmd);
+int			replace_variable_redir(t_command *cmd, t_env *env);
+
+// parsing/expand/return_value.c
+char		*string_with_return_var_value(char *cmd, char *name, int size_old_var);
+char		*replace_one_return_value(char *str);
+int			replace_return_value(t_command *cmd);
+
 // parsing/expand/expand_utils.c
 void		parse_dollars(t_command *cmd);
+void		parse_dollars_redir(t_command *cmd);
+void		replace_negativ_char(t_command *cmd);
+void		replace_negativ_char_redir(t_command *cmd);
 int			what_state(char *str, int j);
 int			ft_isalnum(int c);
-void		replace_negativ_char(t_command *cmd);
+
+// parsing/expand/delete_quote.c
+void		negativ_quote(char *str);
+char		*del_one_neg_quotes(char *str);
+int			del_all_neg_quotes(t_command *cmd);
+int			del_quotes(t_command *cmd);
+
+// parsing/expand/delete_quote_redir_list.c
+int			del_all_neg_quotes_redir(t_command *cmd);
+int			delete_quotes_redir_list(t_command *cmd);
 
 // parsing/parser/parser.c
 bool		redirection_validation(t_first *uno);
@@ -272,7 +293,6 @@ int			ft_atoi(const char *str);
 char		*ft_strdup(const char *str);
 size_t		ft_strlen(const char *str);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
-// int			is_set(char c, const char *set);
 
 // utils/utils_two.c
 char		*ft_strtrim(const char *s1, const char *set);
@@ -291,5 +311,8 @@ int			strnstr_int(char *str, char *to_find);
 bool		is_whitespace(char c);
 void		writing_error(char *str, int num);
 void		writing(char *intro, char *content);
+
+// utils/ft_itoa.c
+char	*ft_itoa(int nb);
 
 #endif

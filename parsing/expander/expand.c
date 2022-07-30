@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jucheval <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 21:49:48 by jucheval          #+#    #+#             */
-/*   Updated: 2022/07/29 14:32:44 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 23:15:40 by jucheval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,19 @@ int	replace_variable(t_command *cmd, t_env *env)
 int	replace_all_variable(t_command *cmd, t_env *env)
 {
 	parse_dollars(cmd);
+	parse_dollars_redir(cmd);
+	replace_return_value(cmd);
 	if (!replace_variable(cmd, env))
 		return (0);
+	if (!replace_variable_redir(cmd, env))
+		return (0);
 	replace_negativ_char(cmd);
+	replace_negativ_char_redir(cmd);
+	if (!del_quotes(cmd))
+		return (0);
+	if (!delete_redir_char_in_redir_list(cmd))
+		return (0);
+	if (!delete_quotes_redir_list(cmd))
+		return (0);
 	return (1);
 }
