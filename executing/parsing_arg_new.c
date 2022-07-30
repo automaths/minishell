@@ -6,13 +6,13 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:33:05 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 14:38:30 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 15:04:44 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execution.h"
 
-bool	get_the_path(t_command *cmd)
+bool	get_the_path_one(t_command *cmd)
 {
 	int		i;
 	char	**envp;
@@ -29,6 +29,15 @@ bool	get_the_path(t_command *cmd)
 	if (command_trim(cmd) == 0)
 		return (ft_error(cmd->arg->command, 127, 1), 0);
 	if (cmd->arg->command == NULL)
+		return (0);
+	return (1);
+}
+
+bool	get_the_path(t_command *cmd)
+{
+	int		i;
+
+	if (get_the_path_one(cmd) == 0)
 		return (0);
 	if (is_builts(cmd->arg->command))
 		return (1);

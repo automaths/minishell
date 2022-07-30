@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 13:34:47 by nimrod            #+#    #+#             */
-/*   Updated: 2022/07/30 14:59:19 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 15:00:40 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,26 +48,6 @@ bool	init_fd_in(t_command *cmd)
 	}
 	init_fd_in_bis(cmd, the_one);
 	return (1);
-}
-
-t_token	*last_redir(t_command *cmd)
-{
-	t_token	*tmp;
-	t_token	*the_one;
-
-	tmp = cmd->redir;
-	the_one = NULL;
-	while (tmp != NULL)
-	{
-		if (tmp->type == APPEND || tmp->type == WRITE)
-		{
-			if (check_fd_out(tmp) == 0)
-				return (0);
-			the_one = tmp;
-		}
-		tmp = tmp->next;
-	}
-	return (the_one);
 }
 
 int	init_fd_out(t_command *cmd)

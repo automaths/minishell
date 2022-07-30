@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:26:02 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 17:40:30 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 15:00:45 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,24 @@ bool	check_fd_out(t_token *redir)
 		close(fd);
 	}
 	return (1);
+}
+
+t_token	*last_redir(t_command *cmd)
+{
+	t_token	*tmp;
+	t_token	*the_one;
+
+	tmp = cmd->redir;
+	the_one = NULL;
+	while (tmp != NULL)
+	{
+		if (tmp->type == APPEND || tmp->type == WRITE)
+		{
+			if (check_fd_out(tmp) == 0)
+				return (0);
+			the_one = tmp;
+		}
+		tmp = tmp->next;
+	}
+	return (the_one);
 }
