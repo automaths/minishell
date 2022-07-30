@@ -16,6 +16,14 @@ int	forking_heredoc(int fd_in, char *str)
 	return (0);
 }
 
+bool	heredoc_ception(char *str)
+{
+	str = ft_strtrim(str, " ");
+	if (ft_strlen(str) < 3 || str[0] != '<' || str[1] != '<' || str[2] < 33 || str[2] > 126)
+		return (0);
+	return (1);
+}
+
 bool	reading_heredoc(char *limiter, int fd_in)
 {
 	char	*str;
@@ -24,27 +32,26 @@ bool	reading_heredoc(char *limiter, int fd_in)
 	while (1)
 	{
 		str = readline("> ");
-		if (!(ft_strncmp(str, limiter, 5)))
+		if (!(ft_strncmp(str, limiter, ft_strlen(limiter))) && (ft_strlen(str) == ft_strlen(limiter)))
 			break ;
-		if (ft_strncmp(str, "new", 4))
+		if (heredoc_ception(str))
+			forking_heredoc(fd_in, ft_strtrim(str, "<\"\'"));
+		else
 		{
 			write(fd_in, str, ft_strlen(str));
 			write(fd_in, "\n", 1);
 		}
-		else
-			forking_heredoc(fd_in, "quit");
 	}
 	exit(1);
 }
 
 int	opening_heredoc(char *content)
 {
-	(void)content;
+	content = ft_strtrim(content, "<\"\'");
 	int fd[2];
 	if (pipe(fd) == -1)
 		return (0);
-	forking_heredoc(fd[1], "exit");
+	forking_heredoc(fd[1], content);
 	close(fd[1]);
-	// close fd[1];
 	return (fd[0]);
 }

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 13:34:47 by nimrod            #+#    #+#             */
-/*   Updated: 2022/07/29 17:31:07 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 11:52:19 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@ bool	init_fd_in(t_command *cmd)
 	{
 		if (tmp->type == HEREDOC || tmp->type == READ)
 		{
-			if (check_fd_in(tmp->content) == 0)
-				return (0);
+			if (tmp->type == READ)
+			{
+				if (check_fd_in(tmp->content) == 0)
+					return (0);
+			}
 			the_one = tmp;
 		}
 		tmp = tmp->next;
