@@ -1,5 +1,5 @@
 SRCS			=	./singleton.c \
-
+					
 OBJS			= 	$(SRCS:.c=.o)
 
 CC				= 	gcc
