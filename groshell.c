@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:08 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 12:16:02 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 13:37:32 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
+	singleton(0, 1);
 	env = env_to_list(envp);
 	str = (char *)malloc(sizeof(char) * 4096);
 	while (1)

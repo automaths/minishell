@@ -33,18 +33,18 @@ void	ft_error(char *str)
 	// exit(singleton(0, 0));
 }
 
-int	main(void)
-{
-	char *str;
-	str = (char *)malloc(sizeof(char) * 4096);
-	while (1)
-	{
-		str = readline("singleton> ");
-		if (!(strncmp(str, "exit", 5)))
-			break ;
-		singleton(atoi(str), 1);
-		ft_error(strerror(singleton(0, 0)));
-	}
-	return (0);
-}
+// int	main(void)
+// {
+// 	char *str;
+// 	str = (char *)malloc(sizeof(char) * 4096);
+// 	while (1)
+// 	{
+// 		str = readline("singleton> ");
+// 		if (!(strncmp(str, "exit", 5)))
+// 			break ;
+// 		singleton(atoi(str), 1);
+// 		ft_error(strerror(singleton(0, 0)));
+// 	}
+// 	return (0);
+// }
 		// ft_error(strerror(errno));

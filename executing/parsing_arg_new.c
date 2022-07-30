@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:33:05 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 17:34:22 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 13:46:24 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ bool	get_the_path(t_command *cmd)
 	if (cmd->arg->unix_paths == NULL)
 		return (0);
 	if (command_trim(cmd) == 0)
-		return (writing_error(NULL, CMD_NOT_FOUND), 0);
+		return (ft_error(cmd->arg->command, 127, 1), 0);
+		// return (writing_error(NULL, CMD_NOT_FOUND), 0);
 	if (cmd->arg->command == NULL)
 		return (0);
 	if (is_builts(cmd->arg->command))
@@ -37,9 +38,11 @@ bool	get_the_path(t_command *cmd)
 		&& find_path(cmd->arg, cmd->arg->unix_paths[i]) == 0)
 		i++;
 	if (cmd->arg->unix_paths[i] == NULL)
-		return (writing_error(cmd->arg->command, CMD_NOT_FOUND), 0);
+		return (ft_error(cmd->arg->command, 127, 1), 0);
+		// return (writing_error(cmd->arg->command, CMD_NOT_FOUND), 0);
 	if (cmd->arg->path == NULL)
-		return (writing_error(cmd->arg->command, CMD_NOT_FOUND), 0);
+		return (ft_error(cmd->arg->command, 127, 1), 0);
+		// return (writing_error(cmd->arg->command, CMD_NOT_FOUND), 0);
 	return (1);
 }
 

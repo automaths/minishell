@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 17:41:05 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 13:53:58 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,6 +240,10 @@ int			lst_len(t_env *env);
 char		*alloc_line(char *name, char *content);
 char		**envp_to_char(t_env *env);
 
+//utils/erroring.c 
+void		ft_error(char *str, int error_type, bool update);
+
+
 //utils/freeing.c
 void		freeing_unix(t_token *arg);
 void		freeing_command(t_token *arg);
@@ -249,6 +253,9 @@ void		freeing_path_and_argz(t_token *arg);
 
 // utils/ft_split.c
 char		**ft_split(char const *s, char c);
+
+//utils/singleton.c
+int			singleton(int set, bool write);
 
 // utils/utils_one.c
 int			ft_atoi(const char *str);
@@ -267,6 +274,7 @@ bool		is_lowercase(char c);
 bool		is_printable_except_space(char c);
 int			ft_strcmp(const char *s1, const char *s2);
 char		*ft_strjoin_new(char *s1, char *s2, int flag);
+void		ft_putnbr_fd(int n, int fd);
 
 // utils/utils_four.c
 int			strnstr_int(char *str, char *to_find);

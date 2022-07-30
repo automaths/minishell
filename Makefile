@@ -27,8 +27,10 @@ SRCS			=	./groshell.c \
 					./utils/env_char_to_lst.c \
 					./utils/env_char_to_lst_utils.c \
 					./utils/env_lst_to_char.c \
+					./utils/erroring.c \
 					./utils/freeing.c \
 					./utils/printing.c \
+					./utils/singleton.c \
 					./utils/tmp_debug.c \
 					./utils/ft_split.c \
 					./utils/ft_strtrim.c \
