@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:08 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 13:37:32 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 14:44:25 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	working_magic(char *str, t_env **env)
 {
 	t_command	*cmd;
 	t_first		*uno;
-	t_env		*tmp;
 
 	uno = lexer(str);
 	if (uno != NULL && uno->next != NULL)
@@ -33,9 +32,7 @@ void	working_magic(char *str, t_env **env)
 				// (void)tmp;
 				if (!replace_all_variable(cmd, *env))
 					return ;
-				tmp = exec_command(cmd);
-				if (tmp != NULL)
-					*env = tmp;
+				exec_command(cmd);
 			}
 		}
 	}
