@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:15 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 14:50:21 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 22:58:06 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ void	waitpiding(t_command *cmd)
 
 void	launching_execution(t_command *cmd)
 {
-	if (check_builts(cmd->arg->argz))
+	if (check_local_exec(cmd->arg->argz[0]))
+		local_exec(cmd);
+	else if (check_builts(cmd->arg->argz))
 	{
 		if (check_builts_nofork(cmd->arg->argz))
 			exec_token_builts_nofork(cmd);

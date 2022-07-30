@@ -12,6 +12,7 @@ SRCS			=	./groshell.c \
 					./executing/builtsing_nofork.c \
 					./executing/executing.c \
 					./executing/execving.c \
+					./executing/local_exec.c \
 					./executing/opening_fds.c \
 					./executing/parsing_arg.c \
 					./executing/redirecting_heredoc.c \

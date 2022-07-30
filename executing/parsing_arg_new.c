@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:33:05 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 19:12:47 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 00:08:25 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	get_the_path_one(t_command *cmd)
 	if (cmd->arg->unix_paths == NULL)
 		return (0);
 	if (command_trim(cmd) == 0)
-		return (ft_error(cmd->arg->command, (char *)NULL, 127, 1), 0);
+		return (ft_error(cmd->arg->command, (char *) NULL, 127, 1), 0);
 	if (cmd->arg->command == NULL)
 		return (0);
 	return (1);
@@ -41,14 +41,16 @@ bool	get_the_path(t_command *cmd)
 		return (0);
 	if (is_builts(cmd->arg->command))
 		return (1);
+	if (check_local_exec(cmd->arg->command))
+		return (1);
 	i = 0;
 	while (cmd->arg->unix_paths[i] \
 		&& find_path(cmd->arg, cmd->arg->unix_paths[i]) == 0)
 		i++;
 	if (cmd->arg->unix_paths[i] == NULL)
-		return (ft_error(cmd->arg->command, (char *)NULL, 127, 1), 0);
+		return (ft_error(cmd->arg->command, (char *) NULL, 127, 1), 0);
 	if (cmd->arg->path == NULL)
-		return (ft_error(cmd->arg->command, (char *)NULL, 127, 1), 0);
+		return (ft_error(cmd->arg->command, (char *) NULL, 127, 1), 0);
 	return (1);
 }
 

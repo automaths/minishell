@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 19:24:17 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 00:09:29 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,11 @@ t_env		*exec_command(t_command *cmd);
 // executing/execving.c
 void		forking(t_command *cmd);
 void		exec_token(t_command *cmd);
+
+// executing/local_exec.c
+bool		check_local_exec(char *command);
+void		local_forking(t_command *cmd);
+void		local_exec(t_command *cmd);
 
 // executing/opening_fds.c
 int			opening_append(char *content);

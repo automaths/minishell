@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 14:55:20 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 14:55:21 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 00:16:40 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	forking_heredoc(int fd_in, char *str)
 {
 	int	pid;
 
+	str = ft_strtrim(str, "\"\'");
 	pid = fork();
 	if (pid == -1)
 		return (0);
@@ -50,7 +51,7 @@ bool	reading_heredoc(char *limiter, int fd_in)
 			&& (ft_strlen(str) == ft_strlen(limiter)))
 			break ;
 		if (heredoc_ception(str))
-			forking_heredoc(fd_in, ft_strtrim(str, "<\"\'"));
+			forking_heredoc(fd_in, ft_strtrim(str, "< "));
 		else
 		{
 			write(fd_in, str, ft_strlen(str));
