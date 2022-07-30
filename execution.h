@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 16:22:13 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 17:02:18 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,19 +203,14 @@ char		**spliting_plus(char *str);
 char		*quoting_ruling(char *str);
 char		**split_cleaning(char **split);
 
-// parsing/lexer/lexer.c
+// parsing/lexer/lexer_one.c
+int			lexer_id_one(char c, int *mode);
+int			lexer_id_two(t_first **uno, char *str, int *mode);
+int			lexer_id_three(t_first **uno, char *str, int *mode);
+int			lexer_id_four(t_first **uno, char *str, int *mode, int *i);
 t_first		*lexer(char *str);
 
-
-
-
-
-int			lexer_id_one(char c, int *mode);
-void		lexer_id_three_tmp(t_first **uno, char *str, int *mode, int *i);
-int			lexer_id_two_tmp(t_first **uno, char *str, int *mode);
-
-
-
+// parsing/lexer/lexer_two.c 
 
 // parsing/lexer/lexer_utils.c
 void		print_lexer(t_first *uno);

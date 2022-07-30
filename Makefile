@@ -1,5 +1,6 @@
 SRCS			=	./groshell.c \
-					./parsing/lexer/lexer.c \
+					./parsing/lexer/lexer_one.c \
+					./parsing/lexer/lexer_two.c \
 					./parsing/lexer/lexer_utils.c \
 					./parsing/lexer/check_quotes.c \
 					./parsing/parser/parser.c \
