@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:43:59 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 17:06:58 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 19:37:07 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	lexer_id_four_one(char c, int *j, int *mode)
 
 int	lexer_id_four_two(char c, int *j, int *mode)
 {
-	if (c == '"' && *mode == SQUOTE_MODE)
+	if (c == '\'' && *mode == SQUOTE_MODE)
 	{
 		*j = *j + 1;
 		*mode = NEUTRAL_MODE;
