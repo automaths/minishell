@@ -1,4 +1,4 @@
-SRCS			=	./heredoc.c \
+SRCS			=	./singleton.c \
 
 OBJS			= 	$(SRCS:.c=.o)
 
