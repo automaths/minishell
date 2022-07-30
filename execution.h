@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 17:02:18 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 17:55:00 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,7 +220,7 @@ char		*alloc_content(char *str, unsigned int size);
 int			actual_mode(char c);
 
 //parsing/lexer/check_quotes.c
-bool	check_quotes(char *str);
+bool		check_quotes(char *str);
 
 // parsing/lexer/lexer_utils_two.c
 t_first		*new_uno(int type, char *content);
@@ -247,7 +247,7 @@ char		*alloc_line(char *name, char *content);
 char		**envp_to_char(t_env *env);
 
 //utils/erroring.c 
-void		ft_error(char *str, int error_type, bool update);
+void		ft_error(char *str, char *next, int error_type, bool update);
 
 //utils/freeing.c
 void		freeing_unix(t_token *arg);

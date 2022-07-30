@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:33:05 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 15:27:47 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 17:56:35 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	get_the_path_one(t_command *cmd)
 	if (cmd->arg->unix_paths == NULL)
 		return (0);
 	if (command_trim(cmd) == 0)
-		return (ft_error(cmd->arg->command, 127, 1), 0);
+		return (ft_error(cmd->arg->command, (char *)NULL, 127, 1), 0);
 	if (cmd->arg->command == NULL)
 		return (0);
 	return (1);
@@ -46,9 +46,9 @@ bool	get_the_path(t_command *cmd)
 		&& find_path(cmd->arg, cmd->arg->unix_paths[i]) == 0)
 		i++;
 	if (cmd->arg->unix_paths[i] == NULL)
-		return (ft_error(cmd->arg->command, 127, 1), 0);
+		return (ft_error(cmd->arg->command, (char *)NULL, 127, 1), 0);
 	if (cmd->arg->path == NULL)
-		return (ft_error(cmd->arg->command, 127, 1), 0);
+		return (ft_error(cmd->arg->command, (char *)NULL, 127, 1), 0);
 	return (1);
 }
 

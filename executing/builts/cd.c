@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:06:53 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 15:37:09 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 17:54:46 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,10 @@ void	exec_cd(t_command *cmd)
 		change_dir("~", cmd->env);
 	if (change_dir(cmd->arg->argz[1], cmd->env) == -1)
 	{
-		write(1, "bash: cd: ", ft_strlen("bash: cd: "));
-		write(1, cmd->arg->argz[1], ft_strlen(cmd->arg->argz[1]));
-		write(1, ": No such file or directory\n", 29);
+		ft_error("bash: cd: ", cmd->arg->argz[1], 1, 1);
+		// write(1, "bash: cd: ", ft_strlen("bash: cd: "));
+		// write(1, cmd->arg->argz[1], ft_strlen(cmd->arg->argz[1]));
+		// write(1, ": No such file or directory\n", 29);
 		return ;
 	}
 	else
