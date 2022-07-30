@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:06:53 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 17:54:46 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 19:23:56 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ bool	is_single_cd(char *str)
 	int	i;
 
 	i = 0;
+	if (str == NULL)
+		return (0);
 	while (str[i] && is_whitespace2(str[i]))
 		++i;
 	if (str[i] && str[i] == 'c')
@@ -57,6 +59,8 @@ bool	is_single_cd(char *str)
 		++i;
 	while (str[i] && is_whitespace2(str[i]))
 		++i;
+	if (str[i] && str[i] == '~' && (!str[i + 1] || str[i + 1] == ' '))
+		return (0);
 	if (i != (int)ft_strlen(str))
 		return (0);
 	return (1);
@@ -64,27 +68,41 @@ bool	is_single_cd(char *str)
 
 void	exec_cd(t_command *cmd)
 {
-	char	pwd[500];
+	// char	pwd[500];
+	// char	*home;
 
-	if (is_single_cd(cmd->arg->argz[1]))
-		change_dir("~", cmd->env);
-	if (change_dir(cmd->arg->argz[1], cmd->env) == -1)
-	{
-		ft_error("bash: cd: ", cmd->arg->argz[1], 1, 1);
-		// write(1, "bash: cd: ", ft_strlen("bash: cd: "));
-		// write(1, cmd->arg->argz[1], ft_strlen(cmd->arg->argz[1]));
-		// write(1, ": No such file or directory\n", 29);
-		return ;
-	}
-	else
-	{
-		getcwd(pwd, 500);
-		cmd->arg->argz[1] = ft_strjoin("OLDPWD="\
-			, find_content_cd("PWD", cmd->env));
-		exec_export(cmd);
-		free(cmd->arg->argz[1]);
-		cmd->arg->argz[1] = ft_strjoin("PWD=", pwd);
-		exec_export(cmd);
-		free(cmd->arg->argz[1]);
-	}
+	// if (cmd->arg->argz[1] == NULL)
+	// 	return (ft_error(NULL, NULL, 127, 1));
+	write(1, cmd->arg->argz[0], ft_strlen(cmd->arg->argz[0]));
+	// if (empty == 1)
+	if (cmd->arg->argz[1])
+		write(1, cmd->arg->argz[1], ft_strlen(cmd->arg->argz[1]));
+
+	// if (is_single_cd(cmd->arg->argz[1]))
+	// {
+	// 	home = find_content_cd("HOME", cmd->env);
+	// 	if (change_dir(home, cmd->env) == -1)
+	// 		return (ft_error("Can\'t go to home", NULL, 127, 1));
+	// 	exec_export(cmd);
+	// 	free(cmd->arg->argz[1]);
+	// 	cmd->arg->argz[1] = ft_strjoin("PWD=", home);
+	// 	exec_export(cmd);
+	// 	free(cmd->arg->argz[1]);
+	// }
+	// if (change_dir(cmd->arg->argz[1], cmd->env) == -1)
+	// {
+	// 	ft_error("bash: cd: ", cmd->arg->argz[1], 1, 1);
+	// 	return ;
+	// }
+	// else
+	// {
+	// 	getcwd(pwd, 500);
+	// 	cmd->arg->argz[1] = ft_strjoin("OLDPWD="
+	// 		, find_content_cd("PWD", cmd->env));
+	// 	exec_export(cmd);
+	// 	free(cmd->arg->argz[1]);
+	// 	cmd->arg->argz[1] = ft_strjoin("PWD=", pwd);
+	// 	exec_export(cmd);
+	// 	free(cmd->arg->argz[1]);
+	// }
 }

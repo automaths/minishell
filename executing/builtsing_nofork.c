@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:34:24 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 17:34:44 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 19:24:12 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ void	exec_token_builts_nofork(t_command *cmd)
 	if (ft_strncmp(cmd->arg->argz[0], "exit", 5) == 0)
 		exec_exit(cmd);
 	if (ft_strncmp(cmd->arg->argz[0], "cd", 3) == 0)
-		exec_cd(cmd);
+			exec_cd(cmd);
 }
