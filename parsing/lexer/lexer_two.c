@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:43:59 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 19:37:07 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/30 20:35:37 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	lexer_id_five(t_first **uno, char *str, int *mode, int *i)
 	int	j;
 
 	j = 0;
-	while (str[*i + ++j] && (*mode == 3 || *mode == 4 || *mode == 5))
+	while (str[*i + ++j] && (*mode == WORD_MODE || *mode == SQUOTE_MODE \
+		|| *mode == DQUOTE_MODE))
 	{
 		if ((actual_mode(str[*i + j]) != WORD_MODE) && (*mode == WORD_MODE))
 		{

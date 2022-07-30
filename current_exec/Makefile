@@ -1,4 +1,4 @@
-SRCS			=	./singleton.c \
+SRCS			=	./current_exec.c \
 					
 OBJS			= 	$(SRCS:.c=.o)
 
