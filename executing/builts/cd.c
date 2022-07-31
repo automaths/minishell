@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:06:53 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 19:40:21 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:42:55 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	change_dir(char *str, t_env *env)
 	if (!buf)
 		exit(1);
 	ret = chdir(buf);
-	free(buf);
+	// free(buf);
 	return (ret);
 }
 
@@ -83,9 +83,9 @@ void	exec_cd(t_command *cmd)
 		cmd->arg->argz[1] = ft_strjoin("OLDPWD="\
 			, find_content_cd("PWD", cmd->env));
 		exec_export(cmd);
-		free(cmd->arg->argz[1]);
+		// free(cmd->arg->argz[1]);
 		cmd->arg->argz[1] = ft_strjoin("PWD=", pwd);
 		exec_export(cmd);
-		free(cmd->arg->argz[1]);
+		// free(cmd->arg->argz[1]);
 	}
 }

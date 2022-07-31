@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:16 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 17:16:44 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:42:38 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ bool	find_path(t_token *arg, char *unix_path)
 		return (0);
 	if (access(arg->path, X_OK) == 0)
 		return (1);
-	return (free(arg->path), 0);
+	return (0);
 }
 
 bool	is_builts(char *command)

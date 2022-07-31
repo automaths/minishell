@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:47:29 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 15:47:30 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:46:25 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,10 @@ char	*ft_strjoin_new(char *s1, char *s2, int flag)
 	while (s2[++j])
 		str[i++] = s2[j];
 	str[i] = '\0';
-	if (flag == 1 || flag == 2)
-		free(s1);
-	if (flag == 2)
-		free(s2);
+	(void)flag;
+	// if (flag == 1 || flag == 2)
+	// 	free(s1);
+	// if (flag == 2)
+	// 	free(s2);
 	return (str);
 }

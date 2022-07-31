@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 16:40:19 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:42:17 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,11 +302,11 @@ char		**envp_to_char(t_env *env);
 void		ft_error(char *str, char *next, int error_type, bool update);
 
 //utils/freeing.c
-void		freeing_unix(t_token *arg);
-void		freeing_command(t_token *arg);
-void		freeing_path(t_token *arg);
-void		freeing_argz(t_token *arg);
-void		freeing_path_and_argz(t_token *arg);
+// void		freeing_unix(t_token *arg);
+// void		freeing_command(t_token *arg);
+// void		freeing_path(t_token *arg);
+// void		freeing_argz(t_token *arg);
+// void		freeing_path_and_argz(t_token *arg);
 
 // utils/ft_split.c
 char		**ft_split(char const *s, char c);

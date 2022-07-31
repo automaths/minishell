@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:08 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 17:13:30 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:41:25 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ int	main(int argc, char **argv, char **envp)
 			break ;
 		working_magic(str, &env, &garbage);
 	}
-	// clean_garbage(&garbage);
+	clean_garbage(&garbage);
 	return (0);
 }

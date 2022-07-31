@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:24:02 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 16:47:14 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:44:55 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,60 +139,3 @@ void	clean_garbage(t_garbage **grb)
 	}
 	*grb = NULL;
 }
-
-// int	main(void)
-// {
-// 	char **split;
-// 	char *hola;
-// 	char **hello;
-// 	char *halo;
-// 	t_command *el_cmd;
-// 	t_token *el_tkn;
-// 	t_env *el_env;
-// 	// int i;
-// 	t_garbage *el_garbage;
-
-// 	el_garbage = NULL;
-// 	split = (char **)malloc(sizeof(char *) * 2);
-// 	add_garbage(&el_garbage, new_garbage(split, D_CHAR));
-// 	split[0] = strdup("yoyo");
-// 	split[1] = strdup("heyhey");
-// 	hello = (char **)malloc(sizeof(char *) * 2);
-// 	add_garbage(&el_garbage, new_garbage(hello, D_CHAR));
-// 	hello[0] = strdup("yoyo");
-// 	hello[1] = strdup("heyhey");
-// 	hola = strdup("cavamec");
-// 	add_garbage(&el_garbage, new_garbage(hola, S_CHAR));
-// 	halo = strdup("ouaiouai");
-// 	add_garbage(&el_garbage, new_garbage(halo, S_CHAR));
-// 	el_cmd = (t_command *)malloc(sizeof(t_command));
-// 	add_garbage(&el_garbage, new_garbage(el_cmd, CMD));
-// 	el_tkn = (t_token *)malloc(sizeof(t_token));
-// 	add_garbage(&el_garbage, new_garbage(el_tkn, TKN));
-// 	el_env = (t_env *)malloc(sizeof(t_env));
-// 	add_garbage(&el_garbage, new_garbage(el_env, ENV));
-
-// 	(void)halo;
-// 	(void)hola;
-// 	(void)el_cmd;
-// 	(void)el_tkn;
-// 	(void)el_env;
-
-// 	clean_garbage(&el_garbage);
-
-// 	// i = -1;
-// 	// while (split[++i] != NULL)
-// 	// {
-// 	// 	free(split[i]);
-// 	// }
-// 	// free(split);
-// 	// i = -1;
-// 	// while (hello[++i] != NULL)
-// 	// {
-// 	// 	free(hello[i]);
-// 	// }
-// 	// free(hello);
-// 	// free(hola);
-// 	// free(halo);
-// 	return (0);
-// }
