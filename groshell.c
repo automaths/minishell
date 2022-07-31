@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:08 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 00:09:16 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 16:33:23 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void	print_all(t_command *cmd);
 void	print_step_one(t_first *uno);
 
-void	working_magic(char *str, t_env **env)
+void	working_magic(char *str, t_env **env, t_garbage **garbage)
 {
 	t_command	*cmd;
 	t_first		*uno;
 
-	uno = lexer(str);
+	uno = lexer(str, garbage);
 	if (uno != NULL && uno->next != NULL)
 	{
 		if (command_validation(uno))
@@ -40,9 +40,11 @@ int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
 	t_env	*env;
+	t_garbage	*garbage;
 
 	(void)argc;
 	(void)argv;
+	garbage = NULL;
 	singleton(0, 1);
 	env = env_to_list(envp);
 	str = (char *)malloc(sizeof(char) * 4096);
@@ -52,7 +54,8 @@ int	main(int argc, char **argv, char **envp)
 		add_history(str);
 		if (!(ft_strncmp(str, "exit", 5)))
 			break ;
-		working_magic(str, &env);
+		working_magic(str, &env, &garbage);
 	}
+	clean_garbage(&garbage);
 	return (0);
 }

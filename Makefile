@@ -38,6 +38,7 @@ SRCS			=	./groshell.c \
 					./utils/freeing.c \
 					./utils/printing.c \
 					./utils/singleton.c \
+					./utils/garbage_collector.c \
 					./utils/tmp_debug.c \
 					./utils/ft_split.c \
 					./utils/ft_strtrim.c \

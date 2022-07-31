@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 12:41:18 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 16:40:19 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,16 @@ typedef enum e_mode
 	SQUOTE_MODE,
 }	t_enum_mode;
 
+typedef enum e_garbage
+{
+	S_CHAR = 1,
+	D_CHAR,
+	FST,
+	CMD,
+	TKN,
+	ENV,
+}	t_enum_garbage;
+
 // ========================================================================= //
 //                                Structure                                  //
 // ========================================================================= //
@@ -89,11 +99,26 @@ typedef struct s_token
 	struct s_token	*next;
 }	t_token;
 
+
+typedef struct s_command t_command;
+
+typedef struct s_garbage
+{
+	char **d_char;
+	char *s_char;
+	t_first *fst;
+	t_command *cmd;
+	t_token *tkn;
+	t_env *env;
+	struct s_garbage *next;
+}	t_garbage;
+
 typedef struct s_command
 {
 	t_token				*arg;
 	t_token				*redir;
 	t_env				*env;
+	t_garbage			*garbage;
 	char				**envp_char;
 	int					is_piped;
 	int					fd[2];
@@ -233,17 +258,16 @@ char		**split_cleaning(char **split);
 
 // parsing/lexer/lexer_one.c
 int			lexer_id_one(char c, int *mode);
-int			lexer_id_two(t_first **uno, char *str, int *mode);
-int			lexer_id_three(t_first **uno, char *str, int *mode);
-int			lexer_id_four(t_first **uno, char *str, int *mode, int *i);
-t_first		*lexer(char *str);
+int	lexer_id_two(t_first **uno, char *str, int *mode, t_garbage **garbage);
+int	lexer_id_three(t_first **uno, char *str, int *mode, t_garbage **garbage);
+int	lexer_id_four(t_first **uno, char *str, int *mode, int *i, t_garbage **garbage);
+t_first	*lexer(char *str, t_garbage **garbage);
 
 // parsing/lexer/lexer_two.c 
 
 // parsing/lexer/lexer_utils.c
 void		print_lexer(t_first *uno);
 void		add_back_uno(t_first **uno, t_first *new);
-t_first		*new_uno(int type, char *content);
 char		*alloc_content(char *str, unsigned int size);
 int			actual_mode(char c);
 
@@ -251,7 +275,7 @@ int			actual_mode(char c);
 bool		check_quotes(char *str);
 
 // parsing/lexer/lexer_utils_two.c
-t_first		*new_uno(int type, char *content);
+t_first	*new_uno(int type, char *content, t_garbage **garbage);
 void		add_back_uno(t_first **uno, t_first *new);
 void		print_lexer(t_first *uno);
 
@@ -289,6 +313,14 @@ char		**ft_split(char const *s, char c);
 
 //utils/singleton.c
 int			singleton(int set, bool write);
+
+//utils/garbage_collector.c
+void	updator_next(t_command *cmd);
+void	updator_all(t_command *cmd);
+void	init_garbage(t_garbage **garbage);
+t_garbage	*new_garbage(void *content, int type);
+void	add_garbage(t_garbage **grb, t_garbage *new);
+void	clean_garbage(t_garbage **grb);
 
 // utils/utils_one.c
 int			ft_atoi(const char *str);

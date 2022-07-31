@@ -13,6 +13,7 @@ typedef enum e_mode
 {
 	S_CHAR = 1,
 	D_CHAR,
+	FST,
 	CMD,
 	TKN,
 	ENV,
@@ -51,6 +52,7 @@ typedef struct s_garbage
 {
 	char **d_char;
 	char *s_char;
+	t_first *fst;
 	t_command *cmd;
 	t_token *tkn;
 	t_env *env;
@@ -103,6 +105,7 @@ void	init_garbage(t_garbage **garbage)
 {
 	(*garbage)->s_char = NULL;
 	(*garbage)->d_char = NULL;
+	(*garbage)->fst = NULL;
 	(*garbage)->cmd = NULL;
 	(*garbage)->tkn = NULL;
 	(*garbage)->env = NULL;
@@ -120,6 +123,8 @@ t_garbage	*new_garbage(void *content, int type)
 		new->s_char = (char *)content;
 	if (type == D_CHAR)
 		new->d_char = (char **)content;
+	if (type == FST)
+		new->fst = (t_command *)content;
 	if (type == CMD)
 		new->cmd = (t_command *)content;
 	if (type == TKN)
@@ -166,6 +171,8 @@ void	clean_garbage(t_garbage **grb)
 		}
 		if ((tmp)->s_char != NULL)
 			free((tmp)->s_char);
+		if ((tmp)->fst != NULL)
+			free((tmp)->fst);
 		if ((tmp)->cmd != NULL)
 			free((tmp)->cmd);
 		if ((tmp)->tkn != NULL)

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:34:57 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 17:42:53 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 16:37:43 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,14 @@ char	*alloc_content(char *str, unsigned int size)
 	return (alloc);
 }
 
-t_first	*new_uno(int type, char *content)
+t_first	*new_uno(int type, char *content, t_garbage **garbage)
 {
 	t_first	*new;
 
 	new = (t_first *)malloc(sizeof(t_first));
 	if (new == NULL)
 		return (NULL);
+	add_garbage(garbage, new_garbage(new, FST));
 	new->type = type;
 	new->content = content;
 	new->next = NULL;
