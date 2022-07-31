@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 00:35:28 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 12:41:18 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,12 @@ typedef struct s_command
 
 // executing/builts/
 void		exec_cd(t_command *cmd);
+char		*find_content_cd(char *name, t_env *env);
 void		exec_echo(t_command *cmd);
 void		exec_env(t_command *cmd);
 void		exec_exit(t_command *cmd);
 void		exec_export(t_command *cmd);
+void		export_shlvl(t_command *cmd, bool add);
 void		exec_pwd(t_command *cmd);
 void		exec_unset(t_command *cmd);
 

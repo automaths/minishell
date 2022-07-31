@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:21:35 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 00:11:10 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 12:23:44 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	local_exec(t_command *cmd)
 {
 	char	**exec;
 
+	export_shlvl(cmd, 1);
 	cmd->envp_char = envp_to_char(cmd->env);
 	if (access(cmd->arg->command, F_OK | X_OK) != 0)
 	{
@@ -80,5 +81,6 @@ void	local_exec(t_command *cmd)
 			close(cmd->fd_in);
 		if (cmd->fd_out != 1)
 			close(cmd->fd_out);
+		export_shlvl(cmd, 0);
 	}
 }
