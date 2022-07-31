@@ -6,7 +6,7 @@
 /*   By: jucheval <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:44:21 by jucheval          #+#    #+#             */
-/*   Updated: 2022/07/31 00:21:08 by jucheval         ###   ########.fr       */
+/*   Updated: 2022/07/31 23:37:36 by jucheval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	del_all_neg_quotes_redir(t_command *cmd)
 	tmp = cmd->redir;
 	while (tmp)
 	{
-		tmp->content = del_one_neg_quotes(tmp->content);
+		tmp->content = del_one_neg_quotes(tmp->content, cmd);
 		if (!tmp->content)
 			return (0);
 		tmp = tmp->next;

@@ -6,7 +6,7 @@
 /*   By: jucheval <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 21:49:48 by jucheval          #+#    #+#             */
-/*   Updated: 2022/07/30 23:15:40 by jucheval         ###   ########.fr       */
+/*   Updated: 2022/07/31 23:32:14 by jucheval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*find_variable_value(char *name, t_env *env)
 	return (NULL);
 }
 
-char	*string_with_var_value(char *cmd, char *name, int size_old_var)
+char	*string_with_var_value(char *cmd, char *name, int size_old_var, t_command *t_cmd)
 {
 	int		i;
 	int		j;
@@ -40,6 +40,7 @@ char	*string_with_var_value(char *cmd, char *name, int size_old_var)
 	ft_strlen(name) + 1));
 	if (!dest)
 		return (NULL);
+	add_garbage(t_cmd->garbage, new_garbage(dest, S_CHAR));
 	while (cmd[i] && cmd[i] != '$')
 		dest[j++] = cmd[i++];
 	while (name[k])
@@ -51,7 +52,7 @@ char	*string_with_var_value(char *cmd, char *name, int size_old_var)
 	return (dest);
 }
 
-char	*replace_one_variable(char *str, t_env *env, int i)
+char	*replace_one_variable(char *str, t_env *env, int i, t_command *cmd)
 {
 	int		j;
 	char	*variable_name;
@@ -65,6 +66,7 @@ char	*replace_one_variable(char *str, t_env *env, int i)
 	variable_name = malloc(sizeof(char) * (j + 1));
 	if (!variable_name)
 		return (NULL);
+	add_garbage(cmd->garbage, new_garbage(variable_name, S_CHAR));
 	i -= j;
 	j = 0;
 	while (str[i] && ft_isalnum(str[i]))
@@ -73,7 +75,7 @@ char	*replace_one_variable(char *str, t_env *env, int i)
 	variable_name = find_variable_value(variable_name, env);
 	if (!variable_name)
 		return (0);
-	str = string_with_var_value(str, variable_name, j);
+	str = string_with_var_value(str, variable_name, j, cmd);
 	if (!str)
 		return (NULL);
 	return (str);
@@ -97,7 +99,7 @@ int	replace_variable(t_command *cmd, t_env *env)
 				if (tmp_token->content[i] == '$')
 				{
 					tmp_token->content = \
-					replace_one_variable(tmp_token->content, env, i);
+					replace_one_variable(tmp_token->content, env, i, cmd);
 					if (!tmp_token->content)
 						return (0);
 				}

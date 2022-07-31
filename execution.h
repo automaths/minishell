@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 22:45:29 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 00:20:03 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,8 +212,8 @@ int			redirectionning(t_command *cmd);
 // parsing/expand/expand.c
 int			replace_all_variable(t_command *cmd, t_env *env);
 int			replace_variable(t_command *cmd, t_env *env);
-char		*replace_one_variable(char *str, t_env *env, int i);
-char		*string_with_var_value(char *cmd, char *name, int size_old_var);
+char		*replace_one_variable(char *str, t_env *env, int i, t_command *cmd);
+char		*string_with_var_value(char *cmd, char *name, int size_old_var, t_command *t_cmd);
 char		*find_variable_value(char *name, t_env *env);
 
 // parsing/expand/expand_redir_list.c
@@ -221,8 +221,8 @@ int			delete_redir_char_in_redir_list(t_command *cmd);
 int			replace_variable_redir(t_command *cmd, t_env *env);
 
 // parsing/expand/return_value.c
-char		*string_with_return_var_value(char *cmd, char *name, int size_old_var);
-char		*replace_one_return_value(char *str);
+char		*string_with_return_var_value(char *cmd, char *name, int size_old_var, t_command *t_cmd);
+char		*replace_one_return_value(char *str, t_command *cmd);
 int			replace_return_value(t_command *cmd);
 
 // parsing/expand/expand_utils.c
@@ -235,7 +235,7 @@ int			ft_isalnum(int c);
 
 // parsing/expand/delete_quote.c
 void		negativ_quote(char *str);
-char		*del_one_neg_quotes(char *str);
+char		*del_one_neg_quotes(char *str, t_command *cmd);
 int			del_all_neg_quotes(t_command *cmd);
 int			del_quotes(t_command *cmd);
 

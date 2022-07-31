@@ -6,7 +6,7 @@
 /*   By: jucheval <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 21:02:45 by jucheval          #+#    #+#             */
-/*   Updated: 2022/07/31 00:25:02 by jucheval         ###   ########.fr       */
+/*   Updated: 2022/07/31 23:36:36 by jucheval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	negativ_quote(char *str)
 	}
 }
 
-char	*del_one_neg_quotes(char *str)
+char	*del_one_neg_quotes(char *str, t_command *cmd)
 {
 	int		i;
 	int		j;
@@ -43,6 +43,7 @@ char	*del_one_neg_quotes(char *str)
 	dest = malloc(sizeof(char) * ((i - j) + 1));
 	if (!dest)
 		return (NULL);
+	add_garbage(cmd->garbage, new_garbage(dest, S_CHAR));
 	i = 0;
 	j = 0;
 	while (str[i])
@@ -63,12 +64,12 @@ int	del_all_neg_quotes(t_command *cmd)
 	tmp = cmd->arg;
 	while (tmp)
 	{
-		tmp->content = del_one_neg_quotes(tmp->content);
+		tmp->content = del_one_neg_quotes(tmp->content, cmd);
 		if (!tmp->content)
 			return (0);
 		tmp = tmp->next;
 	}
-	replace_negativ_char_redir(cmd);
+	replace_negativ_char(cmd);
 	return (1);
 }
 

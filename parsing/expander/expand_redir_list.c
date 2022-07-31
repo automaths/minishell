@@ -6,7 +6,7 @@
 /*   By: jucheval <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:37:39 by jucheval          #+#    #+#             */
-/*   Updated: 2022/07/30 22:44:29 by jucheval         ###   ########.fr       */
+/*   Updated: 2022/07/31 23:33:49 by jucheval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	replace_variable_redir(t_command *cmd, t_env *env)
 				if (tmp_redir->content[i] == '$')
 				{
 					tmp_redir->content = \
-					replace_one_variable(tmp_redir->content, env, i);
+					replace_one_variable(tmp_redir->content, env, i, cmd);
 					if (!tmp_redir->content)
 						return (0);
 				}
