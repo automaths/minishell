@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:15 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 22:58:06 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 22:46:33 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,14 @@ t_env	*exec_command(t_command *cmd)
 				tmp->next->fd_in = -1;
 		}
 		else
+		{
+			signal(SIGINT, SIG_IGN);
 			launching_execution(tmp);
+		}
 		tmp = tmp->next;
 	}
 	waitpiding(cmd);
+	signal(SIGINT, prompt_signal);
 	closing_fd(cmd);
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:08 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 19:45:58 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 22:42:56 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,23 @@ void	working_magic(char *str, t_env **env, t_garbage **garbage)
 	t_command	*cmd;
 	t_first		*uno;
 
-	(void)env;
-	(void)cmd;
+	// (void)env;
+	// (void)cmd;
 	uno = lexer(str, garbage);
-	(void)uno;
-	// if (uno != NULL && uno->next != NULL)
-	// {
-	// 	if (command_validation(uno))
-	// 	{
-	// 		cmd = step_two(uno, *env, garbage);
-	// 		if (cmd != NULL)
-	// 		{
-	// 			if (!replace_all_variable(cmd, *env))
-	// 				return ;
-	// 			exec_command(cmd);
-	// 		}
-	// 	}
-	// }
+	// (void)uno;
+	if (uno != NULL && uno->next != NULL)
+	{
+		if (command_validation(uno))
+		{
+			cmd = step_two(uno, *env, garbage);
+			if (cmd != NULL)
+			{
+				if (!replace_all_variable(cmd, *env))
+					return ;
+				exec_command(cmd);
+			}
+		}
+	}
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -53,7 +53,10 @@ int	main(int argc, char **argv, char **envp)
 	// str = (char *)malloc(sizeof(char) * 4096);
 	while (1)
 	{
+		set_signal();
 		str = readline("groshell> ");
+		if (!str)
+			return (printf("exit\n"), 0);
 		add_history(str);
 		if (!(ft_strncmp(str, "exit", 5)))
 			break ;

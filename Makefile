@@ -45,6 +45,7 @@ SRCS			=	./groshell.c \
 					./utils/utils_two.c \
 					./utils/utils_three.c \
 					./utils/utils_four.c \
+					./utils/signal.c \
 					./utils/ft_itoa.c \
 					
 

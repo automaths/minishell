@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 19:37:49 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 22:45:29 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -352,5 +352,10 @@ void		writing(char *intro, char *content);
 
 // utils/ft_itoa.c
 char	*ft_itoa(int nb);
+
+// signaux
+void    set_signal(void);
+void	prompt_signal(int sig);
+void	exit_fork();
 
 #endif

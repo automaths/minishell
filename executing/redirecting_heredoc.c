@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 14:55:20 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 00:16:40 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 22:47:49 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,20 @@ int	forking_heredoc(int fd_in, char *str)
 	int	pid;
 
 	str = ft_strtrim(str, "\"\'");
+	signal(SIGINT, SIG_IGN);
 	pid = fork();
 	if (pid == -1)
 		return (0);
 	if (pid == 0)
 	{
+		signal(SIGINT, exit_fork);
 		reading_heredoc(str, fd_in);
 	}
-	waitpid(pid, 0, 0);
+	else
+	{
+		waitpid(pid, 0, 0);
+		signal(SIGINT, prompt_signal);
+	}
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:39:05 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 15:39:08 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 22:45:01 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ void	exec_token(t_command *cmd)
 	if (cmd->arg->pid == -1)
 		return ;
 	if (cmd->arg->pid == 0)
+	{
+		signal(SIGINT, exit_fork);
 		forking(cmd);
+	}
 	else
 	{
 		if (cmd->fd_in != 0)

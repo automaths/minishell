@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:21:35 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 12:23:44 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 22:47:03 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ void	local_exec(t_command *cmd)
 	if (cmd->arg->pid == -1)
 		return ;
 	if (cmd->arg->pid == 0)
+	{
+		signal(SIGINT, exit_fork);
 		local_forking(cmd);
+	}
 	else
 	{
 		if (cmd->fd_in != 0)
