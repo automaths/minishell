@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:15 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 22:46:33 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 23:30:41 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,36 @@ void	closing_fd(t_command *cmd)
 	}
 }
 
+void	updating_singleton(int num)
+{
+	if (num == 512)
+		singleton(2, 1);
+	else if (num == 256)
+		singleton(1, 1);
+	else if (num == 127)
+		singleton(127, 1);
+	else if (num == 32512)
+		singleton(127, 1);
+	else if (num == 0)
+		singleton(0, 1);
+}
+
 void	waitpiding(t_command *cmd)
 {
 	t_command	*tmp;
+	int			num;
 
 	tmp = cmd;
 	while (tmp != NULL)
 	{
 		if (tmp->arg != NULL)
-			waitpid(tmp->arg->pid, 0, 0);
+		{
+			if (waitpid(tmp->arg->pid, &num, 2) != -1)
+			{
+				if (tmp->arg->pid && num)
+					updating_singleton(num);
+			}
+		}
 		tmp = tmp->next;
 	}
 }

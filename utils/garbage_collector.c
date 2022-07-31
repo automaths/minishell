@@ -6,39 +6,39 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:24:02 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 20:40:12 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 22:59:54 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execution.h"
 
-void	updator_next(t_command *cmd)
-{
-	t_command *tmp;
+// void	updator_next(t_command *cmd)
+// {
+// 	t_command *tmp;
 
-	tmp = cmd;
-	while (tmp != NULL)
-	{
-		tmp->garbage = cmd->garbage;
-		tmp = tmp->next;
-	}
-}
+// 	tmp = cmd;
+// 	while (tmp != NULL)
+// 	{
+// 		tmp->garbage = cmd->garbage;
+// 		tmp = tmp->next;
+// 	}
+// }
 
-void	updator_all(t_command *cmd)
-{
-	t_command *tmp;
-	t_command *tnp;
+// void	updator_all(t_command *cmd)
+// {
+// 	t_command *tmp;
+// 	t_command *tnp;
 
-	tmp = cmd;
-	while(tmp->next != NULL)
-		tmp = tmp->next;
-	tnp = cmd;
-	while (tnp != NULL)
-	{
-		tnp->garbage = tmp->garbage;
-		tnp = tnp->next;
-	}
-}
+// 	tmp = cmd;
+// 	while(tmp->next != NULL)
+// 		tmp = tmp->next;
+// 	tnp = cmd;
+// 	while (tnp != NULL)
+// 	{
+// 		tnp->garbage = tmp->garbage;
+// 		tnp = tnp->next;
+// 	}
+// }
 
 void	init_garbage(t_garbage **garbage)
 {
