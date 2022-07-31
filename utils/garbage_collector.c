@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:24:02 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 19:21:52 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 20:30:21 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,6 @@ void	clean_garbage(t_garbage **grb)
 		if ((tmp)->d_char != NULL)
 		{
 			write(1, "d_char ", ft_strlen("d_char "));
-			i = -1;
-			while ((tmp)->d_char[++i] != NULL)
-			{
-				free((tmp)->d_char[i]);
-			}
 			free((tmp)->d_char);
 		}
 		if ((tmp)->s_char != NULL)
