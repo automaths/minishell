@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:47:29 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 18:46:25 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:54:38 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (one[i] - two[i]);
 }
 
-char	*ft_strjoin_new(char *s1, char *s2, int flag)
+char	*ft_strjoin_new(char *s1, char *s2, t_garbage **garbage)
 {
 	char	*str;
 	int		i;
@@ -58,7 +58,8 @@ char	*ft_strjoin_new(char *s1, char *s2, int flag)
 		return (NULL);
 	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
 	if (str == NULL)
-		return (free(s1), NULL);
+		return (NULL);
+	(void)garbage;
 	i = -1;
 	while (s1[++i])
 		str[i] = s1[i];
@@ -66,10 +67,5 @@ char	*ft_strjoin_new(char *s1, char *s2, int flag)
 	while (s2[++j])
 		str[i++] = s2[j];
 	str[i] = '\0';
-	(void)flag;
-	// if (flag == 1 || flag == 2)
-	// 	free(s1);
-	// if (flag == 2)
-	// 	free(s2);
 	return (str);
 }

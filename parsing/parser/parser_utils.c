@@ -6,19 +6,20 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:47:12 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 15:40:14 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:58:48 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../execution.h"
 
-t_command	*new_cmd(t_env *env)
+t_command	*new_cmd(t_env *env, t_garbage **garbage)
 {
 	t_command	*new;
 
 	new = (t_command *)malloc(sizeof(t_command));
 	if (new == NULL)
 		return (NULL);
+	add_garbage(garbage, new_garbage(new, CMD));
 	new->env = env;
 	new->fd_in = -1;
 	new->fd_out = -1;
@@ -26,6 +27,7 @@ t_command	*new_cmd(t_env *env)
 	new->arg = NULL;
 	new->redir = NULL;
 	new->next = NULL;
+	new->garbage = garbage;
 	return (new);
 }
 
@@ -44,15 +46,17 @@ void	add_back_cmd(t_command **cmd, t_command *new)
 		*cmd = new;
 }
 
-t_token	*new_tkn(char *arg, int type)
+t_token	*new_tkn(char *arg, int type, t_garbage **garbage)
 {
 	t_token	*new;
 
 	new = (t_token *)malloc(sizeof(t_token));
 	if (new == NULL)
 		return (NULL);
+	add_garbage(garbage, new_garbage(new, TKN));
 	new->content = arg;
 	new->type = type;
+	new->garbage = garbage;
 	new->next = NULL;
 	return (new);
 }
@@ -72,14 +76,14 @@ void	add_back_tkn(t_token **tkn, t_token *new)
 		*tkn = new;
 }
 
-t_command	*step_two(t_first *uno, t_env *env)
+t_command	*step_two(t_first *uno, t_env *env, t_garbage **garbage)
 {
 	t_command		*cmd;
 	t_command		*tmp_cmd;
 	t_first			*tmp_uno;
 	int				t;
 
-	cmd = new_cmd(env);
+	cmd = new_cmd(env, garbage);
 	tmp_cmd = cmd;
 	tmp_uno = uno;
 	t = 0;
@@ -87,7 +91,7 @@ t_command	*step_two(t_first *uno, t_env *env)
 	{
 		if (tmp_uno->type == WORD)
 			add_back_tkn(&tmp_cmd->arg \
-				, new_tkn(tmp_uno->content, tmp_uno->type));
+				, new_tkn(tmp_uno->content, tmp_uno->type, garbage));
 		if (tmp_uno->type == APPEND || tmp_uno->type == WRITE \
 			|| tmp_uno->type == HEREDOC || tmp_uno->type == READ)
 		{
@@ -95,16 +99,16 @@ t_command	*step_two(t_first *uno, t_env *env)
 			{
 				add_back_tkn(&tmp_cmd->redir \
 					, new_tkn(ft_strjoin(tmp_uno->content \
-						, tmp_uno->next->content), tmp_uno->type));
+						, tmp_uno->next->content), tmp_uno->type, garbage));
 				t = 1;
 			}
 			else
 				add_back_tkn(&tmp_cmd->redir \
-					, new_tkn(tmp_uno->content, tmp_uno->type));
+					, new_tkn(tmp_uno->content, tmp_uno->type, garbage));
 		}
 		if (tmp_uno->type == PIPE)
 		{
-			add_back_cmd(&tmp_cmd, new_cmd(env));
+			add_back_cmd(&tmp_cmd, new_cmd(env, garbage));
 			tmp_cmd = tmp_cmd->next;
 		}
 		if (t == 1)

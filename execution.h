@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 18:42:17 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 19:37:49 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,13 @@ typedef struct s_first
 	struct s_first	*next;
 }	t_first;
 
+typedef struct s_garbage t_garbage;
+
 typedef struct s_env
 {
 	char			*name;
 	char			*content;
+	t_garbage		**garbage;
 	struct s_env	*next;
 }	t_env;
 
@@ -96,6 +99,7 @@ typedef struct s_token
 	char			*command;
 	char			*path;
 	int				pid;
+	t_garbage		**garbage;
 	struct s_token	*next;
 }	t_token;
 
@@ -118,7 +122,7 @@ typedef struct s_command
 	t_token				*arg;
 	t_token				*redir;
 	t_env				*env;
-	t_garbage			*garbage;
+	t_garbage			**garbage;
 	char				**envp_char;
 	int					is_piped;
 	int					fd[2];
@@ -245,11 +249,11 @@ bool		pipes_validation(t_first *uno);
 bool		command_validation(t_first *uno);
 
 // parsing/parser/parser_utils.c
-t_command	*new_cmd(t_env *env);
+t_command	*new_cmd(t_env *env, t_garbage **garbage);
 void		add_back_cmd(t_command **cmd, t_command *new);
-t_token		*new_tkn(char *arg, int type);
+t_token		*new_tkn(char *arg, int type, t_garbage **garbage);
 void		add_back_tkn(t_token **tkn, t_token *new);
-t_command	*step_two(t_first *uno, t_env *env);
+t_command	*step_two(t_first *uno, t_env *env, t_garbage **garbage);
 
 // parsing/parser/parsing_splitting.c
 char		**spliting_plus(char *str);
@@ -268,7 +272,7 @@ t_first	*lexer(char *str, t_garbage **garbage);
 // parsing/lexer/lexer_utils.c
 void		print_lexer(t_first *uno);
 void		add_back_uno(t_first **uno, t_first *new);
-char		*alloc_content(char *str, unsigned int size);
+char		*alloc_content(char *str, unsigned int size, t_garbage **garbage);
 int			actual_mode(char c);
 
 //parsing/lexer/check_quotes.c
@@ -284,14 +288,14 @@ void		print_lexer(t_first *uno);
 // ========================================================================= //
 
 // utils/env_char_to_lst.c
-t_env		*new_lst(char *name, char *content);
+t_env		*new_lst(char *name, char *content, t_garbage **garbage);
 t_env		*new_env_lst(char *name, char *content);
 void		add_back_env_lst(t_env **lst, t_env *new);
-char		*get_content(char *envp);
-char		*get_name(char *envp);
+char		*get_content(char *envp, t_garbage **garbage);
+char		*get_name(char *envp, t_garbage **garbage);
 int			has_equal(char *str);
 bool		check_envp(char **envp);
-t_env		*env_to_list(char **envp);
+t_env		*env_to_list(char **envp, t_garbage **garbage);
 
 // utils/env_lst_to_char.c
 int			lst_len(t_env *env);
@@ -337,7 +341,7 @@ bool		is_whitespace2(char c);
 bool		is_lowercase(char c);
 bool		is_printable_except_space(char c);
 int			ft_strcmp(const char *s1, const char *s2);
-char		*ft_strjoin_new(char *s1, char *s2, int flag);
+char		*ft_strjoin_new(char *s1, char *s2, t_garbage **garbage);
 void		ft_putnbr_fd(int n, int fd);
 
 // utils/utils_four.c

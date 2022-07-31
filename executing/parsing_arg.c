@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:16 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 18:42:38 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:54:31 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ bool	find_path(t_token *arg, char *unix_path)
 
 	slash[0] = '/';
 	slash[1] = '\0';
-	arg->path = ft_strjoin_new(unix_path, slash, 0);
+	arg->path = ft_strjoin_new(unix_path, slash, arg->garbage);
 	if (arg->path == NULL)
 		return (0);
-	arg->path = ft_strjoin_new(arg->path, arg->command, 1);
+	arg->path = ft_strjoin_new(arg->path, arg->command, arg->garbage);
 	if (arg->path == NULL)
 		return (0);
 	if (access(arg->path, X_OK) == 0)

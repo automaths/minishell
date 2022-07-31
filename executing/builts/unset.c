@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:20:54 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 18:43:17 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 19:36:19 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void	exec_unset(t_command *cmd)
 {
 	char	*name;
 
-	name = get_name(cmd->arg->argz[1]);
+	name = get_name(cmd->arg->argz[1], cmd->garbage);
 	remove_env(name, &cmd->env);
 }

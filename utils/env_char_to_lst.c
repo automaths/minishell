@@ -6,13 +6,13 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:55:44 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 17:55:51 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 19:39:32 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execution.h"
 
-char	*get_content(char *envp)
+char	*get_content(char *envp, t_garbage **garbage)
 {
 	char	*str;
 	int		i;
@@ -28,6 +28,7 @@ char	*get_content(char *envp)
 	str = (char *)malloc(sizeof(char) * (j + 1));
 	if (str == NULL)
 		return (NULL);
+	add_garbage(garbage, new_garbage(str, S_CHAR));
 	str[j] = '\0';
 	j = -1;
 	while (envp[i + ++j])
@@ -35,7 +36,7 @@ char	*get_content(char *envp)
 	return (str);
 }
 
-char	*get_name(char *envp)
+char	*get_name(char *envp, t_garbage **garbage)
 {
 	char	*str;
 	int		i;
@@ -46,6 +47,7 @@ char	*get_name(char *envp)
 	str = (char *)malloc(sizeof(char) * (i + 1));
 	if (str == NULL)
 		return (NULL);
+	add_garbage(garbage, new_garbage(str, S_CHAR));
 	str[i] = '\0';
 	i = -1;
 	while (envp[++i] && envp[i] != '=')
@@ -53,7 +55,7 @@ char	*get_name(char *envp)
 	return (str);
 }
 
-t_env	*env_to_list(char **envp)
+t_env	*env_to_list(char **envp, t_garbage **garbage)
 {
 	int		i;
 	t_env	*env;
@@ -65,6 +67,6 @@ t_env	*env_to_list(char **envp)
 		return (NULL);
 	i = -1;
 	while (envp[++i])
-		add_back_lst(&env, new_lst(get_name(envp[i]), get_content(envp[i])));
+		add_back_lst(&env, new_lst(get_name(envp[i], garbage), get_content(envp[i], garbage), garbage));
 	return (env);
 }

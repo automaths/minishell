@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:37:21 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 15:37:26 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 19:19:15 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	add_back_env(char *name, char *content, t_env *env)
 		return ;
 	while (tmp->next != NULL)
 		tmp = tmp->next;
-	tmp->next = new_lst(name, content);
+	tmp->next = new_lst(name, content, env->garbage);
 }
 
 void	read_envz(t_env *env)

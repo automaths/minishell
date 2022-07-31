@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:43:40 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 16:41:10 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 19:02:33 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ int	lexer_id_two(t_first **uno, char *str, int *mode, t_garbage **garbage)
 	i = 1;
 	if (*mode == R_REDIR_MODE && str[i] == '>')
 	{
-		add_back_uno(uno, new_uno(APPEND, alloc_content(&str[i - 1], 2), garbage));
+		add_back_uno(uno, new_uno(APPEND, alloc_content(&str[i - 1], 2, garbage), garbage));
 		*mode = NEUTRAL_MODE;
 		return (0);
 	}
 	if (*mode == R_REDIR_MODE && str[i] != '>')
 	{
-		add_back_uno(uno, new_uno(WRITE, alloc_content(&str[i - 1], 1), garbage));
+		add_back_uno(uno, new_uno(WRITE, alloc_content(&str[i - 1], 1, garbage), garbage));
 		*mode = actual_mode(str[i]);
 	}
 	return (1);
@@ -55,18 +55,18 @@ int	lexer_id_three(t_first **uno, char *str, int *mode, t_garbage **garbage)
 	i = 1;
 	if (*mode == L_REDIR_MODE && str[i] == '<')
 	{
-		add_back_uno(uno, new_uno(HEREDOC, alloc_content(&str[i - 1], 2), garbage));
+		add_back_uno(uno, new_uno(HEREDOC, alloc_content(&str[i - 1], 2, garbage), garbage));
 		*mode = NEUTRAL_MODE;
 		return (0);
 	}
 	if (*mode == L_REDIR_MODE && str[i] != '<')
 	{
-		add_back_uno(uno, new_uno(READ, alloc_content(&str[i - 1], 1), garbage));
+		add_back_uno(uno, new_uno(READ, alloc_content(&str[i - 1], 1, garbage), garbage));
 		*mode = actual_mode(str[i]);
 	}
 	if (str[i] == '|')
 	{
-		add_back_uno(uno, new_uno(PIPE, alloc_content(&str[i], 1), garbage));
+		add_back_uno(uno, new_uno(PIPE, alloc_content(&str[i], 1, garbage), garbage));
 		return (0);
 	}
 	return (1);

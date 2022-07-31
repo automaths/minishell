@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:34:57 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 16:37:43 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 19:04:25 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	actual_mode(char c)
 		return (WORD_MODE);
 }
 
-char	*alloc_content(char *str, unsigned int size)
+char	*alloc_content(char *str, unsigned int size, t_garbage **garbage)
 {
 	char			*alloc;
 	unsigned int	i;
@@ -38,6 +38,7 @@ char	*alloc_content(char *str, unsigned int size)
 	alloc = (char *)malloc(sizeof(char) * (size + 1));
 	if (alloc == NULL)
 		return (NULL);
+	add_garbage(garbage, new_garbage(alloc, S_CHAR));
 	alloc[size] = '\0';
 	i = -1;
 	while (str[++i] && i < size)

@@ -6,21 +6,23 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:37:05 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 17:55:27 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 19:18:09 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execution.h"
 
-t_env	*new_lst(char *name, char *content)
+t_env	*new_lst(char *name, char *content, t_garbage **garbage)
 {
 	t_env	*new;
 
 	new = (t_env *)malloc(sizeof(t_env));
 	if (new == NULL)
 		return (NULL);
+	add_garbage(garbage, new_garbage(new, ENV));
 	new->name = name;
 	new->content = content;
+	new->garbage = garbage;
 	new->next = NULL;
 	return (new);
 }

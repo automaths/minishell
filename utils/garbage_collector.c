@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:24:02 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 18:44:55 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/07/31 19:21:52 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	clean_garbage(t_garbage **grb)
 		next = tmp->next;
 		if ((tmp)->d_char != NULL)
 		{
-			write(1, "freeing d_char	", ft_strlen("freeing d_char	"));
+			write(1, "d_char ", ft_strlen("d_char "));
 			i = -1;
 			while ((tmp)->d_char[++i] != NULL)
 			{
@@ -111,27 +111,27 @@ void	clean_garbage(t_garbage **grb)
 		}
 		if ((tmp)->s_char != NULL)
 		{
-			write(1, "freeing s_char	", ft_strlen("freeing s_char	"));
+			write(1, "s_char ", ft_strlen("s_char "));
 			free((tmp)->s_char);
 		}
 		if ((tmp)->fst != NULL)
 		{
-			write(1, "freeing fst	", ft_strlen("freeing fst	"));
+			write(1, "fst ", ft_strlen("fst "));
 			free((tmp)->fst);
 		}
 		if ((tmp)->cmd != NULL)
 		{
-			write(1, "freeing cmd	", ft_strlen("freeing cmd	"));
+			write(1, "cmd ", ft_strlen("cmd "));
 			free((tmp)->cmd);
 		}
 		if ((tmp)->tkn != NULL)
 		{
-			write(1, "freeing tkn	", ft_strlen("freeing tkn	"));
+			write(1, "tkn ", ft_strlen("tkn "));
 			free((tmp)->tkn);
 		}
 		if ((tmp)->env != NULL)
 		{
-			write(1, "freeing env	", ft_strlen("freeing env	"));
+			write(1, "env ", ft_strlen("env "));
 			free((tmp)->env);
 		}
 		free(tmp);
