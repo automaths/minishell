@@ -88,17 +88,17 @@ void	clean_garbage(t_garbage **grb)
 	while (tmp)
 	{
 		next = tmp->next;
-		if ((*grb)->d_char != NULL)
+		if ((tmp)->d_char != NULL)
 		{
 			i = -1;
-			while ((*grb)->d_char[++i] != NULL)
+			while ((tmp)->d_char[++i] != NULL)
 			{
-				free((*grb)->d_char[i]);
+				free((tmp)->d_char[i]);
 			}
-			free((*grb)->d_char);
+			free((tmp)->d_char);
 		}
-		if ((*grb)->s_char != NULL)
-			free((*grb)->s_char);
+		if ((tmp)->s_char != NULL)
+			free((tmp)->s_char);
 		free(tmp);
 		tmp = next;
 	}
@@ -111,30 +111,41 @@ int	main(void)
 	char *hola;
 	char **hello;
 	char *halo;
-	int i;
+	// int i;
+	t_garbage *el_garbage;
 
+	el_garbage = NULL;
 	split = (char **)malloc(sizeof(char *) * 2);
+	add_garbage(&el_garbage, new_garbage(split, NULL));
 	split[0] = strdup("yoyo");
 	split[1] = strdup("heyhey");
 	hello = (char **)malloc(sizeof(char *) * 2);
+	add_garbage(&el_garbage, new_garbage(hello, NULL));
 	hello[0] = strdup("yoyo");
 	hello[1] = strdup("heyhey");
 	hola = strdup("cavamec");
+	add_garbage(&el_garbage, new_garbage(NULL, hola));
 	halo = strdup("ouaiouai");
+	add_garbage(&el_garbage, new_garbage(NULL, halo));
 
-	i = -1;
-	while (split[++i] != NULL)
-	{
-		free(split[i]);
-	}
-	free(split);
-	i = -1;
-	while (hello[++i] != NULL)
-	{
-		free(hello[i]);
-	}
-	free(hello);
-	free(hola);
-	free(halo);
+	(void)halo;
+	(void)hola;
+
+	clean_garbage(&el_garbage);
+
+	// i = -1;
+	// while (split[++i] != NULL)
+	// {
+	// 	free(split[i]);
+	// }
+	// free(split);
+	// i = -1;
+	// while (hello[++i] != NULL)
+	// {
+	// 	free(hello[i]);
+	// }
+	// free(hello);
+	// free(hola);
+	// free(halo);
 	return (0);
 }
