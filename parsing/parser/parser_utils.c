@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:47:12 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 18:58:48 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 11:53:48 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ t_command	*step_two(t_first *uno, t_env *env, t_garbage **garbage)
 			{
 				add_back_tkn(&tmp_cmd->redir \
 					, new_tkn(ft_strjoin(tmp_uno->content \
-						, tmp_uno->next->content), tmp_uno->type, garbage));
+						, tmp_uno->next->content, garbage), tmp_uno->type, garbage));
 				t = 1;
 			}
 			else

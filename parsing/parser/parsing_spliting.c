@@ -6,24 +6,12 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:47:07 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 17:36:17 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 11:38:26 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../execution.h"
 
-char	**spliting_plus(char *str)
-{
-	char	*str_quoted;
-	char	**split;
-
-	str_quoted = quoting_ruling(str);
-	split = ft_split(str_quoted, ' ');
-	if (split == NULL)
-		return (NULL);
-	split = split_cleaning(split);
-	return (split);
-}
 
 char	*quoting_ruling(char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:39:05 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 23:16:32 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 11:36:09 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	forking(t_command *cmd)
 			return ;
 	}
 	if (cmd->fd_in != 0)
-		close(cmd->fd_in);
+		close(cmd->fd_in);	
 	if (cmd->fd_out != 1)
 		close(cmd->fd_out);
 	if (execve(cmd->arg->path, cmd->arg->argz, cmd->envp_char) == -1)

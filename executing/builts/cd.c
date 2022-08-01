@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:06:53 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 18:42:55 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 11:52:19 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ void	exec_cd(t_command *cmd)
 	{
 		getcwd(pwd, 500);
 		cmd->arg->argz[1] = ft_strjoin("OLDPWD="\
-			, find_content_cd("PWD", cmd->env));
+			, find_content_cd("PWD", cmd->env), cmd->garbage);
 		exec_export(cmd);
 		// free(cmd->arg->argz[1]);
-		cmd->arg->argz[1] = ft_strjoin("PWD=", pwd);
+		cmd->arg->argz[1] = ft_strjoin("PWD=", pwd, cmd->garbage);
 		exec_export(cmd);
 		// free(cmd->arg->argz[1]);
 	}

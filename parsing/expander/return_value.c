@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   return_value.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jucheval <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 21:04:46 by jucheval          #+#    #+#             */
-/*   Updated: 2022/08/01 00:05:51 by jucheval         ###   ########.fr       */
+/*   Updated: 2022/08/01 10:58:53 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*replace_one_return_value(char *str, t_command *cmd)
 {
 	char	*variable_name;
 
-	variable_name = ft_itoa(singleton(0, 0));
+	variable_name = ft_itoa(singleton(0, 0), cmd->garbage);
 	if (!variable_name)
 		return (0);
 	str = string_with_return_var_value(str, variable_name, 2, cmd);

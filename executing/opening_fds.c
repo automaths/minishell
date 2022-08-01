@@ -6,17 +6,17 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:28:17 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 11:21:11 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 11:43:50 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execution.h"
 
-int	opening_append(char *content)
+int	opening_append(char *content, t_garbage **garbage)
 {
 	int	fd;
 
-	content = ft_strtrim(content, "> ");
+	content = ft_strtrim(content, "> ", garbage);
 	if (access(content, F_OK) == 0)
 	{
 		if (access(content, W_OK) == -1)
@@ -28,11 +28,11 @@ int	opening_append(char *content)
 	return (fd);
 }
 
-int	opening_standard_output(char *content)
+int	opening_standard_output(char *content, t_garbage **garbage)
 {
 	int	fd;
 
-	content = ft_strtrim(content, "> ");
+	content = ft_strtrim(content, "> ", garbage);
 	if (access(content, F_OK) == 0)
 	{
 		if (access(content, W_OK) == -1)
@@ -44,11 +44,11 @@ int	opening_standard_output(char *content)
 	return (fd);
 }
 
-int	opening_standard_input(char *content)
+int	opening_standard_input(char *content, t_garbage **garbage)
 {
 	int	fd;
 
-	content = ft_strtrim(content, "< ");
+	content = ft_strtrim(content, "< ", garbage);
 	if (access(content, F_OK) == 0)
 	{
 		if (access(content, R_OK) == -1)

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:47:29 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 18:54:38 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 10:57:47 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*ft_strjoin_new(char *s1, char *s2, t_garbage **garbage)
 	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
 	if (str == NULL)
 		return (NULL);
-	(void)garbage;
+	add_garbage(garbage, new_garbage(str, S_CHAR));
 	i = -1;
 	while (s1[++i])
 		str[i] = s1[i];

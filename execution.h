@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 00:20:03 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 11:51:52 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,10 +181,10 @@ void		local_forking(t_command *cmd);
 void		local_exec(t_command *cmd);
 
 // executing/opening_fds.c
-int			opening_append(char *content);
-int			opening_standard_output(char *content);
-int			opening_heredoc(char *content);
-int			opening_standard_input(char *content);
+int	opening_append(char *content, t_garbage **garbage);
+int	opening_standard_output(char *content, t_garbage **garbage);
+int	opening_heredoc(char *content, t_garbage **garbage);
+int	opening_standard_input(char *content, t_garbage **garbage);
 
 // executing/parsing_arg_new.c
 bool		get_the_path(t_command *cmd);
@@ -197,9 +197,9 @@ bool		find_path(t_token *arg, char *unix_path);
 bool		is_builts(char *command);
 
 // executing/redirecting.c
-bool		check_fd_in(char *content);
+bool	check_fd_in(char *content, t_garbage **garbage);
 bool		init_fd_in(t_command *cmd);
-bool		check_fd_out(t_token *redir);
+bool	check_fd_out(t_token *redir, t_garbage **garbage);
 t_token		*last_redir(t_command *cmd);
 int			init_fd_out(t_command *cmd);
 void		piping(t_command *cmd, t_token *redir);
@@ -256,7 +256,6 @@ void		add_back_tkn(t_token **tkn, t_token *new);
 t_command	*step_two(t_first *uno, t_env *env, t_garbage **garbage);
 
 // parsing/parser/parsing_splitting.c
-char		**spliting_plus(char *str);
 char		*quoting_ruling(char *str);
 char		**split_cleaning(char **split);
 
@@ -299,7 +298,7 @@ t_env		*env_to_list(char **envp, t_garbage **garbage);
 
 // utils/env_lst_to_char.c
 int			lst_len(t_env *env);
-char		*alloc_line(char *name, char *content);
+char		*alloc_line(char *name, char *content, t_garbage **garbage);
 char		**envp_to_char(t_env *env);
 
 //utils/erroring.c 
@@ -313,7 +312,7 @@ void		ft_error(char *str, char *next, int error_type, bool update);
 // void		freeing_path_and_argz(t_token *arg);
 
 // utils/ft_split.c
-char		**ft_split(char const *s, char c);
+char		**ft_split(char const *s, char c, t_garbage **garbage);
 
 //utils/singleton.c
 int			singleton(int set, bool write);
@@ -333,8 +332,8 @@ size_t		ft_strlen(const char *str);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 
 // utils/utils_two.c
-char		*ft_strtrim(const char *s1, const char *set);
-char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_strtrim(const char *s1, const char *set, t_garbage **garbage);
+char		*ft_strjoin(char const *s1, char const *s2, t_garbage **garbage);
 
 // utils/utils_three.c
 bool		is_whitespace2(char c);
@@ -351,7 +350,7 @@ void		writing_error(char *str, int num);
 void		writing(char *intro, char *content);
 
 // utils/ft_itoa.c
-char	*ft_itoa(int nb);
+char	*ft_itoa(int nb, t_garbage **garbage);
 
 // signaux
 void    set_signal(void);

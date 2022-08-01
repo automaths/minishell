@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:39:13 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 18:02:38 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 10:56:24 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	lst_len(t_env *env)
 	return (i);
 }
 
-char	*alloc_line(char *name, char *content)
+char	*alloc_line(char *name, char *content, t_garbage **garbage)
 {
 	char	*line;
 	int		i;
@@ -37,6 +37,7 @@ char	*alloc_line(char *name, char *content)
 		+ ft_strlen(content) + 2));
 	if (line == NULL)
 		return (NULL);
+	add_garbage(garbage, new_garbage(line, S_CHAR));
 	i = -1;
 	while (name[++i])
 		line[i] = name[i];
@@ -57,11 +58,12 @@ char	**envp_to_char(t_env *env)
 	split = (char **)malloc(sizeof(char *) * (lst_len(env) + 1));
 	if (split == NULL)
 		return (NULL);
+	add_garbage(env->garbage, new_garbage(split, D_CHAR));
 	split[lst_len(env)] = NULL;
 	i = -1;
 	while (tmp != NULL)
 	{
-		split[++i] = alloc_line(tmp->name, tmp->content);
+		split[++i] = alloc_line(tmp->name, tmp->content, env->garbage);
 		tmp = tmp->next;
 	}
 	return (split);

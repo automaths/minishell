@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:33:05 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 00:08:25 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 11:37:43 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	get_the_path_one(t_command *cmd)
 		i++;
 	if (envp[i] == NULL)
 		return (0);
-	cmd->arg->unix_paths = ft_split(&envp[i][4], ':');
+	cmd->arg->unix_paths = ft_split(&envp[i][4], ':', cmd->garbage);
 	if (cmd->arg->unix_paths == NULL)
 		return (0);
 	if (command_trim(cmd) == 0)
@@ -92,7 +92,8 @@ bool	parse_argument(t_command *cmd)
 		return (0);
 	cmd->arg->argz = (char **)malloc(sizeof(char *) * (i + 2));
 	if (cmd->arg->argz == NULL)
-		return (0);
+		return (NULL);
+	add_garbage(cmd->garbage, new_garbage(cmd->arg->argz, D_CHAR));
 	tmp_tkn = cmd->arg;
 	cmd->arg->argz[0] = cmd->arg->command;
 	tmp_tkn = tmp_tkn->next;

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:21:35 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 22:47:03 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 10:52:16 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ void	local_exec(t_command *cmd)
 		return ;
 	}
 	exec = (char **)malloc(sizeof(char *) * 2);
+	if (exec == NULL)
+		return ;
+	add_garbage(cmd->garbage, new_garbage(exec, D_CHAR));
 	exec[0] = cmd->arg->command;
 	exec[1] = NULL;
 	cmd->arg->argz = exec;

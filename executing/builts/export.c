@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:07:09 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 12:43:16 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 10:58:38 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,6 @@ void	export_shlvl(t_command *cmd, bool add)
 		shlvl++;
 	else
 		shlvl--;
-	content = ft_itoa(shlvl);
+	content = ft_itoa(shlvl, cmd->garbage);
 	update_env("SHLVL", content, cmd->env);
 }

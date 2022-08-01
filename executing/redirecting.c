@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 13:34:47 by nimrod            #+#    #+#             */
-/*   Updated: 2022/07/30 15:00:40 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 11:49:37 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ bool	init_fd_in_bis(t_command *cmd, t_token *the_one)
 	if (the_one != NULL)
 	{
 		if (the_one->type == HEREDOC)
-			cmd->fd_in = opening_heredoc(the_one->content);
+			cmd->fd_in = opening_heredoc(the_one->content, cmd->garbage);
 		if (the_one->type == READ)
-			cmd->fd_in = opening_standard_input(the_one->content);
+			cmd->fd_in = opening_standard_input(the_one->content, cmd->garbage);
 	}
 	if (the_one == NULL && cmd->is_piped == 0)
 		cmd->fd_in = 0;
@@ -39,7 +39,7 @@ bool	init_fd_in(t_command *cmd)
 		{
 			if (tmp->type == READ)
 			{
-				if (check_fd_in(tmp->content) == 0)
+				if (check_fd_in(tmp->content, cmd->garbage) == 0)
 					return (0);
 			}
 			the_one = tmp;
@@ -58,9 +58,9 @@ int	init_fd_out(t_command *cmd)
 	if (redir != NULL)
 	{
 		if (redir->type == APPEND)
-			cmd->fd_out = opening_append(redir->content);
+			cmd->fd_out = opening_append(redir->content, cmd->garbage);
 		if (redir->type == WRITE)
-			cmd->fd_out = opening_standard_output(redir->content);
+			cmd->fd_out = opening_standard_output(redir->content, cmd->garbage);
 	}
 	if (cmd->next != NULL)
 		piping(cmd, redir);

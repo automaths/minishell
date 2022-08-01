@@ -6,13 +6,13 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:47:33 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 13:53:41 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 11:53:00 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execution.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2, t_garbage **garbage)
 {
 	char	*str;
 	int		i;
@@ -25,6 +25,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
 	if (str == NULL)
 		return (NULL);
+	add_garbage(garbage, new_garbage(str, S_CHAR));
 	while (s1[i])
 	{
 		str[i] = s1[i];

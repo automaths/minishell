@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_redir_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jucheval <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:37:39 by jucheval          #+#    #+#             */
-/*   Updated: 2022/07/31 23:33:49 by jucheval         ###   ########.fr       */
+/*   Updated: 2022/08/01 11:46:50 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	delete_redir_char_in_redir_list(t_command *cmd)
 		tmp_redir = tmp->redir;
 		while (tmp_redir)
 		{
-			tmp_redir->content = ft_strtrim(tmp_redir->content, "<>");
+			tmp_redir->content = ft_strtrim(tmp_redir->content, "<>", cmd->garbage);
 			if (!tmp_redir->content)
 				return (0);
 			tmp_redir = tmp_redir->next;

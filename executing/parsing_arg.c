@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:16 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 18:54:31 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 10:51:48 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ bool	command_trim(t_command *cmd)
 		return (0);
 	cmd->arg->command = (char *)malloc(sizeof(char) * (j + 1));
 	if (cmd->arg->command == NULL)
-		return (0);
+		return (NULL);
+	add_garbage(cmd->garbage, new_garbage(cmd->arg->command, S_CHAR));
 	j = 0;
 	while (is_printable_except_space(cmd->arg->content[i + j]))
 	{

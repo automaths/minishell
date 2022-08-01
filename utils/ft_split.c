@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:37:42 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 17:37:53 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 11:40:19 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	num_char(char const *str, char charset)
 	return (n);
 }
 
-static char	*ft_fill(char const *str, char charset)
+static char	*ft_fill(char const *str, char charset, t_garbage **garbage)
 {
 	char	*ptr;
 	int		i;
@@ -59,6 +59,7 @@ static char	*ft_fill(char const *str, char charset)
 	ptr = (char *)malloc(sizeof(char) * (n + 1));
 	if (ptr == NULL)
 		return (NULL);
+	add_garbage(garbage, new_garbage(ptr, S_CHAR));
 	ptr[n] = '\0';
 	i = 0;
 	while (i < n)
@@ -69,7 +70,7 @@ static char	*ft_fill(char const *str, char charset)
 	return (ptr);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c, t_garbage **garbage)
 {
 	char	**split;
 	int		n;
@@ -79,6 +80,7 @@ char	**ft_split(char const *s, char c)
 	split = (char **)malloc(sizeof(char *) * (n + 1));
 	if (split == NULL)
 		return (NULL);
+	add_garbage(garbage, new_garbage(split, D_CHAR));
 	split[n] = NULL;
 	i = 0;
 	while (*s)
@@ -87,7 +89,7 @@ char	**ft_split(char const *s, char c)
 			s++;
 		if (*s)
 		{
-			split[i] = ft_fill(s, c);
+			split[i] = ft_fill(s, c, garbage);
 			if (split[i++] == NULL)
 				return (NULL);
 		}

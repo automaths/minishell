@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:08 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 22:42:56 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 10:48:56 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	main(int argc, char **argv, char **envp)
 	garbage = NULL;
 	singleton(0, 1);
 	env = env_to_list(envp, &garbage);
-	// str = (char *)malloc(sizeof(char) * 4096);
 	while (1)
 	{
 		set_signal();
