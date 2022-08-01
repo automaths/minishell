@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:21:35 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 10:52:16 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:07:52 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,21 @@ void	error_local_exec(t_command *cmd)
 		, ft_strlen(": No such file or directory\n"));
 }
 
-void	local_exec(t_command *cmd)
+char	**allocate_exec(t_command *cmd)
 {
 	char	**exec;
 
+	exec = (char **)malloc(sizeof(char *) * 2);
+	if (exec == NULL)
+		return (NULL);
+	add_garbage(cmd->garbage, new_garbage(exec, D_CHAR));
+	exec[0] = cmd->arg->command;
+	exec[1] = NULL;
+	return (exec);
+}
+
+void	local_exec(t_command *cmd)
+{
 	export_shlvl(cmd, 1);
 	cmd->envp_char = envp_to_char(cmd->env);
 	if (access(cmd->arg->command, F_OK | X_OK) != 0)
@@ -66,13 +77,7 @@ void	local_exec(t_command *cmd)
 		error_local_exec(cmd);
 		return ;
 	}
-	exec = (char **)malloc(sizeof(char *) * 2);
-	if (exec == NULL)
-		return ;
-	add_garbage(cmd->garbage, new_garbage(exec, D_CHAR));
-	exec[0] = cmd->arg->command;
-	exec[1] = NULL;
-	cmd->arg->argz = exec;
+	cmd->arg->argz = allocate_exec(cmd);
 	cmd->arg->pid = fork();
 	if (cmd->arg->pid == -1)
 		return ;

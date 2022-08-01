@@ -6,39 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:24:02 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 22:59:54 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:25:44 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execution.h"
-
-// void	updator_next(t_command *cmd)
-// {
-// 	t_command *tmp;
-
-// 	tmp = cmd;
-// 	while (tmp != NULL)
-// 	{
-// 		tmp->garbage = cmd->garbage;
-// 		tmp = tmp->next;
-// 	}
-// }
-
-// void	updator_all(t_command *cmd)
-// {
-// 	t_command *tmp;
-// 	t_command *tnp;
-
-// 	tmp = cmd;
-// 	while(tmp->next != NULL)
-// 		tmp = tmp->next;
-// 	tnp = cmd;
-// 	while (tnp != NULL)
-// 	{
-// 		tnp->garbage = tmp->garbage;
-// 		tnp = tnp->next;
-// 	}
-// }
 
 void	init_garbage(t_garbage **garbage)
 {
@@ -99,35 +71,17 @@ void	clean_garbage(t_garbage **grb)
 	{
 		next = tmp->next;
 		if ((tmp)->d_char != NULL)
-		{
-			write(1, "d_char ", ft_strlen("d_char "));
 			free((tmp)->d_char);
-		}
 		if ((tmp)->s_char != NULL)
-		{
-			write(1, "s_char ", ft_strlen("s_char "));
 			free((tmp)->s_char);
-		}
 		if ((tmp)->fst != NULL)
-		{
-			write(1, "fst ", ft_strlen("fst "));
 			free((tmp)->fst);
-		}
 		if ((tmp)->cmd != NULL)
-		{
-			write(1, "cmd ", ft_strlen("cmd "));
 			free((tmp)->cmd);
-		}
 		if ((tmp)->tkn != NULL)
-		{
-			write(1, "tkn ", ft_strlen("tkn "));
 			free((tmp)->tkn);
-		}
 		if ((tmp)->env != NULL)
-		{
-			write(1, "env ", ft_strlen("env "));
 			free((tmp)->env);
-		}
 		free(tmp);
 		tmp = next;
 	}

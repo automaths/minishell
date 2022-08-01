@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:43:59 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 19:02:50 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:12:56 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	lexer_id_four_two(char c, int *j, int *mode)
 	return (1);
 }
 
-int	lexer_id_five(t_first **uno, char *str, int *mode, int *i, t_garbage **garbage)
+int	lexer_id_five(char *str, int *mode, int *i)
 {
 	int	j;
 
@@ -58,20 +58,23 @@ int	lexer_id_five(t_first **uno, char *str, int *mode, int *i, t_garbage **garba
 			break ;
 		}
 	}
-	add_back_uno(uno, new_uno(WORD, alloc_content(&str[*i], j, garbage), garbage));
-	*i = *i + j - 1;
-	return (1);
+	// add_back_uno(uno, new_uno(WORD, alloc_content(&str[*i], j, garbage), garbage));
+	// *i = *i + j - 1;
+	return (j);
 }
 
 int	lexer_id_four(t_first **uno, char *str, int *mode, int *i, t_garbage **garbage)
 {
+	int j;
+
 	if (str[*i] == '"')
 		*mode = DQUOTE_MODE;
 	else if (str[*i] == '\'')
 		*mode = SQUOTE_MODE;
 	else
 		*mode = WORD_MODE;
-	if (lexer_id_five(uno, str, mode, i, garbage) == 0)
-		return (0);
+	j = lexer_id_five(str, mode, i);
+	add_back_uno(uno, new_uno(WORD, alloc_content(&str[*i], j, garbage), garbage));
+	*i = *i + j - 1;
 	return (1);
 }

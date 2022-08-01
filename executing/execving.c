@@ -6,14 +6,36 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:39:05 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 11:36:09 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 14:05:50 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execution.h"
 
+void	closing_next_fds(t_command *cmd)
+{
+	t_command *tmp;
+
+	tmp = cmd;
+	if (tmp->next != NULL)
+	{
+		if (cmd->next->fd_out != 1)
+			close(cmd->next->fd_out);
+		tmp = tmp->next;
+	}
+	tmp = tmp->next;
+	while (tmp != NULL)
+	{
+		if (cmd->fd_in != 0)
+			close(cmd->fd_in);
+		if (cmd->fd_out != 1)
+			close(cmd->fd_out);
+	}
+}
+
 void	forking(t_command *cmd)
 {
+	close(cmd->fd[0]);
 	if (cmd->fd_in != 0)
 	{
 		if (dup2(cmd->fd_in, STDIN_FILENO) == -1)
@@ -24,8 +46,11 @@ void	forking(t_command *cmd)
 		if (dup2(cmd->fd_out, STDOUT_FILENO) == -1)
 			return ;
 	}
+	if (cmd->previous_fd != 0 && cmd->previous_fd != 1)
+		close(cmd->previous_fd);
+	closing_next_fds(cmd);
 	if (cmd->fd_in != 0)
-		close(cmd->fd_in);	
+		close(cmd->fd_in);
 	if (cmd->fd_out != 1)
 		close(cmd->fd_out);
 	if (execve(cmd->arg->path, cmd->arg->argz, cmd->envp_char) == -1)
@@ -49,7 +74,5 @@ void	exec_token(t_command *cmd)
 			close(cmd->fd_in);
 		if (cmd->fd_out != 1)
 			close(cmd->fd_out);
-		// if (cmd->fd[1] != 0)
-		// 	close(cmd->fd[1]);
 	}
 }

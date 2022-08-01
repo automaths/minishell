@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:55:44 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 19:39:32 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:26:47 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ t_env	*env_to_list(char **envp, t_garbage **garbage)
 		return (NULL);
 	i = -1;
 	while (envp[++i])
-		add_back_lst(&env, new_lst(get_name(envp[i], garbage), get_content(envp[i], garbage), garbage));
+		add_back_lst(&env, new_lst(get_name(envp[i], garbage)\
+			, get_content(envp[i], garbage), garbage));
 	return (env);
 }

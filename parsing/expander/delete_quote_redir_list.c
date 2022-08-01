@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   delete_quote_redir_list.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jucheval <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:44:21 by jucheval          #+#    #+#             */
-/*   Updated: 2022/07/31 23:37:36 by jucheval         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:30:03 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	del_all_neg_quotes_redir(t_command *cmd)
 
 int	delete_quotes_redir_list(t_command *cmd)
 {
-    t_command   *tmp_cmd;
+    t_command	*tmp_cmd;
 	t_token		*tmp_redir;
 
     tmp_cmd = cmd;

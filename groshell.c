@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:08 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 10:48:56 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:20:29 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ void	working_magic(char *str, t_env **env, t_garbage **garbage)
 	t_command	*cmd;
 	t_first		*uno;
 
-	// (void)env;
-	// (void)cmd;
 	uno = lexer(str, garbage);
-	// (void)uno;
 	if (uno != NULL && uno->next != NULL)
 	{
 		if (command_validation(uno))
@@ -41,8 +38,8 @@ void	working_magic(char *str, t_env **env, t_garbage **garbage)
 
 int	main(int argc, char **argv, char **envp)
 {
-	char	*str;
-	t_env	*env;
+	char		*str;
+	t_env		*env;
 	t_garbage	*garbage;
 
 	(void)argc;

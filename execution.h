@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 11:51:52 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 13:16:54 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_first
 	struct s_first	*next;
 }	t_first;
 
-typedef struct s_garbage t_garbage;
+typedef struct s_garbage	t_garbage;
 
 typedef struct s_env
 {
@@ -103,18 +103,17 @@ typedef struct s_token
 	struct s_token	*next;
 }	t_token;
 
-
-typedef struct s_command t_command;
+typedef struct s_command	t_command;
 
 typedef struct s_garbage
 {
-	char **d_char;
-	char *s_char;
-	t_first *fst;
-	t_command *cmd;
-	t_token *tkn;
-	t_env *env;
-	struct s_garbage *next;
+	char				**d_char;
+	char				*s_char;
+	t_first				*fst;
+	t_command			*cmd;
+	t_token				*tkn;
+	t_env				*env;
+	struct s_garbage	*next;
 }	t_garbage;
 
 typedef struct s_command
@@ -128,6 +127,7 @@ typedef struct s_command
 	int					fd[2];
 	int					fd_in;
 	int					fd_out;
+	int					previous_fd;
 	struct s_command	*next;
 }	t_command;
 
@@ -140,6 +140,7 @@ void		exec_cd(t_command *cmd);
 char		*find_content_cd(char *name, t_env *env);
 void		exec_echo(t_command *cmd);
 void		exec_env(t_command *cmd);
+int			update_env(char *name, char *content, t_env *env);
 void		exec_exit(t_command *cmd);
 void		exec_export(t_command *cmd);
 void		export_shlvl(t_command *cmd, bool add);
@@ -181,10 +182,10 @@ void		local_forking(t_command *cmd);
 void		local_exec(t_command *cmd);
 
 // executing/opening_fds.c
-int	opening_append(char *content, t_garbage **garbage);
-int	opening_standard_output(char *content, t_garbage **garbage);
-int	opening_heredoc(char *content, t_garbage **garbage);
-int	opening_standard_input(char *content, t_garbage **garbage);
+int			opening_append(char *content, t_garbage **garbage);
+int			opening_standard_output(char *content, t_garbage **garbage);
+int			opening_heredoc(char *content, t_garbage **garbage);
+int			opening_standard_input(char *content, t_garbage **garbage);
 
 // executing/parsing_arg_new.c
 bool		get_the_path(t_command *cmd);
@@ -197,9 +198,9 @@ bool		find_path(t_token *arg, char *unix_path);
 bool		is_builts(char *command);
 
 // executing/redirecting.c
-bool	check_fd_in(char *content, t_garbage **garbage);
+bool		check_fd_in(char *content, t_garbage **garbage);
 bool		init_fd_in(t_command *cmd);
-bool	check_fd_out(t_token *redir, t_garbage **garbage);
+bool		check_fd_out(t_token *redir, t_garbage **garbage);
 t_token		*last_redir(t_command *cmd);
 int			init_fd_out(t_command *cmd);
 void		piping(t_command *cmd, t_token *redir);
@@ -213,7 +214,8 @@ int			redirectionning(t_command *cmd);
 int			replace_all_variable(t_command *cmd, t_env *env);
 int			replace_variable(t_command *cmd, t_env *env);
 char		*replace_one_variable(char *str, t_env *env, int i, t_command *cmd);
-char		*string_with_var_value(char *cmd, char *name, int size_old_var, t_command *t_cmd);
+char		*string_with_var_value(char *cmd, char *name\
+	, int size_old_var, t_command *t_cmd);
 char		*find_variable_value(char *name, t_env *env);
 
 // parsing/expand/expand_redir_list.c
@@ -221,7 +223,8 @@ int			delete_redir_char_in_redir_list(t_command *cmd);
 int			replace_variable_redir(t_command *cmd, t_env *env);
 
 // parsing/expand/return_value.c
-char		*string_with_return_var_value(char *cmd, char *name, int size_old_var, t_command *t_cmd);
+char		*string_with_return_var_value(char *cmd, char *name\
+	, int size_old_var, t_command *t_cmd);
 char		*replace_one_return_value(char *str, t_command *cmd);
 int			replace_return_value(t_command *cmd);
 
@@ -261,12 +264,12 @@ char		**split_cleaning(char **split);
 
 // parsing/lexer/lexer_one.c
 int			lexer_id_one(char c, int *mode);
-int	lexer_id_two(t_first **uno, char *str, int *mode, t_garbage **garbage);
-int	lexer_id_three(t_first **uno, char *str, int *mode, t_garbage **garbage);
-int	lexer_id_four(t_first **uno, char *str, int *mode, int *i, t_garbage **garbage);
-t_first	*lexer(char *str, t_garbage **garbage);
-
-// parsing/lexer/lexer_two.c 
+int			lexer_id_two(t_first **uno, char *str, int *mode, t_garbage **garbage);
+int			lexer_id_three(t_first **uno, char *str, int *mode\
+	, t_garbage **garbage);
+int			lexer_id_four(t_first **uno, char *str, int *mode\
+	, int *i, t_garbage **garbage);
+t_first		*lexer(char *str, t_garbage **garbage);
 
 // parsing/lexer/lexer_utils.c
 void		print_lexer(t_first *uno);
@@ -278,7 +281,7 @@ int			actual_mode(char c);
 bool		check_quotes(char *str);
 
 // parsing/lexer/lexer_utils_two.c
-t_first	*new_uno(int type, char *content, t_garbage **garbage);
+t_first		*new_uno(int type, char *content, t_garbage **garbage);
 void		add_back_uno(t_first **uno, t_first *new);
 void		print_lexer(t_first *uno);
 
@@ -304,13 +307,6 @@ char		**envp_to_char(t_env *env);
 //utils/erroring.c 
 void		ft_error(char *str, char *next, int error_type, bool update);
 
-//utils/freeing.c
-// void		freeing_unix(t_token *arg);
-// void		freeing_command(t_token *arg);
-// void		freeing_path(t_token *arg);
-// void		freeing_argz(t_token *arg);
-// void		freeing_path_and_argz(t_token *arg);
-
 // utils/ft_split.c
 char		**ft_split(char const *s, char c, t_garbage **garbage);
 
@@ -318,12 +314,12 @@ char		**ft_split(char const *s, char c, t_garbage **garbage);
 int			singleton(int set, bool write);
 
 //utils/garbage_collector.c
-void	updator_next(t_command *cmd);
-void	updator_all(t_command *cmd);
-void	init_garbage(t_garbage **garbage);
+void		updator_next(t_command *cmd);
+void		updator_all(t_command *cmd);
+void		init_garbage(t_garbage **garbage);
 t_garbage	*new_garbage(void *content, int type);
-void	add_garbage(t_garbage **grb, t_garbage *new);
-void	clean_garbage(t_garbage **grb);
+void		add_garbage(t_garbage **grb, t_garbage *new);
+void		clean_garbage(t_garbage **grb);
 
 // utils/utils_one.c
 int			ft_atoi(const char *str);
@@ -350,11 +346,11 @@ void		writing_error(char *str, int num);
 void		writing(char *intro, char *content);
 
 // utils/ft_itoa.c
-char	*ft_itoa(int nb, t_garbage **garbage);
+char		*ft_itoa(int nb, t_garbage **garbage);
 
 // signaux
-void    set_signal(void);
-void	prompt_signal(int sig);
-void	exit_fork();
+void    	set_signal();
+void		prompt_signal(int sig);
+void		exit_fork();
 
 #endif

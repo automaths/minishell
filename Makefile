@@ -28,7 +28,8 @@ SRCS			=	./groshell.c \
 					./executing/builts/env.c \
 					./executing/builts/exit.c \
 					./executing/builts/export.c \
-					./executing/builts/export_utils.c \
+					./executing/builts/export_utils_one.c \
+					./executing/builts/export_utils_two.c \
 					./executing/builts/pwd.c \
 					./executing/builts/unset.c \
 					./utils/env_char_to_lst.c \

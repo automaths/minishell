@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:20:54 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 19:36:19 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:01:33 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	remove_env(char *name, t_env **env)
 	if (tmp != NULL && ft_strcmp(name, tmp->name) == 0)
 	{
 		(*env) = tmp->next;
-		// free(tmp);
 		tmp = (*env);
 		ptr = (*env);
 	}
@@ -31,7 +30,6 @@ void	remove_env(char *name, t_env **env)
 		if (ft_strcmp(name, tmp->name) == 0)
 		{
 			ptr->next = tmp->next;
-			// free(tmp);
 			tmp = ptr;
 		}
 		ptr = tmp;

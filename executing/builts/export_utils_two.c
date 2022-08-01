@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   export_utils_two.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/31 22:43:44 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 12:33:44 by nsartral         ###   ########.fr       */
+/*   Created: 2022/08/01 12:00:08 by nsartral          #+#    #+#             */
+/*   Updated: 2022/08/01 12:00:31 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../../execution.h"
 
-void	exit_fork()
+void	export_shlvl(t_command *cmd, bool add)
 {
-	write(1, "\n",1);
-	singleton(130, 1);
-	exit(0);
-}
+	int		shlvl;
+	char	*content;
 
-void	prompt_signal(int sig)
-{
-	(void)sig;
-	singleton(130, 1);
-	printf("\n");
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	rl_redisplay();
-}
-
-void    set_signal(void)
-{
-	signal(SIGINT, prompt_signal);
+	shlvl = ft_atoi(find_content_cd("SHLVL", cmd->env));
+	if (add)
+		shlvl++;
+	else
+		shlvl--;
+	content = ft_itoa(shlvl, cmd->garbage);
+	update_env("SHLVL", content, cmd->env);
 }
