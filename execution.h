@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 13:16:54 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 14:21:48 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,8 +214,8 @@ int			redirectionning(t_command *cmd);
 int			replace_all_variable(t_command *cmd, t_env *env);
 int			replace_variable(t_command *cmd, t_env *env);
 char		*replace_one_variable(char *str, t_env *env, int i, t_command *cmd);
-char		*string_with_var_value(char *cmd, char *name\
-	, int size_old_var, t_command *t_cmd);
+char		*string_with_var_value(char *cmd, char *name, \
+				int size_old_var, t_command *t_cmd);
 char		*find_variable_value(char *name, t_env *env);
 
 // parsing/expand/expand_redir_list.c
@@ -223,8 +223,8 @@ int			delete_redir_char_in_redir_list(t_command *cmd);
 int			replace_variable_redir(t_command *cmd, t_env *env);
 
 // parsing/expand/return_value.c
-char		*string_with_return_var_value(char *cmd, char *name\
-	, int size_old_var, t_command *t_cmd);
+char		*string_with_return_var_value(char *cmd, char *name, \
+				int size_old_var, t_command *t_cmd);
 char		*replace_one_return_value(char *str, t_command *cmd);
 int			replace_return_value(t_command *cmd);
 
@@ -258,17 +258,14 @@ t_token		*new_tkn(char *arg, int type, t_garbage **garbage);
 void		add_back_tkn(t_token **tkn, t_token *new);
 t_command	*step_two(t_first *uno, t_env *env, t_garbage **garbage);
 
-// parsing/parser/parsing_splitting.c
-char		*quoting_ruling(char *str);
-char		**split_cleaning(char **split);
-
 // parsing/lexer/lexer_one.c
 int			lexer_id_one(char c, int *mode);
-int			lexer_id_two(t_first **uno, char *str, int *mode, t_garbage **garbage);
-int			lexer_id_three(t_first **uno, char *str, int *mode\
-	, t_garbage **garbage);
-int			lexer_id_four(t_first **uno, char *str, int *mode\
-	, int *i, t_garbage **garbage);
+int			lexer_id_two(t_first **uno, char *str, int *mode, \
+				t_garbage **garbage);
+int			lexer_id_three(t_first **uno, char *str, int *mode, \
+				t_garbage **garbage);
+int			lexer_id_four(t_first **uno, char *str, int *mode, \
+				t_garbage **garbage);
 t_first		*lexer(char *str, t_garbage **garbage);
 
 // parsing/lexer/lexer_utils.c
@@ -349,7 +346,7 @@ void		writing(char *intro, char *content);
 char		*ft_itoa(int nb, t_garbage **garbage);
 
 // signaux
-void    	set_signal();
+void		set_signal();
 void		prompt_signal(int sig);
 void		exit_fork();
 

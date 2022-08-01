@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:39:05 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 14:05:50 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 14:10:33 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	closing_next_fds(t_command *cmd)
 {
-	t_command *tmp;
+	t_command	*tmp;
 
 	tmp = cmd;
 	if (tmp->next != NULL)

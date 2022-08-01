@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:43:40 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 12:28:21 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 14:15:44 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,7 @@ t_first	*lexer(char *str, t_garbage **garbage)
 				break ;
 			if (lexer_id_three(&uno, &str[i - 1], &mode, garbage) == 0)
 				break ;
-			if (lexer_id_four(&uno, str, &mode, &i, garbage) == 0)
-				break ;
+			i += lexer_id_four(&uno, &str[i], &mode, garbage);
 			break ;
 		}
 	}

@@ -5,7 +5,6 @@ SRCS			=	./groshell.c \
 					./parsing/lexer/check_quotes.c \
 					./parsing/parser/parser.c \
 					./parsing/parser/parser_utils.c \
-					./parsing/parser/parsing_spliting.c \
 					./parsing/expander/expand.c \
 					./parsing/expander/expand_redir_list.c \
 					./parsing/expander/expand_utils.c \
