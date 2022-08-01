@@ -9,6 +9,7 @@ SRCS			=	./groshell.c \
 					./parsing/expander/expand.c \
 					./parsing/expander/expand_redir_list.c \
 					./parsing/expander/expand_utils.c \
+					./parsing/expander/expand_utils_two.c \
 					./parsing/expander/delete_quote.c \
 					./parsing/expander/delete_quote_redir_list.c \
 					./parsing/expander/return_value.c \

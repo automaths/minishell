@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:39:24 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 21:11:47 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 22:42:09 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,24 +46,24 @@ void	forking_builts(t_command *cmd)
 {
 	if (cmd->is_piping && cmd->fd[0] != 0 && cmd->fd[0] != -1)
 		close(cmd->fd[0]);
-	if (cmd->fd_in != 0)
+	if (cmd->fd_in != 0 && cmd->fd_in != -1)
 	{
 		if (dup2(cmd->fd_in, STDIN_FILENO) == -1)
 			return ;
 		close(cmd->fd_in);
 	}
-	if (cmd->fd_out != 1)
+	if (cmd->fd_out != 1 && cmd->fd_out != -1)
 	{
 		if (dup2(cmd->fd_out, STDOUT_FILENO) == -1)
 			return ;
-		close(cmd->fd_in);
+		close(cmd->fd_out);
 	}
 	closing_next_fds(cmd);
 	if (cmd->previous_fd != 0 && cmd->previous_fd != 1 && cmd->previous_fd != -1)
 		close(cmd->previous_fd);
-	if (cmd->fd_in != 0)
+	if (cmd->fd_in != 0 && cmd->fd_in != -1)
 		close(cmd->fd_in);
-	if (cmd->fd_out != 1)
+	if (cmd->fd_out != 1 && cmd->fd_out != -1)
 		close(cmd->fd_out);
 	exec_builts(cmd);
 }
@@ -80,9 +80,9 @@ void	exec_token_builts(t_command *cmd)
 	}
 	else
 	{
-		if (cmd->fd_in != 0)
+		if (cmd->fd_in != 0 && cmd->fd_in != -1)
 			close(cmd->fd_in);
-		if (cmd->fd_out != 1)
+		if (cmd->fd_out != 1 && cmd->fd_out != -1)
 			close(cmd->fd_out);
 	}
 }

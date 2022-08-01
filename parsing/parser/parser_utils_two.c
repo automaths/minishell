@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 14:48:07 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 21:10:42 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 22:53:25 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_command	*new_cmd(t_env *env, t_garbage **garbage)
 	new->previous_fd = -1;
 	new->is_piped = 0;
 	new->is_piping = 0;
+	new->is_exec = 0;
 	new->arg = NULL;
 	new->redir = NULL;
 	new->next = NULL;

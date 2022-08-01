@@ -6,13 +6,14 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 21:04:46 by jucheval          #+#    #+#             */
-/*   Updated: 2022/08/01 18:26:14 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 23:31:58 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../groshell.h"
 
-char	*string_with_return_var_value(char *cmd, char *name, int size_old_var, t_command *t_cmd)
+char	*string_with_return_var_value(char *cmd, char *name, \
+	int size_old_var, t_command *t_cmd)
 {
 	int		i;
 	int		j;
@@ -34,6 +35,7 @@ char	*string_with_return_var_value(char *cmd, char *name, int size_old_var, t_co
 	i += 2;
 	while (cmd[i])
 		dest[j++] = cmd[i++];
+	dest[j] = '\0';
 	return (dest);
 }
 
@@ -65,13 +67,10 @@ int	replace_return_value(t_command *cmd)
 			i = -1;
 			while (tmp_token->content[++i])
 			{
-				if (tmp_token->content[i] == '$' && tmp_token->content[i + 1] == '?')
-				{
-					tmp_token->content = replace_one_return_value(tmp_token->content, cmd);
-					if (!tmp_token->content)
-						return (0);
-					// add_garbage(cmd->garbage, new_garbage(tmp_token->content, S_CHAR));
-				}
+				if (tmp_token->content[i] == '$' \
+					&& tmp_token->content[i + 1] == '?')
+					tmp_token->content = \
+						replace_one_return_value(tmp_token->content, cmd);
 			}
 			tmp_token = tmp_token->next;
 		}

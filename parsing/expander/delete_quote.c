@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   delete_quote.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jucheval <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 21:02:45 by jucheval          #+#    #+#             */
-/*   Updated: 2022/08/01 18:18:23 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 20:37:51 by jucheval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,24 @@ void	negativ_quote(char *str)
 	}
 }
 
+char	*del_one_neg_quotes_second(char *str, char *dest)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if (str[i] != '\"' && str[i] != '\'')
+			dest[j++] = str[i++];
+		else
+			i++;
+	}
+	dest[i] = 0;
+	return (dest);
+}
+
 char	*del_one_neg_quotes(char *str, t_command *cmd)
 {
 	int		i;
@@ -44,17 +62,7 @@ char	*del_one_neg_quotes(char *str, t_command *cmd)
 	if (!dest)
 		return (exiting_malloc(cmd->garbage), NULL);
 	add_garbage(cmd->garbage, new_garbage(dest, S_CHAR));
-	i = 0;
-	j = 0;
-	while (str[i])
-	{
-		if (str[i] != '\"' && str[i] != '\'')
-			dest[j++] = str[i++];
-		else
-			i++;
-	}
-	dest[i] = 0;
-	return (dest);
+	return (del_one_neg_quotes_second(str, dest));
 }
 
 int	del_all_neg_quotes(t_command *cmd)

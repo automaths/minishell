@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jucheval <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 21:49:48 by jucheval          #+#    #+#             */
-/*   Updated: 2022/08/01 18:25:44 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 23:12:23 by jucheval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@ char	*find_variable_value(char *name, t_env *env)
 	tmp = env;
 	while (tmp)
 	{
-		if (ft_strncmp(tmp->name, &name[1], (ft_strlen(name) - 1)) == 0)
+		if (strcmp(tmp->name, &name[0]) == 0)
 			return (tmp->content);
 		tmp = tmp->next;
 	}
 	return (NULL);
 }
 
-char	*string_with_var_value(char *cmd, char *name, int size_old_var, t_command *t_cmd)
+char	*string_with_var_value(char *cmd, char *name, int size_old_var, \
+	t_command *t_cmd)
 {
 	int		i;
 	int		j;
@@ -43,12 +44,15 @@ char	*string_with_var_value(char *cmd, char *name, int size_old_var, t_command *
 	add_garbage(t_cmd->garbage, new_garbage(dest, S_CHAR));
 	while (cmd[i] && cmd[i] != '$')
 		dest[j++] = cmd[i++];
-	while (name[k])
-		dest[j++] = name[k++];
-	while (cmd[i] && ft_isalnum(cmd[i]))
+	if (name)
+		while (name[k])
+			dest[j++] = name[k++];
+	i++;
+	while (cmd[i] && cmd[i] != '$' && ft_isalnum(cmd[i]))
 		i++;
 	while (cmd[i])
 		dest[j++] = cmd[i++];
+	dest[j] = 0;
 	return (dest);
 }
 
@@ -58,7 +62,7 @@ char	*replace_one_variable(char *str, t_env *env, int i, t_command *cmd)
 	char	*variable_name;
 
 	j = 0;
-	while (str[i] && ft_isalnum(str[i]))
+	while (str[i] && str[i] != '$' && ft_isalnum(str[i]))
 	{
 		i++;
 		j++;
@@ -69,12 +73,10 @@ char	*replace_one_variable(char *str, t_env *env, int i, t_command *cmd)
 	add_garbage(cmd->garbage, new_garbage(variable_name, S_CHAR));
 	i -= j;
 	j = 0;
-	while (str[i] && ft_isalnum(str[i]))
+	while (str[i] && str[i] != '$' && ft_isalnum(str[i]))
 		variable_name[j++] = str[i++];
 	variable_name[j] = 0;
 	variable_name = find_variable_value(variable_name, env);
-	if (!variable_name)
-		return (0);
 	str = string_with_var_value(str, variable_name, j, cmd);
 	if (!str)
 		return (NULL);
@@ -98,11 +100,10 @@ int	replace_variable(t_command *cmd, t_env *env)
 			{
 				if (tmp_token->content[i] == '$')
 				{
-					tmp_token->content = \
-					replace_one_variable(tmp_token->content, env, i, cmd);
+					tmp_token->content = replace_one_variable(tmp_token->content, env, ++i, cmd);
 					if (!tmp_token->content)
 						return (0);
-				}
+				}	
 			}
 			tmp_token = tmp_token->next;
 		}

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:39:05 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 21:16:18 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 22:44:15 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ void	forking(t_command *cmd)
 {
 	if (cmd->is_piping && cmd->fd[0] != 0 && cmd->fd[0] != -1)
 		close(cmd->fd[0]);
-	if (cmd->fd_in != 0)
+	if (cmd->fd_in != 0 && cmd->fd_in != -1)
 	{
 		if (dup2(cmd->fd_in, STDIN_FILENO) == -1)
 			return ;
 	}
-	if (cmd->fd_out != 1)
+	if (cmd->fd_out != 1 && cmd->fd_out != -1)
 	{
 		if (dup2(cmd->fd_out, STDOUT_FILENO) == -1)
 			return ;
@@ -51,9 +51,9 @@ void	forking(t_command *cmd)
 	closing_next_fds(cmd);
 	if (cmd->previous_fd != 0 && cmd->previous_fd != 1 && cmd->previous_fd != -1)
 		close(cmd->previous_fd);
-	if (cmd->fd_in != 0)
+	if (cmd->fd_in != 0 && cmd->fd_in != -1)
 		close(cmd->fd_in);
-	if (cmd->fd_out != 1)
+	if (cmd->fd_out != 1 && cmd->fd_out != -1)
 		close(cmd->fd_out);
 	if (execve(cmd->arg->path, cmd->arg->argz, cmd->envp_char) == -1)
 		return ;
@@ -72,11 +72,11 @@ void	exec_token(t_command *cmd)
 	}
 	else
 	{
-		if (cmd->fd_in != 0)
+		if (cmd->fd_in != 0 && cmd->fd_in != -1)
 			close(cmd->fd_in);
-		if (cmd->fd_out != 1)
+		if (cmd->fd_out != 1 && cmd->fd_out != -1)
 			close(cmd->fd_out);
-		if (cmd->previous_fd != 0 && cmd->previous_fd != 1)
+		if (cmd->previous_fd != 0 && cmd->previous_fd != 1 && cmd->previous_fd != -1)
 			close(cmd->previous_fd);
 	}
 }

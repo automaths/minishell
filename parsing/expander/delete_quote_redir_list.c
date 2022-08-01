@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   delete_quote_redir_list.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jucheval <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:44:21 by jucheval          #+#    #+#             */
-/*   Updated: 2022/08/01 17:05:40 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 20:30:28 by jucheval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ int	del_all_neg_quotes_redir(t_command *cmd)
 
 int	delete_quotes_redir_list(t_command *cmd)
 {
-    t_command	*tmp_cmd;
+	t_command	*tmp_cmd;
 	t_token		*tmp_redir;
 
-    tmp_cmd = cmd;
+	tmp_cmd = cmd;
 	while (tmp_cmd)
 	{
-        tmp_redir = tmp_cmd->redir;
+		tmp_redir = tmp_cmd->redir;
 		while (tmp_redir)
 		{
 			negativ_quote(tmp_redir->content);

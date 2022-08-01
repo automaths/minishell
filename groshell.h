@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 21:24:40 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 23:30:27 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ typedef struct s_command
 	char				**envp_char;
 	int					is_piped;
 	int					is_piping;
+	int					is_exec;
 	int					fd[2];
 	int					fd_in;
 	int					fd_out;
