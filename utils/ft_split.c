@@ -6,20 +6,20 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:37:42 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 18:32:32 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 21:30:28 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../groshell.h"
 
-static int	is_charset(char const *str, char charset)
+static int	is_charset(char *str, char charset)
 {
 	if (charset == *str)
 		return (1);
 	return (0);
 }
 
-static int	num_lines(char const *str, char charset)
+static int	num_lines(char *str, char charset)
 {
 	int	n;
 
@@ -36,7 +36,7 @@ static int	num_lines(char const *str, char charset)
 	return (n);
 }
 
-static int	num_char(char const *str, char charset)
+static int	num_char(char *str, char charset)
 {
 	int	n;
 
@@ -49,7 +49,7 @@ static int	num_char(char const *str, char charset)
 	return (n);
 }
 
-static char	*ft_fill(char const *str, char charset, t_garbage **garbage)
+static char	*ft_fill(char *str, char charset, t_garbage **garbage)
 {
 	char	*ptr;
 	int		i;
@@ -70,12 +70,13 @@ static char	*ft_fill(char const *str, char charset, t_garbage **garbage)
 	return (ptr);
 }
 
-char	**ft_split(char const *s, char c, t_garbage **garbage)
+char	**ft_split(char *s, char c, t_garbage **garbage)
 {
 	char	**split;
 	int		n;
 	int		i;
 
+	split = NULL;
 	n = num_lines(s, c);
 	split = (char **)malloc(sizeof(char *) * (n + 1));
 	if (split == NULL)

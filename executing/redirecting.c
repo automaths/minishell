@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 13:34:47 by nimrod            #+#    #+#             */
-/*   Updated: 2022/08/01 17:05:52 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 21:11:30 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	piping(t_command *cmd, t_token *redir)
 		cmd->fd_out = cmd->fd[1];
 	else
 		close (cmd->fd[1]);
+	cmd->is_piping = 1;
 	cmd->next->previous_fd = cmd->fd[1];
 	cmd->next->fd_in = cmd->fd[0];
 	cmd->next->is_piped = 1;

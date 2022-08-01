@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 18:35:13 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 21:24:40 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ typedef struct s_command
 	t_garbage			**garbage;
 	char				**envp_char;
 	int					is_piped;
+	int					is_piping;
 	int					fd[2];
 	int					fd_in;
 	int					fd_out;
@@ -305,7 +306,7 @@ char		**envp_to_char(t_env *env);
 void		ft_error(char *str, char *next, int error_type, bool update);
 
 // utils/ft_split.c
-char		**ft_split(char const *s, char c, t_garbage **garbage);
+char		**ft_split(char *s, char c, t_garbage **garbage);
 
 //utils/singleton.c
 int			singleton(int set, bool write);

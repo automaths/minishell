@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:39:13 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 18:31:34 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 21:35:35 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ char	*alloc_line(char *name, char *content, t_garbage **garbage)
 	j = -1;
 	while (content[++j])
 		line[i + j] = content[j];
+	line[i + j] = '\0';
 	return (line);
 }
 

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:33:05 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 18:17:53 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 21:22:04 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ bool	get_the_path_one(t_command *cmd)
 	if (envp[i] == NULL)
 		return (0);
 	cmd->arg->unix_paths = ft_split(&envp[i][4], ':', cmd->garbage);
-	if (cmd->arg->unix_paths == NULL)
-		return (0);
 	if (command_trim(cmd) == 0)
 		return (ft_error(cmd->arg->command, (char *) NULL, 127, 1), 0);
 	if (cmd->arg->command == NULL)
