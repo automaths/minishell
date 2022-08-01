@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 21:02:45 by jucheval          #+#    #+#             */
-/*   Updated: 2022/08/01 17:05:35 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:18:23 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*del_one_neg_quotes(char *str, t_command *cmd)
 	}
 	dest = malloc(sizeof(char) * ((i - j) + 1));
 	if (!dest)
-		return (NULL);
+		return (exiting_malloc(cmd->garbage), NULL);
 	add_garbage(cmd->garbage, new_garbage(dest, S_CHAR));
 	i = 0;
 	j = 0;

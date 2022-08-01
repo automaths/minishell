@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:55:44 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 17:04:29 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:30:49 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*get_content(char *envp, t_garbage **garbage)
 		;
 	str = (char *)malloc(sizeof(char) * (j + 1));
 	if (str == NULL)
-		return (NULL);
+		return (exiting_malloc(garbage), NULL);
 	add_garbage(garbage, new_garbage(str, S_CHAR));
 	str[j] = '\0';
 	j = -1;
@@ -46,7 +46,7 @@ char	*get_name(char *envp, t_garbage **garbage)
 		;
 	str = (char *)malloc(sizeof(char) * (i + 1));
 	if (str == NULL)
-		return (NULL);
+		return (exiting_malloc(garbage), NULL);
 	add_garbage(garbage, new_garbage(str, S_CHAR));
 	str[i] = '\0';
 	i = -1;

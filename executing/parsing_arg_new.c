@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:33:05 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 17:24:14 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:17:53 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ bool	parse_argument(t_command *cmd)
 		return (0);
 	cmd->arg->argz = (char **)malloc(sizeof(char *) * (i + 2));
 	if (cmd->arg->argz == NULL)
-		return (NULL);
+		return (exiting_malloc(cmd->garbage), NULL);
 	add_garbage(cmd->garbage, new_garbage(cmd->arg->argz, D_CHAR));
 	tmp_tkn = cmd->arg;
 	cmd->arg->argz[0] = cmd->arg->command;

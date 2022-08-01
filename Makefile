@@ -35,6 +35,7 @@ SRCS			=	./groshell.c \
 					./utils/env_char_to_lst.c \
 					./utils/env_char_to_lst_utils.c \
 					./utils/env_lst_to_char.c \
+					./utils/exiting.c \
 					./utils/erroring.c \
 					./utils/printing.c \
 					./utils/singleton.c \

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:07:09 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 17:06:48 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:29:54 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	check_export(char *str)
 	return (1);
 }
 
-char	*export_name(char *str)
+char	*export_name(char *str, t_garbage **garbage)
 {
 	char	*name;
 	int		i;
@@ -57,7 +57,7 @@ char	*export_name(char *str)
 		j++;
 	name = (char *)malloc(sizeof(char) * (j + 1));
 	if (name == NULL)
-		return (NULL);
+		return (exiting_malloc(garbage), NULL);
 	name[j] = '\0';
 	j = -1;
 	while (str[i + ++j] && str[i + j] != '=')
@@ -65,7 +65,7 @@ char	*export_name(char *str)
 	return (name);
 }
 
-char	*export_content(char *str)
+char	*export_content(char *str, t_garbage **garbage)
 {
 	char	*content;
 	int		i;
@@ -84,7 +84,8 @@ char	*export_content(char *str)
 		j++;
 	content = (char *)malloc(sizeof(char) * (j + 1));
 	if (content == NULL)
-		return (NULL);
+		return (exiting_malloc(garbage), NULL);
+	add_garbage(garbage, new_garbage(content, S_CHAR));
 	content[j] = '\0';
 	j = -1;
 	while (str[i + ++j])
@@ -119,8 +120,8 @@ void	exec_export(t_command *cmd)
 		return ;
 	if (check_export(cmd->arg->argz[1]) == 0)
 		return ;
-	name = export_name(cmd->arg->argz[1]);
-	content = export_content(cmd->arg->argz[1]);
+	name = export_name(cmd->arg->argz[1], cmd->garbage);
+	content = export_content(cmd->arg->argz[1], cmd->garbage);
 	if (update_env(name, content, cmd->env))
 	{
 		update_all_envz(cmd, cmd->env);

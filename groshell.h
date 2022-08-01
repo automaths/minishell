@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 17:24:06 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:35:13 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,8 +148,8 @@ void		exec_pwd(t_command *cmd);
 void		exec_unset(t_command *cmd);
 
 // executing/builts/export_utils
-char		*export_content(char *str);
-char		*export_name(char *str);
+char		*export_content(char *str, t_garbage **garbage);
+char		*export_name(char *str, t_garbage **garbage);
 int			check_export(char *str);
 bool		check_equal(char *str);
 bool		is_export(char c);
@@ -320,7 +320,7 @@ void		clean_garbage(t_garbage **grb);
 
 // utils/utils_one.c
 int			ft_atoi(const char *str);
-char		*ft_strdup(const char *str);
+char		*ft_strdup(const char *str, t_garbage **garbage);
 size_t		ft_strlen(const char *str);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 
@@ -350,7 +350,7 @@ void		prompt_signal(int sig);
 void		exit_fork();
 
 // utils/exiting.c
-void		exiting(char *str, t_garbage **garbage);
+void		exiting_malloc(t_garbage **garbage);
 
 void		closing_next_fds(t_command *cmd);
 void		print_fd(int fd);

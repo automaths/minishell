@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:56:29 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 17:03:53 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:37:36 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strjoin(char const *s1, char const *s2, t_garbage **garbage)
 		return (NULL);
 	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
 	if (str == NULL)
-		return (NULL);
+		return (exiting_malloc(garbage), NULL);
 	add_garbage(garbage, new_garbage(str, S_CHAR));
 	while (s1[i])
 	{
@@ -90,7 +90,7 @@ char	*ft_strjoin_new(char *s1, char *s2, t_garbage **garbage)
 		return (NULL);
 	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
 	if (str == NULL)
-		return (NULL);
+		return (exiting_malloc(garbage), NULL);
 	add_garbage(garbage, new_garbage(str, S_CHAR));
 	i = -1;
 	while (s1[++i])

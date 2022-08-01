@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:34:57 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 17:05:04 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:24:16 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*alloc_content(char *str, unsigned int size, t_garbage **garbage)
 
 	alloc = (char *)malloc(sizeof(char) * (size + 1));
 	if (alloc == NULL)
-		return (NULL);
+		return (exiting_malloc(garbage), NULL);
 	add_garbage(garbage, new_garbage(alloc, S_CHAR));
 	alloc[size] = '\0';
 	i = -1;
@@ -52,7 +52,7 @@ t_first	*new_uno(int type, char *content, t_garbage **garbage)
 
 	new = (t_first *)malloc(sizeof(t_first));
 	if (new == NULL)
-		return (NULL);
+		return (exiting_malloc(garbage), NULL);
 	add_garbage(garbage, new_garbage(new, FST));
 	new->type = type;
 	new->content = content;

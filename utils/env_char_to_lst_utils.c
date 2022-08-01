@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:37:05 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 17:04:32 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:30:24 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_env	*new_lst(char *name, char *content, t_garbage **garbage)
 
 	new = (t_env *)malloc(sizeof(t_env));
 	if (new == NULL)
-		return (NULL);
+		return (exiting_malloc(garbage), NULL);
 	add_garbage(garbage, new_garbage(new, ENV));
 	new->name = name;
 	new->content = content;

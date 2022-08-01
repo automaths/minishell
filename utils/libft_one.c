@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:56:04 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 17:03:58 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:35:06 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_atoi(const char *str)
 	return (x);
 }
 
-char	*ft_strdup(const char *str)
+char	*ft_strdup(const char *str, t_garbage **garbage)
 {
 	char	*ptr;
 	size_t	i;
@@ -47,7 +47,8 @@ char	*ft_strdup(const char *str)
 	n = ft_strlen(str);
 	ptr = (char *) malloc(sizeof(char) * (n + 1));
 	if (ptr == NULL)
-		return (NULL);
+		return (exiting_malloc(garbage), NULL);
+	add_garbage(garbage, new_garbage(ptr, S_CHAR));
 	ptr[n] = '\0';
 	i = 0;
 	while (i < n)

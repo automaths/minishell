@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:21:35 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 17:06:11 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:15:08 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	**allocate_exec(t_command *cmd)
 
 	exec = (char **)malloc(sizeof(char *) * 2);
 	if (exec == NULL)
-		return (NULL);
+		return (exiting_malloc(cmd->garbage), NULL);
 	add_garbage(cmd->garbage, new_garbage(exec, D_CHAR));
 	exec[0] = cmd->arg->command;
 	exec[1] = NULL;

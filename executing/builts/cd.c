@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:06:53 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 17:23:11 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:36:58 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ char	*find_content_cd(char *name, t_env *env)
 	return (NULL);
 }
 
-int	change_dir(char *str, t_env *env)
+int	change_dir(char *str, t_env *env, t_garbage **garbage)
 {
 	char	*buf;
 	int		ret;
 
 	if (!ft_strncmp(str, "~", 1))
-		buf = ft_strdup(find_content_cd("HOME", env));
+		buf = ft_strdup(find_content_cd("HOME", env), garbage);
 	else if (ft_strncmp(str, "-", 1) == 0)
-		buf = ft_strdup(find_content_cd("OLDPWD", env));
+		buf = ft_strdup(find_content_cd("OLDPWD", env), garbage);
 	else
-		buf = ft_strdup(str);
+		buf = ft_strdup(str, garbage);
 	if (!buf)
 		exit(1);
 	ret = chdir(buf);
@@ -70,8 +70,8 @@ void	exec_cd(t_command *cmd)
 	char	pwd[500];
 
 	if (cmd->arg->argz[1] == NULL)
-		cmd->arg->argz[1] = ft_strdup("~");
-	if (change_dir(cmd->arg->argz[1], cmd->env) == -1)
+		cmd->arg->argz[1] = ft_strdup("~", cmd->garbage);
+	if (change_dir(cmd->arg->argz[1], cmd->env, cmd->garbage) == -1)
 	{
 		ft_error("bash: cd: ", cmd->arg->argz[1], 1, cmd->garbage);
 		return ;

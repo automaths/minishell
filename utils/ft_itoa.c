@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 00:13:19 by jucheval          #+#    #+#             */
-/*   Updated: 2022/08/01 17:04:13 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:37:52 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_itoa(int nb, t_garbage **garbage)
 	size = ft_len(n);
 	dest = malloc(sizeof(char) * (size + 1));
 	if (!dest)
-		return (NULL);
+		return (exiting_malloc(garbage), NULL);
 	add_garbage(garbage, new_garbage(dest, S_CHAR));
 	dest[size--] = '\0';
 	if (n == 0)

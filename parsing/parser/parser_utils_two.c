@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 14:48:07 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 17:04:57 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:24:48 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_command	*new_cmd(t_env *env, t_garbage **garbage)
 
 	new = (t_command *)malloc(sizeof(t_command));
 	if (new == NULL)
-		return (NULL);
+		return (exiting_malloc(garbage), NULL);
 	add_garbage(garbage, new_garbage(new, CMD));
 	new->env = env;
 	new->fd_in = -1;
@@ -52,7 +52,7 @@ t_token	*new_tkn(char *arg, int type, t_garbage **garbage)
 
 	new = (t_token *)malloc(sizeof(t_token));
 	if (new == NULL)
-		return (NULL);
+		return (exiting_malloc(garbage), NULL);
 	add_garbage(garbage, new_garbage(new, TKN));
 	new->content = arg;
 	new->type = type;

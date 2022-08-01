@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:39:13 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 17:04:25 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:31:34 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*alloc_line(char *name, char *content, t_garbage **garbage)
 	line = (char *)malloc(sizeof(char) * (ft_strlen(name) \
 		+ ft_strlen(content) + 2));
 	if (line == NULL)
-		return (NULL);
+		return (exiting_malloc(garbage), NULL);
 	add_garbage(garbage, new_garbage(line, S_CHAR));
 	i = -1;
 	while (name[++i])
@@ -57,7 +57,7 @@ char	**envp_to_char(t_env *env)
 	tmp = env;
 	split = (char **)malloc(sizeof(char *) * (lst_len(env) + 1));
 	if (split == NULL)
-		return (NULL);
+		return (exiting_malloc(env->garbage), NULL);
 	add_garbage(env->garbage, new_garbage(split, D_CHAR));
 	split[lst_len(env)] = NULL;
 	i = -1;

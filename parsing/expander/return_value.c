@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 21:04:46 by jucheval          #+#    #+#             */
-/*   Updated: 2022/08/01 17:05:21 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:26:14 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*string_with_return_var_value(char *cmd, char *name, int size_old_var, t_co
 	dest = malloc(sizeof(char) * ((ft_strlen(cmd) - size_old_var) + \
 	ft_strlen(name) + 1));
 	if (!dest)
-		return (NULL);
+		return (exiting_malloc(t_cmd->garbage), NULL);
 	add_garbage(t_cmd->garbage, new_garbage(dest, S_CHAR));
 	while (cmd[i] && (cmd[i] != '$' && cmd[i + 1] != '?'))
 		dest[j++] = cmd[i++];

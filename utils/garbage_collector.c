@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:24:02 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 17:04:01 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:32:08 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_garbage	*new_garbage(void *content, int type)
 
 	new = (t_garbage *)malloc(sizeof(t_garbage));
 	if (new == NULL)
-		return (NULL);
+		return (exiting_malloc(&new), NULL);
 	init_garbage(&new);
 	if (type == S_CHAR)
 		new->s_char = (char *)content;

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:39:06 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 17:04:05 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:32:52 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*ft_strtrim(const char *s1, const char *set, t_garbage **garbage)
 	diff = word_start(s1, set) + word_end(s1, set);
 	dest = malloc(sizeof(char) * ((ft_strlen(s1) - diff) + 1));
 	if (dest == NULL)
-		return (NULL);
+		return (exiting_malloc(garbage), NULL);
 	add_garbage(garbage, new_garbage(dest, S_CHAR));
 	while (is_set(s1[i], set))
 		i++;

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:37:42 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 17:04:10 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:32:32 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char	*ft_fill(char const *str, char charset, t_garbage **garbage)
 	n = num_char(str, charset);
 	ptr = (char *)malloc(sizeof(char) * (n + 1));
 	if (ptr == NULL)
-		return (NULL);
+		return (exiting_malloc(garbage), NULL);
 	add_garbage(garbage, new_garbage(ptr, S_CHAR));
 	ptr[n] = '\0';
 	i = 0;
@@ -79,7 +79,7 @@ char	**ft_split(char const *s, char c, t_garbage **garbage)
 	n = num_lines(s, c);
 	split = (char **)malloc(sizeof(char *) * (n + 1));
 	if (split == NULL)
-		return (NULL);
+		return (exiting_malloc(garbage), NULL);
 	add_garbage(garbage, new_garbage(split, D_CHAR));
 	split[n] = NULL;
 	i = 0;
