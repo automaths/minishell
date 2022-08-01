@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:56:04 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 18:35:06 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/02 00:20:13 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ size_t	ft_strlen(const char *str)
 {
 	size_t	n;
 
+	if (str == NULL)
+		return (0);
 	n = 0;
 	while (str[n])
 		n++;
