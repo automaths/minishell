@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:43:59 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 14:19:20 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:05:08 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../execution.h"
+#include "../../groshell.h"
 
 int	lexer_id_four_one(char c, int *j, int *mode)
 {

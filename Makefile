@@ -42,10 +42,9 @@ SRCS			=	./groshell.c \
 					./utils/tmp_debug.c \
 					./utils/ft_split.c \
 					./utils/ft_strtrim.c \
+					./utils/libft_one.c \
+					./utils/libft_two.c \
 					./utils/utils_one.c \
-					./utils/utils_two.c \
-					./utils/utils_three.c \
-					./utils/utils_four.c \
 					./utils/signal.c \
 					./utils/ft_itoa.c \
 					

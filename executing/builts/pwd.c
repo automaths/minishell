@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:07:14 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 15:17:19 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:06:44 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../execution.h"
+#include "../../groshell.h"
 
 char	*find_pwd(t_command *cmd)
 {

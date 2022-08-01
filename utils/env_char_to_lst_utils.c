@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:37:05 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/31 19:18:09 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:04:32 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../groshell.h"
 
 t_env	*new_lst(char *name, char *content, t_garbage **garbage)
 {

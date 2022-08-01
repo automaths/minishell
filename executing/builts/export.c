@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:07:09 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 12:00:27 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:06:48 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../execution.h"
+#include "../../groshell.h"
 
 int	check_export(char *str)
 {
@@ -21,7 +21,7 @@ int	check_export(char *str)
 	i = 0;
 	if (check_equal(str) == 0)
 		return (printf("no equal"), 0);
-	while (str[i] && is_whitespace2(str[i]))
+	while (str[i] && is_whitespace(str[i]))
 		i++;
 	while (str[i] && is_export(str[i]))
 		i++;
@@ -46,11 +46,11 @@ char	*export_name(char *str)
 	int		j;
 
 	i = 0;
-	while (str[i] && is_whitespace2(str[i]))
+	while (str[i] && is_whitespace(str[i]))
 		i++;
 	while (str[i] && is_export(str[i]))
 		i++;
-	while (str[i] && is_whitespace2(str[i]))
+	while (str[i] && is_whitespace(str[i]))
 		i++;
 	j = 0;
 	while (str[i + j] && str[i + j] != '=')
@@ -72,7 +72,7 @@ char	*export_content(char *str)
 	int		j;
 
 	i = 0;
-	while (str[i] && is_whitespace2(str[i]))
+	while (str[i] && is_whitespace(str[i]))
 		i++;
 	while (str[i] && is_export(str[i]))
 		i++;
@@ -115,6 +115,8 @@ void	exec_export(t_command *cmd)
 	char	*name;
 	char	*content;
 
+	if (cmd->arg->argz[1] == NULL)
+		return ;
 	if (check_export(cmd->arg->argz[1]) == 0)
 		return ;
 	name = export_name(cmd->arg->argz[1]);

@@ -5,67 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/29 15:47:29 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 10:57:47 by nsartral         ###   ########.fr       */
+/*   Created: 2022/07/29 15:47:24 by nsartral          #+#    #+#             */
+/*   Updated: 2022/08/01 17:03:34 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../groshell.h"
 
-int	strnstr_int(char *str, char *to_find)
+bool	is_whitespace(char c)
 {
-	int	i;
-	int	j;
-
-	if (to_find[0] == '\0')
-		return (0);
-	i = 0;
-	while (str[i])
-	{
-		j = 0;
-		while (str[i + j] && str[i + j] == to_find[j])
-		{
-			if (to_find[j + 1] == '\0')
-				return (i);
-			j++;
-		}
-		i++;
-	}
+	if (c == ' ' || c == '\t' || c == '\v'
+		|| c == '\n' || c == '\r' || c == '\f')
+		return (1);
 	return (0);
 }
 
-int	ft_strcmp(const char *s1, const char *s2)
+bool	is_lowercase(char c)
 {
-	size_t			i;
-	unsigned char	*one;
-	unsigned char	*two;
-
-	one = (unsigned char *)s1;
-	two = (unsigned char *)s2;
-	i = 0;
-	while (one[i] && two[i] && one[i] == two[i])
-		i++;
-	return (one[i] - two[i]);
+	if (c >= 'a' && c <= 'z')
+		return (1);
+	return (0);
 }
 
-char	*ft_strjoin_new(char *s1, char *s2, t_garbage **garbage)
+bool	is_printable_except_space(char c)
 {
-	char	*str;
-	int		i;
-	int		j;
-
-	if (s1 == NULL && s2 == NULL)
-		return (NULL);
-	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
-	if (str == NULL)
-		return (NULL);
-	add_garbage(garbage, new_garbage(str, S_CHAR));
-	i = -1;
-	while (s1[++i])
-		str[i] = s1[i];
-	j = -1;
-	while (s2[++j])
-		str[i++] = s2[j];
-	str[i] = '\0';
-	return (str);
+	if (c < 33 || c > 126)
+		return (0);
+	return (1);
 }

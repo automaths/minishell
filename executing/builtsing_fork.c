@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:39:24 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 14:53:28 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:06:30 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../groshell.h"
 
 bool	check_builts(char **argz)
 {
@@ -49,12 +49,17 @@ void	forking_builts(t_command *cmd)
 	{
 		if (dup2(cmd->fd_in, STDIN_FILENO) == -1)
 			return ;
+		close(cmd->fd_in);
 	}
 	if (cmd->fd_out != 1)
 	{
 		if (dup2(cmd->fd_out, STDOUT_FILENO) == -1)
 			return ;
+		close(cmd->fd_in);
 	}
+	closing_next_fds(cmd);
+	if (cmd->previous_fd != 0 && cmd->previous_fd != 1)
+		close(cmd->previous_fd);
 	if (cmd->fd_in != 0)
 		close(cmd->fd_in);
 	if (cmd->fd_out != 1)

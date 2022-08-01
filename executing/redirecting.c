@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 13:34:47 by nimrod            #+#    #+#             */
-/*   Updated: 2022/08/01 13:16:45 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:05:52 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../groshell.h"
 
 bool	init_fd_in_bis(t_command *cmd, t_token *the_one)
 {

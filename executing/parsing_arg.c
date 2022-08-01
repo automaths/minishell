@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:16 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 10:51:48 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:06:01 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../groshell.h"
 
 void	token_initing(t_command *cmd)
 {
@@ -22,14 +22,10 @@ void	token_initing(t_command *cmd)
 
 bool	command_trim(t_command *cmd)
 {
-	int		i;
 	int		j;
 
-	i = 0;
-	while (is_whitespace(cmd->arg->content[i]))
-		i++;
 	j = 0;
-	while (is_printable_except_space(cmd->arg->content[i + j]))
+	while (is_printable_except_space(cmd->arg->content[j]))
 		j++;
 	if (j == 0)
 		return (0);
@@ -38,9 +34,9 @@ bool	command_trim(t_command *cmd)
 		return (NULL);
 	add_garbage(cmd->garbage, new_garbage(cmd->arg->command, S_CHAR));
 	j = 0;
-	while (is_printable_except_space(cmd->arg->content[i + j]))
+	while (is_printable_except_space(cmd->arg->content[j]))
 	{
-		cmd->arg->command[j] = cmd->arg->content[i + j];
+		cmd->arg->command[j] = cmd->arg->content[j];
 		j++;
 	}
 	cmd->arg->command[j] = '\0';

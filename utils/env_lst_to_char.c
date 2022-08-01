@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:39:13 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 10:56:24 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:04:25 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../groshell.h"
 
 int	lst_len(t_env *env)
 {

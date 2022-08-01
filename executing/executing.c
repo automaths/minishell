@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:15 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 12:56:27 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:16:18 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../groshell.h"
 
 void	closing_fd(t_command *cmd)
 {
@@ -47,11 +47,12 @@ void	waitpiding(t_command *cmd)
 	int			num;
 
 	tmp = cmd;
+	num = 0;
 	while (tmp != NULL)
 	{
 		if (tmp->arg != NULL)
 		{
-			if (waitpid(tmp->arg->pid, &num, 2) != -1)
+			if (waitpid(tmp->arg->pid, &num, 0) != -1)
 			{
 				if (tmp->arg->pid && num)
 					updating_singleton(num);

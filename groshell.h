@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution.h                                        :+:      :+:    :+:   */
+/*   groshell.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 14:21:48 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:24:06 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTION_H
-# define EXECUTION_H
+#ifndef GROSHELL_H
+# define GROSHELL_H
 // ========================================================================= //
 //                                   Library                                 //
 // ========================================================================= //
@@ -329,7 +329,7 @@ char		*ft_strtrim(const char *s1, const char *set, t_garbage **garbage);
 char		*ft_strjoin(char const *s1, char const *s2, t_garbage **garbage);
 
 // utils/utils_three.c
-bool		is_whitespace2(char c);
+bool		is_whitespace(char c);
 bool		is_lowercase(char c);
 bool		is_printable_except_space(char c);
 int			ft_strcmp(const char *s1, const char *s2);
@@ -338,7 +338,6 @@ void		ft_putnbr_fd(int n, int fd);
 
 // utils/utils_four.c
 int			strnstr_int(char *str, char *to_find);
-bool		is_whitespace(char c);
 void		writing_error(char *str, int num);
 void		writing(char *intro, char *content);
 
@@ -349,5 +348,11 @@ char		*ft_itoa(int nb, t_garbage **garbage);
 void		set_signal();
 void		prompt_signal(int sig);
 void		exit_fork();
+
+// utils/exiting.c
+void		exiting(char *str, t_garbage **garbage);
+
+void		closing_next_fds(t_command *cmd);
+void		print_fd(int fd);
 
 #endif

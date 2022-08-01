@@ -6,20 +6,20 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 18:03:08 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 18:03:10 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:03:38 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../groshell.h"
 
 void	print_fd(int fd)
 {
 	char	c;
 
 	c = fd + '0';
-	write(1, "the fd is :", 11);
-	write(1, &c, 1);
-	write(1, "\n", 1);
+	write(2, "closing fd :", 11);
+	write(2, &c, 1);
+	write(2, "\n", 1);
 }
 
 void	print_parsed(t_command *cmd)

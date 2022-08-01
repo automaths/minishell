@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:47:12 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 14:50:45 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:04:46 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../execution.h"
+#include "../../groshell.h"
 
 void	add_redirection(t_first *tmp_uno, t_command *tmp_cmd, \
 			t_garbage **garbage, int *t)

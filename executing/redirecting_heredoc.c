@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 14:55:20 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 11:48:10 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:05:58 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../groshell.h"
 
 bool	reading_heredoc(char *limiter, int fd_in, t_garbage **garbage);
 

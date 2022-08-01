@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:44:21 by jucheval          #+#    #+#             */
-/*   Updated: 2022/08/01 12:30:03 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:05:40 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../execution.h"
+#include "../../groshell.h"
 
 int	del_all_neg_quotes_redir(t_command *cmd)
 {

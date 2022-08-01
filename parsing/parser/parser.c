@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:46:55 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 15:39:02 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:04:50 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../execution.h"
+#include "../../groshell.h"
 
 bool	redirection_validation(t_first *uno)
 {

@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 14:48:07 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 14:48:45 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:04:57 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../execution.h"
+#include "../../groshell.h"
 
 t_command	*new_cmd(t_env *env, t_garbage **garbage)
 {

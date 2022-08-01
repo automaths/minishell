@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:06:53 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 12:01:20 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:23:11 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../execution.h"
+#include "../../groshell.h"
 
 char	*find_content_cd(char *name, t_env *env)
 {
@@ -50,13 +50,13 @@ bool	is_single_cd(char *str)
 	i = 0;
 	if (str == NULL)
 		return (0);
-	while (str[i] && is_whitespace2(str[i]))
+	while (str[i] && is_whitespace(str[i]))
 		++i;
 	if (str[i] && str[i] == 'c')
 		++i;
 	if (str[i] && str[i] == 'd')
 		++i;
-	while (str[i] && is_whitespace2(str[i]))
+	while (str[i] && is_whitespace(str[i]))
 		++i;
 	if (str[i] && str[i] == '~' && (!str[i + 1] || str[i + 1] == ' '))
 		return (0);
@@ -73,7 +73,7 @@ void	exec_cd(t_command *cmd)
 		cmd->arg->argz[1] = ft_strdup("~");
 	if (change_dir(cmd->arg->argz[1], cmd->env) == -1)
 	{
-		ft_error("bash: cd: ", cmd->arg->argz[1], 1, 1);
+		ft_error("bash: cd: ", cmd->arg->argz[1], 1, cmd->garbage);
 		return ;
 	}
 	else

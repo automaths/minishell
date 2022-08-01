@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:37:18 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/29 17:37:26 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:03:47 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../groshell.h"
 
 void	writing_error(char *str, int num)
 {

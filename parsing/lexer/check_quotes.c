@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:02:09 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 16:14:34 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:05:17 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../execution.h"
+#include "../../groshell.h"
 
 static bool	check_quotes_one(char c, int *mode)
 {

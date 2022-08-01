@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:07:06 by nsartral          #+#    #+#             */
-/*   Updated: 2022/07/30 16:31:06 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:06:57 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../execution.h"
+#include "../../groshell.h"
 
 bool	is_exit(char c)
 {
@@ -24,11 +24,11 @@ int	find_exit_number(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] && is_whitespace2(str[i]))
+	while (str[i] && is_whitespace(str[i]))
 		i++;
 	while (str[i] && is_exit(str[i]))
 		i++;
-	while (str[i] && is_whitespace2(str[i]))
+	while (str[i] && is_whitespace(str[i]))
 		i++;
 	if (!str[i] || str[i] < '0' || str[i] > '9')
 		return (0);

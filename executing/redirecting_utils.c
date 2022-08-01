@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:26:02 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 12:05:38 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:05:55 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../groshell.h"
 
 bool	check_fd_in(char *content, t_garbage **garbage)
 {

@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:20:54 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 12:01:33 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:06:41 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../execution.h"
+#include "../../groshell.h"
 
 void	remove_env(char *name, t_env **env)
 {
@@ -41,6 +41,8 @@ void	exec_unset(t_command *cmd)
 {
 	char	*name;
 
+	if (cmd->arg->argz[1] == NULL)
+		return ;
 	name = get_name(cmd->arg->argz[1], cmd->garbage);
 	remove_env(name, &cmd->env);
 }

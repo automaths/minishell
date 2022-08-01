@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 21:04:46 by jucheval          #+#    #+#             */
-/*   Updated: 2022/08/01 10:58:53 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:05:21 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../execution.h"
+#include "../../groshell.h"
 
 char	*string_with_return_var_value(char *cmd, char *name, int size_old_var, t_command *t_cmd)
 {

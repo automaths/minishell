@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 22:43:44 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 14:26:27 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:03:44 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../groshell.h"
 
 void	exit_fork()
 {

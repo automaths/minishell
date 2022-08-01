@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:39:06 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 14:28:44 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:04:05 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../groshell.h"
 
 static int	is_set(char c, const char *set)
 {

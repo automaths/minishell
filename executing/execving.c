@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:39:05 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 14:10:33 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:09:44 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../groshell.h"
 
 void	closing_next_fds(t_command *cmd)
 {
@@ -19,23 +19,25 @@ void	closing_next_fds(t_command *cmd)
 	tmp = cmd;
 	if (tmp->next != NULL)
 	{
-		if (cmd->next->fd_out != 1)
-			close(cmd->next->fd_out);
+		if (tmp->next->fd_out != 1)
+			close(tmp->next->fd_out);
 		tmp = tmp->next;
 	}
 	tmp = tmp->next;
 	while (tmp != NULL)
 	{
-		if (cmd->fd_in != 0)
-			close(cmd->fd_in);
-		if (cmd->fd_out != 1)
-			close(cmd->fd_out);
+		if (tmp->fd_in != 0)
+			close(tmp->fd_in);
+		if (tmp->fd_out != 1)
+			close(tmp->fd_out);
+		tmp = tmp->next;
 	}
 }
 
 void	forking(t_command *cmd)
 {
-	close(cmd->fd[0]);
+	if (cmd->fd[0] != 0)
+		close(cmd->fd[0]);
 	if (cmd->fd_in != 0)
 	{
 		if (dup2(cmd->fd_in, STDIN_FILENO) == -1)
@@ -46,9 +48,9 @@ void	forking(t_command *cmd)
 		if (dup2(cmd->fd_out, STDOUT_FILENO) == -1)
 			return ;
 	}
+	closing_next_fds(cmd);
 	if (cmd->previous_fd != 0 && cmd->previous_fd != 1)
 		close(cmd->previous_fd);
-	closing_next_fds(cmd);
 	if (cmd->fd_in != 0)
 		close(cmd->fd_in);
 	if (cmd->fd_out != 1)
@@ -74,5 +76,7 @@ void	exec_token(t_command *cmd)
 			close(cmd->fd_in);
 		if (cmd->fd_out != 1)
 			close(cmd->fd_out);
+		if (cmd->previous_fd != 0 && cmd->previous_fd != 1)
+			close(cmd->previous_fd);
 	}
 }

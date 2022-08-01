@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   exiting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 12:06:58 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 17:07:03 by nsartral         ###   ########.fr       */
+/*   Created: 2022/08/01 15:30:46 by nsartral          #+#    #+#             */
+/*   Updated: 2022/08/01 17:19:50 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../groshell.h"
+#include "../groshell.h"
 
-bool	check_echo_flag(char **argz)
+void	exiting(char *str, t_garbage **garbage)
 {
-	if (argz[1] == NULL)
-		return (0);
-	if (ft_strncmp(argz[1], "-n", 3) == 0)
-		return (1);
-	return (0);
-}
-
-void	exec_echo(t_command *cmd)
-{
-	int	i;
-
-	i = 0;
-	if (check_echo_flag(cmd->arg->argz))
-		i++;
-	while (cmd->arg->argz[++i])
+	if (str != NULL)
 	{
-		write(1, cmd->arg->argz[i], ft_strlen(cmd->arg->argz[i]));
-		write(1, " ", 1);
-	}
-	if (!check_echo_flag(cmd->arg->argz))
+		write(1, str, ft_strlen(str));
 		write(1, "\n", 1);
+	}
+	clean_garbage(garbage);
+	exit(singleton(0, 0));
 }

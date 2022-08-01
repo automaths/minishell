@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:37:42 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 11:40:19 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:04:10 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../groshell.h"
 
 static int	is_charset(char const *str, char charset)
 {

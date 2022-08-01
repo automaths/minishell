@@ -6,11 +6,11 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:55:44 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 14:23:19 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:04:29 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../groshell.h"
 
 char	*get_content(char *envp, t_garbage **garbage)
 {

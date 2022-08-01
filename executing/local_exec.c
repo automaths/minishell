@@ -6,18 +6,18 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:21:35 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 14:53:46 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:06:11 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../groshell.h"
 
 bool	check_local_exec(char *command)
 {
 	int	i;
 
 	i = -1;
-	while (command[++i] && is_whitespace2(command[i]))
+	while (command[++i] && is_whitespace(command[i]))
 		;
 	if (command[i] && command[i] == '.' && command[i + 1] \
 		&& command[i + 1] == '/' && command[i + 2] \
