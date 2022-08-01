@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_utils.c                                     :+:      :+:    :+:   */
+/*   parser_utils_two.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/29 15:47:12 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 14:21:10 by nsartral         ###   ########.fr       */
+/*   Created: 2022/08/01 14:48:07 by nsartral          #+#    #+#             */
+/*   Updated: 2022/08/01 14:48:45 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,51 +74,4 @@ void	add_back_tkn(t_token **tkn, t_token *new)
 	}
 	else if (tkn)
 		*tkn = new;
-}
-
-t_command	*step_two(t_first *uno, t_env *env, t_garbage **garbage)
-{
-	t_command		*cmd;
-	t_command		*tmp_cmd;
-	t_first			*tmp_uno;
-	int				t;
-
-	cmd = new_cmd(env, garbage);
-	tmp_cmd = cmd;
-	tmp_uno = uno;
-	t = 0;
-	while (tmp_uno != NULL)
-	{
-		if (tmp_uno->type == WORD)
-			add_back_tkn(&tmp_cmd->arg \
-				, new_tkn(tmp_uno->content, tmp_uno->type, garbage));
-		if (tmp_uno->type == APPEND || tmp_uno->type == WRITE \
-			|| tmp_uno->type == HEREDOC || tmp_uno->type == READ)
-		{
-			if (tmp_uno->next != NULL && tmp_uno->next->type == WORD)
-			{
-				add_back_tkn(&tmp_cmd->redir \
-					, new_tkn(ft_strjoin(tmp_uno->content \
-						, tmp_uno->next->content, garbage), \
-							tmp_uno->type, garbage));
-				t = 1;
-			}
-			else
-				add_back_tkn(&tmp_cmd->redir \
-					, new_tkn(tmp_uno->content, tmp_uno->type, garbage));
-		}
-		if (tmp_uno->type == PIPE)
-		{
-			add_back_cmd(&tmp_cmd, new_cmd(env, garbage));
-			tmp_cmd = tmp_cmd->next;
-		}
-		if (t == 1)
-		{
-			tmp_uno = tmp_uno->next->next;
-			t = 0;
-		}
-		else
-			tmp_uno = tmp_uno->next;
-	}
-	return (cmd);
 }

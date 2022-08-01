@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:39:06 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 11:50:58 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 14:28:44 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ char	*ft_strtrim(const char *s1, const char *set, t_garbage **garbage)
 	if (s1 == NULL || set == NULL)
 		return (NULL);
 	diff = word_start(s1, set) + word_end(s1, set);
-	if (diff == (ft_strlen(s1) * 2))
-		diff = ft_strlen(s1);
 	dest = malloc(sizeof(char) * ((ft_strlen(s1) - diff) + 1));
 	if (dest == NULL)
 		return (NULL);
