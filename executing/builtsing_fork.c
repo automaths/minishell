@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:39:24 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 12:33:56 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 14:53:28 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	exec_builts(t_command *cmd)
 
 void	forking_builts(t_command *cmd)
 {
+	close(cmd->fd[0]);
 	if (cmd->fd_in != 0)
 	{
 		if (dup2(cmd->fd_in, STDIN_FILENO) == -1)

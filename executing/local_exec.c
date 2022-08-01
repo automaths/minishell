@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:21:35 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 12:07:52 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/01 14:53:46 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ bool	check_local_exec(char *command)
 
 void	local_forking(t_command *cmd)
 {
+	close(cmd->fd[0]);
 	if (cmd->fd_in != 0)
 	{
 		if (dup2(cmd->fd_in, STDIN_FILENO) == -1)
