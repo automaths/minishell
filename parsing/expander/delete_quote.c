@@ -41,7 +41,7 @@ char	*del_one_neg_quotes_second(char *str, char *dest)
 		else
 			i++;
 	}
-	dest[i] = 0;
+	dest[j] = 0;
 	return (dest);
 }
 

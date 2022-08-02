@@ -59,7 +59,7 @@ RM				= 	rm -f
 
 CFLAGS			= 	-Wall -Wextra -Werror
 
-NAME			= 	a.out
+NAME			= 	minishell
 
 all:		$(NAME)
 

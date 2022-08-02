@@ -39,6 +39,11 @@ void	updating_singleton(int num)
 		singleton(127, 1);
 	else if (num == 0)
 		singleton(0, 1);
+	else if (num == -1)
+	{
+		write(1, "segmentation fault\n", ft_strlen("segmentation fault\n"));
+		singleton(139, 1);
+	}
 }
 
 void	waitpiding(t_command *cmd)
@@ -50,7 +55,7 @@ void	waitpiding(t_command *cmd)
 	num = 0;
 	while (tmp != NULL)
 	{
-		if (tmp->is_exec == 1)
+		if (tmp->is_exec == 1 && tmp->arg->pid)
 		{
 			if (waitpid(tmp->arg->pid, &num, 0) != -1)
 			{

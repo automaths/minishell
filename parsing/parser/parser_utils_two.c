@@ -60,6 +60,7 @@ t_token	*new_tkn(char *arg, int type, t_garbage **garbage)
 	new->content = arg;
 	new->type = type;
 	new->garbage = garbage;
+	new->pid = 0;
 	new->next = NULL;
 	return (new);
 }

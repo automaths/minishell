@@ -85,7 +85,7 @@ t_first	*lexer(char *str, t_garbage **garbage)
 
 	(void)garbage;
 	if (check_quotes(str) == 0)
-		return (write(1, "Error, quotes not ended\n", 31), NULL);
+		return (write(1, "Error, quotes not ended\n", 24), NULL);
 	mode = NEUTRAL_MODE;
 	uno = new_uno(7, "start of chained list", garbage);
 	i = -1;

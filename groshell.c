@@ -52,7 +52,7 @@ int	main(int argc, char **argv, char **envp)
 		set_signal();
 		str = readline("groshell> ");
 		if (!str)
-			return (printf("exit\n"), 0);
+			return (clean_garbage(&garbage), printf("exit\n"), 0);
 		add_history(str);
 		if (!(ft_strncmp(str, "exit", 5)))
 			break ;

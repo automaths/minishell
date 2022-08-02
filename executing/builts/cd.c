@@ -73,7 +73,14 @@ void	exec_cd(t_command *cmd)
 		cmd->arg->argz[1] = ft_strdup("~", cmd->garbage);
 	if (change_dir(cmd->arg->argz[1], cmd->env, cmd->garbage) == -1)
 	{
-		ft_error("groshell: cd: ", cmd->arg->argz[1], 1, cmd->garbage);
+		if (access(cmd->arg->argz[1], F_OK) == 0)
+		{
+			writing("groshell: cd: ", cmd->arg->argz[1]);
+			write(1, ": Not a directory\n", ft_strlen(": Not a directory\n"));
+			singleton(1, 1);
+		}
+		else
+			ft_error("groshell: cd: ", cmd->arg->argz[1], 1, cmd->garbage);
 		return ;
 	}
 	else

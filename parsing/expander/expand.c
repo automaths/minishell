@@ -19,7 +19,7 @@ char	*find_variable_value(char *name, t_env *env)
 	tmp = env;
 	while (tmp)
 	{
-		if (strcmp(tmp->name, &name[0]) == 0)
+		if (ft_strcmp(tmp->name, &name[0]) == 0)
 			return (tmp->content);
 		tmp = tmp->next;
 	}
@@ -99,8 +99,11 @@ int	replace_variable(t_command *cmd, t_env *env)
 			while (tmp_token->content[++i])
 			{
 				if (tmp_token->content[i] == '$')
-					tmp_token->content = \
-					replace_one_variable(tmp_token->content, env, ++i, cmd);
+				{
+					tmp_token->content = replace_one_variable(tmp_token->content, env, ++i, cmd);
+					if (!tmp_token->content)
+						return (0);
+				}
 			}
 			tmp_token = tmp_token->next;
 		}
