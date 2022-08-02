@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:21:35 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 18:15:08 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/02 19:39:18 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ bool	check_local_exec(char *command)
 
 void	local_forking(t_command *cmd)
 {
-	close(cmd->fd[0]);
+	if (cmd->fd[0] != 0 && cmd->fd[0] != 1 && cmd->fd[0] != -1)
+		close(cmd->fd[0]);
 	if (cmd->fd_in != 0)
 	{
 		if (dup2(cmd->fd_in, STDIN_FILENO) == -1)
@@ -50,7 +51,7 @@ void	local_forking(t_command *cmd)
 void	error_local_exec(t_command *cmd)
 {
 	singleton(127, 1);
-	write(2, "bash: ", 6);
+	write(2, "groshell: ", 6);
 	write(2, cmd->arg->command, ft_strlen(cmd->arg->command));
 	write(2, ": No such file or directory\n"\
 		, ft_strlen(": No such file or directory\n"));

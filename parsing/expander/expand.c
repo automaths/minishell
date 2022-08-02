@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 21:49:48 by jucheval          #+#    #+#             */
-/*   Updated: 2022/08/02 15:36:47 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/02 19:49:32 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,8 @@ int	replace_variable(t_command *cmd, t_env *env)
 			while (tmp_token->content[++i])
 			{
 				if (tmp_token->content[i] == '$')
-				{
-					tmp_token->content = replace_one_variable(tmp_token->content, env, ++i, cmd);
-					if (!tmp_token->content)
-						return (0);
-				}	
+					tmp_token->content = \
+					replace_one_variable(tmp_token->content, env, ++i, cmd);
 			}
 			tmp_token = tmp_token->next;
 		}

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:33:05 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/02 13:54:20 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/02 19:45:34 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ bool	get_the_path_one(t_command *cmd)
 	if (envp[i] == NULL)
 		return (0);
 	cmd->arg->unix_paths = ft_split(&envp[i][4], ':', cmd->garbage);
-	if (command_trim(cmd) == 0)
-		return (ft_error(cmd->arg->command, (char *) NULL, 127, 1), 0);
 	if (cmd->arg->command == NULL)
 		return (0);
 	return (1);
@@ -35,14 +33,16 @@ bool	get_the_path(t_command *cmd)
 {
 	int		i;
 
-	if (get_the_path_one(cmd) == 0)
-		return (0);
+	if (command_trim(cmd) == 0)
+		return (ft_error(cmd->arg->command, (char *) NULL, 127, 1), 0);
 	if (is_builts(cmd->arg->command))
 		return (1);
 	if (check_local_exec(cmd->arg->command))
 		return (1);
 	if (check_absolute(cmd))
 		return (1);
+	if (get_the_path_one(cmd) == 0)
+		return (ft_error(cmd->arg->command, (char *) NULL, 127, 1), 0);
 	i = 0;
 	while (cmd->arg->unix_paths[i] \
 		&& find_path(cmd->arg, cmd->arg->unix_paths[i]) == 0)

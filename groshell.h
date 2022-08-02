@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/02 15:58:02 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/02 19:44:36 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -350,9 +350,9 @@ void		writing(char *intro, char *content);
 char		*ft_itoa(int nb, t_garbage **garbage);
 
 // signaux
-void		set_signal();
+void		set_signal(void);
 void		prompt_signal(int sig);
-void		exit_fork();
+void		exit_fork(int sig);
 
 // utils/exiting.c
 void		exiting_malloc(t_garbage **garbage);

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:37:18 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 17:03:47 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/02 19:38:51 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void	writing_error(char *str, int num)
 {
 	if (num == 1)
 	{
-		write(2, "bash: ", 6);
+		write(2, "groshell: ", 6);
 		if (str != NULL)
 			write(2, str, ft_strlen(str));
 		write(2, ": command not found\n", 20);
 	}
 	if (num == 2)
 	{
-		write(2, "bash: ", 6);
+		write(2, "groshell: ", 6);
 		if (str != NULL)
 			write(2, str, ft_strlen(str));
 		write(2, ": no such file or directory\n",
@@ -31,7 +31,7 @@ void	writing_error(char *str, int num)
 	}
 	if (num == 3)
 	{
-		write(2, "bash: ", 6);
+		write(2, "groshell: ", 6);
 		if (str != NULL)
 			write(2, str, ft_strlen(str));
 		write(2, ": permission denied\n", ft_strlen(": permission denied\n"));

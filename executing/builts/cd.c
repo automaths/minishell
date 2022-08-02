@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:06:53 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 18:36:58 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/02 19:38:51 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	exec_cd(t_command *cmd)
 		cmd->arg->argz[1] = ft_strdup("~", cmd->garbage);
 	if (change_dir(cmd->arg->argz[1], cmd->env, cmd->garbage) == -1)
 	{
-		ft_error("bash: cd: ", cmd->arg->argz[1], 1, cmd->garbage);
+		ft_error("groshell: cd: ", cmd->arg->argz[1], 1, cmd->garbage);
 		return ;
 	}
 	else
