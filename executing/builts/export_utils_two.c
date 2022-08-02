@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:00:08 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/02 14:14:51 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/02 15:32:40 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	export_shlvl(t_command *cmd, bool add)
 
 void	print_export(t_command *cmd)
 {
-	t_env *tmp;
+	t_env	*tmp;
 
 	tmp = cmd->env;
 	while (tmp != NULL)

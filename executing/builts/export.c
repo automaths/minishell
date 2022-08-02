@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:07:09 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/02 14:41:18 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/02 15:32:25 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,8 @@ void	exec_export(t_command *cmd)
 	}
 	if (check_export(cmd->arg->argz[1]) == 0)
 	{
-		write(1, "export: not a valid identifier\n", ft_strlen("export: not a valid identifier\n"));
+		write(1, "export: not a valid identifier\n", \
+			ft_strlen("export: not a valid identifier\n"));
 		singleton(1, 1);
 		return ;
 	}

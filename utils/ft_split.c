@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:37:42 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 21:30:28 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/02 15:39:20 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,7 @@ char	**ft_split(char *s, char c, t_garbage **garbage)
 		while (*s && is_charset(s, c))
 			s++;
 		if (*s)
-		{
-			split[i] = ft_fill(s, c, garbage);
-			if (split[i++] == NULL)
-				return (NULL);
-		}
+			split[i++] = ft_fill(s, c, garbage);
 		while (*s && !is_charset(s, c))
 			s++;
 	}

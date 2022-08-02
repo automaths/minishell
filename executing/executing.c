@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:15 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 22:55:41 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/02 15:53:21 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ t_env	*exec_command(t_command *cmd)
 {
 	t_command	*tmp;
 
-	if (!cmd)
-		return (NULL);
 	tmp = cmd;
 	if (redirectionning(tmp) == 0)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:39:24 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 22:42:09 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/02 15:39:40 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void	forking_builts(t_command *cmd)
 		close(cmd->fd_out);
 	}
 	closing_next_fds(cmd);
-	if (cmd->previous_fd != 0 && cmd->previous_fd != 1 && cmd->previous_fd != -1)
+	if (cmd->previous_fd != 0 && cmd->previous_fd != 1 \
+		&& cmd->previous_fd != -1)
 		close(cmd->previous_fd);
 	if (cmd->fd_in != 0 && cmd->fd_in != -1)
 		close(cmd->fd_in);

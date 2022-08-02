@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:07:06 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/02 15:21:50 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/02 15:34:01 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	check_first(char *str)
 	i = 0;
 	while (str[i] && ((str[i] >= 9 && str[i] <= 13) || str[i] == 32))
 		i++;
-	if (!str[i] || !(str[i] >= '0' &&  str[i] <= '9'))
+	if (!str[i] || !(str[i] >= '0' && str[i] <= '9'))
 		return (0);
 	return (1);
 }
@@ -43,7 +43,8 @@ void	exiting_exit(int n, t_command *cmd, bool correct)
 	{
 		write(1, "bash: exit: ", ft_strlen("bash: exit: "));
 		write(1, cmd->arg->argz[1], ft_strlen(cmd->arg->argz[1]));
-		write(1, ": numeric argument required\n", ft_strlen(": numeric argument required:\n"));
+		write(1, ": numeric argument required\n", \
+			ft_strlen(": numeric argument required:\n"));
 		clean_garbage(cmd->garbage);
 		exit(2);
 	}

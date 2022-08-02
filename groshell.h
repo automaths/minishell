@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/02 14:09:41 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/02 15:58:02 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,6 +254,7 @@ int			delete_quotes_redir_list(t_command *cmd);
 bool		redirection_validation(t_first *uno);
 bool		pipes_validation(t_first *uno);
 bool		command_validation(t_first *uno);
+bool		check_special_redir(t_first *uno);
 
 // parsing/parser/parser_utils.c
 t_command	*new_cmd(t_env *env, t_garbage **garbage);
