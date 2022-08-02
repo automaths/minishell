@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:33:05 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 21:22:04 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/02 13:54:20 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ bool	get_the_path(t_command *cmd)
 	if (is_builts(cmd->arg->command))
 		return (1);
 	if (check_local_exec(cmd->arg->command))
+		return (1);
+	if (check_absolute(cmd))
 		return (1);
 	i = 0;
 	while (cmd->arg->unix_paths[i] \

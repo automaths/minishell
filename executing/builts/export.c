@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:07:09 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 18:29:54 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/02 14:41:18 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_export(char *str)
 
 	i = 0;
 	if (check_equal(str) == 0)
-		return (printf("no equal"), 0);
+		return (0);
 	while (str[i] && is_whitespace(str[i]))
 		i++;
 	while (str[i] && is_export(str[i]))
@@ -29,13 +29,13 @@ int	check_export(char *str)
 	while (str[i + j] && str[i + j] != '=')
 		j++;
 	if (j == 0)
-		return (printf("incorrect export format"), 0);
+		return (0);
 	j++;
 	k = 0;
 	while (str[i + j + k])
 		k++;
 	if (k == 0)
-		return (printf("incorrect export format"), 0);
+		return (0);
 	return (1);
 }
 
@@ -117,9 +117,16 @@ void	exec_export(t_command *cmd)
 	char	*content;
 
 	if (cmd->arg->argz[1] == NULL)
+	{
+		print_export(cmd);
 		return ;
+	}
 	if (check_export(cmd->arg->argz[1]) == 0)
+	{
+		write(1, "export: not a valid identifier\n", ft_strlen("export: not a valid identifier\n"));
+		singleton(1, 1);
 		return ;
+	}
 	name = export_name(cmd->arg->argz[1], cmd->garbage);
 	content = export_content(cmd->arg->argz[1], cmd->garbage);
 	if (update_env(name, content, cmd->env))

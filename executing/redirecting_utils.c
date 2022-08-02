@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:26:02 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 17:05:55 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/02 14:04:48 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ bool	check_fd_out(t_token *redir, t_garbage **garbage)
 	if (access(file, F_OK) == 0)
 	{
 		if (access(file, W_OK) == -1)
-			return (writing_error(ft_strtrim(file, "> ", garbage) \
-				, WRONG_CHMOD), 0);
+			return (singleton(1, 1), writing_error(ft_strtrim(file, \
+				"> ", garbage), WRONG_CHMOD), 0);
 	}
 	if (redir != NULL)
 	{
@@ -42,7 +42,7 @@ bool	check_fd_out(t_token *redir, t_garbage **garbage)
 		if (redir->type == WRITE)
 			fd = open(file, O_CREAT | O_RDWR | O_TRUNC, 0644);
 		if (fd == -1)
-			return (writing("cant open file", " "), 0);
+			return (ft_error(redir->content, (char *) NULL, 1, 1), 0);
 		close(fd);
 	}
 	return (1);

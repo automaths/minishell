@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:22:16 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 17:06:01 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/02 13:54:28 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,26 @@ bool	is_builts(char *command)
 		return (1);
 	if (ft_strncmp(command, "exit", 5) == 0)
 		return (1);
+	return (0);
+}
+
+bool	check_absolute(t_command *cmd)
+{
+	int	i;
+
+	i = -1;
+	while (cmd->arg->command[++i])
+	{
+		if (cmd->arg->command[i] == '/')
+		{
+			if (access(cmd->arg->command, X_OK) == 0)
+			{
+				cmd->arg->path = cmd->arg->command;
+				return (1);
+			}
+			else
+				return (0);
+		}
+	}
 	return (0);
 }

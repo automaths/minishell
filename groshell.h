@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/01 23:30:27 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/02 14:09:41 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ void		exec_env(t_command *cmd);
 int			update_env(char *name, char *content, t_env *env);
 void		exec_exit(t_command *cmd);
 void		exec_export(t_command *cmd);
+void		print_export(t_command *cmd);
 void		export_shlvl(t_command *cmd, bool add);
 void		exec_pwd(t_command *cmd);
 void		exec_unset(t_command *cmd);
@@ -198,6 +199,7 @@ void		token_initing(t_command *cmd);
 bool		command_trim(t_command *cmd);
 bool		find_path(t_token *arg, char *unix_path);
 bool		is_builts(char *command);
+bool		check_absolute(t_command *cmd);
 
 // executing/redirecting.c
 bool		check_fd_in(char *content, t_garbage **garbage);
