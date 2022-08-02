@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:15 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/02 15:53:21 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/02 18:20:19 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	waitpiding(t_command *cmd)
 		{
 			if (waitpid(tmp->arg->pid, &num, 0) != -1)
 			{
-				if (tmp->arg->pid && num)
+				if (tmp->arg->pid)
 					updating_singleton(num);
 			}
 		}
