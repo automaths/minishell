@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 21:49:48 by jucheval          #+#    #+#             */
-/*   Updated: 2022/08/02 19:49:32 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/03 14:49:38 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,20 +114,27 @@ int	replace_variable(t_command *cmd, t_env *env)
 
 int	replace_all_variable(t_command *cmd, t_env *env)
 {
-	parse_dollars(cmd);
-	parse_dollars_redir(cmd);
-	replace_return_value(cmd);
-	if (!replace_variable(cmd, env))
-		return (0);
-	if (!replace_variable_redir(cmd, env))
-		return (0);
-	replace_negativ_char(cmd);
-	replace_negativ_char_redir(cmd);
-	if (!del_quotes(cmd))
-		return (0);
-	if (!delete_redir_char_in_redir_list(cmd))
-		return (0);
-	if (!delete_quotes_redir_list(cmd))
-		return (0);
+	t_command *tmp;
+	
+	tmp = cmd;
+	while (tmp != NULL)
+	{
+		parse_dollars(tmp);
+		parse_dollars_redir(tmp);
+		replace_return_value(tmp);
+		if (!replace_variable(tmp, env))
+			return (0);
+		if (!replace_variable_redir(tmp, env))
+			return (0);
+		replace_negativ_char(tmp);
+		replace_negativ_char_redir(tmp);
+		if (!del_quotes(tmp))
+			return (0);
+		if (!delete_redir_char_in_redir_list(tmp))
+			return (0);
+		if (!delete_quotes_redir_list(tmp))
+			return (0);
+		tmp = tmp->next;
+	}
 	return (1);
 }

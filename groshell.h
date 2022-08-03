@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   groshell.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:10:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/02 19:44:36 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/08/03 15:26:45 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,6 +255,11 @@ bool		redirection_validation(t_first *uno);
 bool		pipes_validation(t_first *uno);
 bool		command_validation(t_first *uno);
 bool		check_special_redir(t_first *uno);
+
+//parsing/parser/spliting_quotes
+bool		check_spliting(char *str);
+t_token		*update_argz(t_token *arg, t_garbage **garbage);
+void		spliting_quotes(t_command *cmd);
 
 // parsing/parser/parser_utils.c
 t_command	*new_cmd(t_env *env, t_garbage **garbage);
