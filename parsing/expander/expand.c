@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 21:49:48 by jucheval          #+#    #+#             */
-/*   Updated: 2022/08/03 14:49:38 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/08/03 15:34:18 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,8 @@ int	replace_variable(t_command *cmd, t_env *env)
 
 int	replace_all_variable(t_command *cmd, t_env *env)
 {
-	t_command *tmp;
-	
+	t_command	*tmp;
+
 	tmp = cmd;
 	while (tmp != NULL)
 	{
