@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:37:18 by nsartral          #+#    #+#             */
-/*   Updated: 2022/08/03 16:42:22 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/08/03 18:17:47 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	writing_error(char *str, int num)
 {
 	if (num == 1)
 	{
-		write(2, "groshell: ", 6);
+		write(2, "groshell: ", 10);
 		if (str != NULL)
 			write(2, str, ft_strlen(str));
 		write(2, ": command not found\n", 20);
@@ -31,7 +31,7 @@ void	writing_error(char *str, int num)
 	}
 	if (num == 3)
 	{
-		write(2, "groshell: ", 6);
+		write(2, "groshell: ", 10);
 		if (str != NULL)
 			write(2, str, ft_strlen(str));
 		write(2, ": permission denied\n", ft_strlen(": permission denied\n"));
