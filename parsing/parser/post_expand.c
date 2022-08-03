@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 15:34:28 by nimrod            #+#    #+#             */
-/*   Updated: 2022/08/03 15:37:10 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/08/03 16:38:16 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,17 @@ void	spliting_quotes(t_command *cmd)
 	tmp = cmd;
 	while (tmp != NULL)
 	{
-		if (check_spliting(tmp->arg->content))
+		if (tmp->arg)
 		{
-			tnp = tmp->arg->next;
-			tmp->arg = update_argz(tmp->arg, cmd->garbage);
-			top = tmp->arg;
-			while (top != NULL)
-				top = top->next;
-			top = tnp;
+			if (check_spliting(tmp->arg->content))
+			{
+				tnp = tmp->arg->next;
+				tmp->arg = update_argz(tmp->arg, cmd->garbage);
+				top = tmp->arg;
+				while (top != NULL)
+					top = top->next;
+				top = tnp;
+			}
 		}
 		tmp = tmp->next;
 	}
