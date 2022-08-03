@@ -6,7 +6,7 @@
 /*   By: nimrod <nimrod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 15:34:28 by nimrod            #+#    #+#             */
-/*   Updated: 2022/08/03 16:38:16 by nimrod           ###   ########.fr       */
+/*   Updated: 2022/08/03 16:59:58 by nimrod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,25 @@ t_token	*update_argz(t_token *arg, t_garbage **garbage)
 	return (update);
 }
 
+bool	two_words(char *str)
+{
+	int	i;
+	int	t;
+
+	i = -1;
+	t = 0;
+	while (is_whitespace(str[++i]))
+		;
+	while (str[i++])
+	{
+		if (str[i] == ' ')
+			t = 1;
+		if (t == 1 && (str[i] >= 33 && str[i] <= 126))
+			return (1);
+	}
+	return (0);
+}
+
 void	spliting_quotes(t_command *cmd)
 {
 	t_command	*tmp;
@@ -52,7 +71,8 @@ void	spliting_quotes(t_command *cmd)
 	{
 		if (tmp->arg)
 		{
-			if (check_spliting(tmp->arg->content))
+			if (check_spliting(tmp->arg->content) \
+				&& two_words(tmp->arg->content))
 			{
 				tnp = tmp->arg->next;
 				tmp->arg = update_argz(tmp->arg, cmd->garbage);
